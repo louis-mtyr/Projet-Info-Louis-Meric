@@ -2723,6 +2723,61 @@ namespace PSI___Louis___Meric
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
         }
+
+        public MyImage Histogramme()
+        {
+            Pixel[,] newImage = new Pixel[100, 512];
+            for (int i = 0; i < 100; i++) for (int j = 0; j < 512; j++) newImage[i, j] = new Pixel(0, 0, 0);
+            int taille = this.hauteurImage * this.largeurImage;
+            int[] tabCompteurCouleurs = new int[8 * 8 * 8];
+            int zoneR;
+            int zoneG;
+            int zoneB;
+            for (int i=0; i<this.hauteurImage; i++)
+            {
+                for (int j=0; j<largeurImage; j++)
+                {
+                    if (this.image[i, j].R < 32) zoneR = 0;
+                    else if (this.image[i, j].R < 64) zoneR = 1;
+                    else if (this.image[i, j].R < 96) zoneR = 2;
+                    else if (this.image[i, j].R < 128) zoneR = 3;
+                    else if (this.image[i, j].R < 160) zoneR = 4;
+                    else if (this.image[i, j].R < 192) zoneR = 5;
+                    else if (this.image[i, j].R < 224) zoneR = 6;
+                    else zoneR = 7;
+
+                    if (this.image[i, j].G < 32) zoneG = 0;
+                    else if (this.image[i, j].G < 64) zoneG = 1;
+                    else if (this.image[i, j].G < 96) zoneG = 2;
+                    else if (this.image[i, j].G < 128) zoneG = 3;
+                    else if (this.image[i, j].G < 160) zoneG = 4;
+                    else if (this.image[i, j].G < 192) zoneG = 5;
+                    else if (this.image[i, j].G < 224) zoneG = 6;
+                    else zoneG = 7;
+
+                    if (this.image[i, j].B < 32) zoneB = 0;
+                    else if (this.image[i, j].B < 64) zoneB = 1;
+                    else if (this.image[i, j].B < 96) zoneB = 2;
+                    else if (this.image[i, j].B < 128) zoneB = 3;
+                    else if (this.image[i, j].B < 160) zoneB = 4;
+                    else if (this.image[i, j].B < 192) zoneB = 5;
+                    else if (this.image[i, j].B < 224) zoneB = 6;
+                    else zoneB = 7;
+
+                    tabCompteurCouleurs[zoneR * 64 + zoneG * 8 + zoneB]++;
+                }
+            }
+            for (int j = 0; j < 512; j++)
+            {
+                for (int x=0; x<(tabCompteurCouleurs[j]*100/taille); x++)
+                {
+                    newImage[x, j] = new Pixel(255, 0, 0);
+                }
+            }
+            int tailleFichier = 100 * 512 * 3 + 54;
+            int tailleOffset = tailleFichier - 54;
+            MyImage nouvelleImage = new MyImage("BitMap", tailleFichier, tailleOffset, 100, 512, this.nbBitsCouleur, newImage);
+            return nouvelleImage;
+        }
     }
 }
-

@@ -63,6 +63,7 @@ namespace PSI___Louis___Meric
                                      + "16 : Afficher l'image avec un effet de repoussage\n"
                                      + "17 : Afficher l'image avec un filtre de Sobel\n"
                                      + "18 : Afficher l'image avec une matrice de convolution aléatoire\n"
+                                     + "19 : Afficher l'histogramme de l'image\n"
                                      + "\n"
                                      + "Sélectionnez la fonction désirée ");
                     Console.WriteLine("Tapez le numéro d'une fonction pour la lancer, ou 'Quitter' pour fermer le programme");
@@ -180,6 +181,11 @@ namespace PSI___Louis___Meric
                             MyImage testJSP = test.ConvolutionAleatoire();
                             testJSP.From_Image_To_File("testConvolutionAleatoire.bmp");
                             Process.Start("testConvolutionAleatoire.bmp");
+                            break;
+                        case "19":
+                            MyImage testHistogramme = test.Histogramme();
+                            testHistogramme.From_Image_To_File("testHistogramme.bmp");
+                            Process.Start("testHistogramme.bmp");
                             break;
                         case "quitter":
                         case "Quitter":
