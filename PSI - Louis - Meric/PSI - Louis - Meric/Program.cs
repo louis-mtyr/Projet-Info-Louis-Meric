@@ -64,6 +64,8 @@ namespace PSI___Louis___Meric
                                      + "17 : Afficher l'image avec un filtre de Sobel\n"
                                      + "18 : Afficher l'image avec une matrice de convolution aléatoire\n"
                                      + "19 : Afficher l'histogramme de l'image\n"
+                                     + "20 : Appliquer une rotation à l'image de 90° vers la droite\n"
+                                     + "21 : Appliquer une rotation à l'image de 90° vers la gauche\n"
                                      + "\n"
                                      + "Sélectionnez la fonction désirée ");
                     Console.WriteLine("Tapez le numéro d'une fonction pour la lancer, ou 'Quitter' pour fermer le programme");
@@ -186,6 +188,16 @@ namespace PSI___Louis___Meric
                             MyImage testHistogramme = test.Histogramme();
                             testHistogramme.From_Image_To_File("testHistogramme.bmp");
                             Process.Start("testHistogramme.bmp");
+                            break;
+                        case "20":
+                            MyImage testRotation90Droite = test.Rotation90Droite();
+                            testRotation90Droite.From_Image_To_File("testRotation90Droite.bmp");
+                            Process.Start("testRotation90Droite.bmp");
+                            break;
+                        case "21":
+                            MyImage testRotation90Gauche = test.Rotation90Gauche();
+                            testRotation90Gauche.From_Image_To_File("testRotation90Gauche.bmp");
+                            Process.Start("testRotation90Gauche.bmp");
                             break;
                         case "quitter":
                         case "Quitter":

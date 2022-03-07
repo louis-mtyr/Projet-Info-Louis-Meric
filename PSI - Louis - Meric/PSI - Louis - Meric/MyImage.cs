@@ -450,6 +450,44 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }
 
+        public MyImage Rotation90Droite()
+        {
+            int newHauteur = this.largeurImage;
+            int newLargeur = this.hauteurImage;
+            Pixel[,] newImage = new Pixel[newHauteur, newLargeur];
+            for (int i = 0; i < newHauteur; i++) for (int j = 0; j < newLargeur; j++) newImage[i, j] = new Pixel(0, 0, 0);
+            for (int i = 0; i < newHauteur; i++)
+            {
+                for (int j = 0; j < newLargeur; j++)
+                {
+                    newImage[i, j].R = this.image[j, newHauteur - i - 1].R;
+                    newImage[i, j].G = this.image[j, newHauteur - i - 1].G;
+                    newImage[i, j].B = this.image[j, newHauteur - i - 1].B;
+                }
+            }
+            MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, newHauteur, newLargeur, this.NbBitsCouleur, newImage);
+            return nouvelleImage;
+        }
+
+        public MyImage Rotation90Gauche()
+        {
+            int newHauteur = this.largeurImage;
+            int newLargeur = this.hauteurImage;
+            Pixel[,] newImage = new Pixel[newHauteur, newLargeur];
+            for (int i = 0; i < newHauteur; i++) for (int j = 0; j < newLargeur; j++) newImage[i, j] = new Pixel(0, 0, 0);
+            for (int i = 0; i < newHauteur; i++)
+            {
+                for (int j = 0; j < newLargeur; j++)
+                {
+                    newImage[i, j].R = this.image[newLargeur - j - 1, i].R;
+                    newImage[i, j].G = this.image[newLargeur - j - 1, i].G;
+                    newImage[i, j].B = this.image[newLargeur - j - 1, i].B;
+                }
+            }
+            MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, newHauteur, newLargeur, this.NbBitsCouleur, newImage);
+            return nouvelleImage;
+        }
+
         public MyImage Reduire(int coefHauteur, int coefLargeur)                    //return l'image réduite -coefHauteur * coefLargeur- fois
         {
             int newTaille = (this.hauteurImage / coefHauteur) * (this.LargeurImage / coefLargeur) * 3 + 54;
