@@ -2805,9 +2805,11 @@ namespace PSI___Louis___Meric
                     tabCompteurCouleurs[zoneR * 64 + zoneG * 8 + zoneB]++;
                 }
             }
+            int max = tabCompteurCouleurs[0];
+            for (int i = 0; i < tabCompteurCouleurs.Length; i++) if (max < tabCompteurCouleurs[i]) max = tabCompteurCouleurs[i];
             for (int j = 0; j < 512; j++)
             {
-                for (int x=0; x<(tabCompteurCouleurs[j]*100/taille); x++)
+                for (int x=0; x<(tabCompteurCouleurs[j]*100/max); x++)
                 {
                     newImage[x, j] = new Pixel(255, 0, 0);
                 }
@@ -2816,6 +2818,41 @@ namespace PSI___Louis___Meric
             int tailleOffset = tailleFichier - 54;
             MyImage nouvelleImage = new MyImage("BitMap", tailleFichier, tailleOffset, 100, 512, this.nbBitsCouleur, newImage);
             return nouvelleImage;
+        }
+
+        public int[] Convert_Byte_To_Hexadecimal(byte valeur)
+        {
+            int[] tabHexadecimal = new int[8];
+            for (int i=0; i<8; i++)
+            {
+                tabHexadecimal[i] = (byte)(valeur / Math.Pow(2, 7 - i));
+                valeur = (byte)(valeur % Math.Pow(2, 7 - i));
+            }
+            return tabHexadecimal;
+        }
+
+        public byte Convert_Hexadecimal_To_Byte(int[] tabHexadecimal)
+        {
+            byte valeur = 0;
+            for (int i=0; i<8; i++)
+            {
+                valeur += (byte)(tabHexadecimal[i] * Math.Pow(2, 7 - i));
+            }
+            return valeur;
+        }
+
+        public MyImage CacherImage(string nomImage2)
+        {
+            MyImage image2 = new MyImage(nomImage2);
+            Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
+            int minHauteur;
+            int minLargeur;
+            if (this.hauteurImage < image2.hauteurImage) minHauteur = this.hauteurImage;
+            else minHauteur = image2.hauteurImage;
+            if (this.largeurImage < image2.largeurImage) minLargeur = this.largeurImage;
+            else minLargeur = image2.largeurImage;
+            for (int i = 0; i < this.hauteurImage; i++) for (int j = 0; j < this.largeurImage; j++) newImage[i, j] = this.image[i, j];
+            return null;
         }
     }
 }
