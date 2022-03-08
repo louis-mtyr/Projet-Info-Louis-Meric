@@ -199,6 +199,23 @@ namespace PSI___Louis___Meric
                             testRotation90Gauche.From_Image_To_File("testRotation90Gauche.bmp");
                             Process.Start("testRotation90Gauche.bmp");
                             break;
+                        case "22":
+                            Console.WriteLine("Veuillez choisir l'image à cacher dans celle sélectionnée (coco / tigre / lena / lac / nature / Test001 / carreTest)");
+                            string imageACacher = Console.ReadLine() + ".bmp";
+                            do
+                            {
+                                if (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp")
+                                {
+                                    Console.WriteLine("L'image fournie n'est pas un BitMap ou n'existe pas");
+                                    Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / tigre / lena / lac / nature / Test001 / carreTest)");
+                                    imageACacher = Console.ReadLine() + ".bmp";
+                                }
+                            }
+                            while (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp");
+                            MyImage testImageCachee = test.CacherImage(imageACacher);
+                            testImageCachee.From_Image_To_File("testImageCachee.bmp");
+                            Process.Start("testImageCachee.bmp");
+                            break;
                         case "quitter":
                         case "Quitter":
                         case "QUITTER":

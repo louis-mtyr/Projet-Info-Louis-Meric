@@ -2852,7 +2852,41 @@ namespace PSI___Louis___Meric
             if (this.largeurImage < image2.largeurImage) minLargeur = this.largeurImage;
             else minLargeur = image2.largeurImage;
             for (int i = 0; i < this.hauteurImage; i++) for (int j = 0; j < this.largeurImage; j++) newImage[i, j] = this.image[i, j];
-            return null;
+            for (int i = 0; i < minHauteur; i++)
+            {
+                for (int j = 0; j < minLargeur; j++)
+                {
+                    int[] hexaImage1R = Convert_Byte_To_Hexadecimal(this.image[i, j].R);
+                    int[] hexaImage2R = Convert_Byte_To_Hexadecimal(image2.image[i, j].R);
+                    int[] newHexaR = new int[8];
+                    for (int k = 0; k < 8; k++)
+                    {
+                        if (k < 4) newHexaR[k] = hexaImage1R[k];
+                        else newHexaR[k] = hexaImage2R[k];
+                    }
+                    newImage[i, j].R = Convert_Hexadecimal_To_Byte(newHexaR);
+                    int[] hexaImage1G = Convert_Byte_To_Hexadecimal(this.image[i, j].G);
+                    int[] hexaImage2G = Convert_Byte_To_Hexadecimal(image2.image[i, j].G);
+                    int[] newHexaG = new int[8];
+                    for (int k = 0; k < 8; k++)
+                    {
+                        if (k < 4) newHexaG[k] = hexaImage1G[k];
+                        else newHexaG[k] = hexaImage2G[k];
+                    }
+                    newImage[i, j].G = Convert_Hexadecimal_To_Byte(newHexaG);
+                    int[] hexaImage1B = Convert_Byte_To_Hexadecimal(this.image[i, j].B);
+                    int[] hexaImage2B = Convert_Byte_To_Hexadecimal(image2.image[i, j].B);
+                    int[] newHexaB = new int[8];
+                    for (int k = 0; k < 8; k++)
+                    {
+                        if (k < 4) newHexaB[k] = hexaImage1B[k];
+                        else newHexaB[k] = hexaImage2B[k];
+                    }
+                    newImage[i, j].B = Convert_Hexadecimal_To_Byte(newHexaB);
+                }
+            }
+            MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
+            return nouvelleImage;
         }
     }
 }
