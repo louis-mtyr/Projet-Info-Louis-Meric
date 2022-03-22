@@ -66,6 +66,8 @@ namespace PSI___Louis___Meric
                                      + "19 : Afficher l'histogramme de l'image\n"
                                      + "20 : Appliquer une rotation à l'image de 90° vers la droite\n"
                                      + "21 : Appliquer une rotation à l'image de 90° vers la gauche\n"
+                                     + "22 : Cacher une image dans une autre\n"
+                                     + "23 : Appliquer un dégradé multicolore sur l'image\n"
                                      + "\n"
                                      + "Sélectionnez la fonction désirée ");
                     Console.WriteLine("Tapez le numéro d'une fonction pour la lancer, ou 'Quitter' pour fermer le programme");
@@ -215,6 +217,11 @@ namespace PSI___Louis___Meric
                             MyImage testImageCachee = test.CacherImage(imageACacher);
                             testImageCachee.From_Image_To_File("testImageCachee.bmp");
                             Process.Start("testImageCachee.bmp");
+                            break;
+                        case "23":
+                            MyImage testDegrade = test.Degrade();
+                            testDegrade.From_Image_To_File("testDegrade.bmp");
+                            Process.Start("testDegrade.bmp");
                             break;
                         case "quitter":
                         case "Quitter":

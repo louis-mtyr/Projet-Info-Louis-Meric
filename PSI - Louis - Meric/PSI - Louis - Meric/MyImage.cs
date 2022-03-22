@@ -2702,7 +2702,7 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }
 
-        public MyImage Histogramme()
+        /*public MyImage Histogramme()
         {
             Pixel[,] newImage = new Pixel[100, 512];
             for (int i = 0; i < 100; i++) for (int j = 0; j < 512; j++) newImage[i, j] = new Pixel(0, 0, 0);
@@ -2751,12 +2751,82 @@ namespace PSI___Louis___Meric
             {
                 for (int x=0; x<(tabCompteurCouleurs[j]*100/max); x++)
                 {
-                    newImage[x, j] = new Pixel(255, 0, 0);
+                    newImage[x, j] = new Pixel((byte)(Math.Abs(255 - 3*x)), (byte)(Math.Abs(255 - 2*x)), (byte)(Math.Abs(255 - x)));
                 }
             }
             int tailleFichier = 100 * 512 * 3 + 54;
             int tailleOffset = tailleFichier - 54;
             MyImage nouvelleImage = new MyImage("BitMap", tailleFichier, tailleOffset, 100, 512, this.nbBitsCouleur, newImage);
+            return nouvelleImage;
+        }*/
+
+        public MyImage Histogramme()
+        {
+            Pixel[,] newImage = new Pixel[300, 768];
+            for (int i = 0; i < 300; i++) for (int j = 0; j < 768; j++) newImage[i, j] = new Pixel(0, 0, 0);
+            int[] tabCouleurR = new int[256];
+            int[] tabCouleurG = new int[256];
+            int[] tabCouleurB = new int[256];
+            for (int i=0; i<this.hauteurImage; i++)
+            {
+                for (int j=0; j<this.largeurImage; j++)
+                {
+                    tabCouleurR[this.image[i, j].R]++;
+                    tabCouleurG[this.image[i, j].G]++;
+                    tabCouleurB[this.image[i, j].B]++;
+                }
+            }
+            int maxR = tabCouleurR[0];
+            int maxG = tabCouleurG[0];
+            int maxB = tabCouleurB[0];
+            for (int i = 0; i < 256; i++)
+            {
+                if (maxR < tabCouleurR[i]) maxR = tabCouleurR[i];
+                if (maxG < tabCouleurG[i]) maxG = tabCouleurG[i];
+                if (maxB < tabCouleurB[i]) maxB = tabCouleurB[i];
+            }
+            for (int j = 0; j < 768; j+=3)
+            {
+                for (int x = 0; x < (tabCouleurR[j/3] * 300 / maxR); x++)
+                {
+                    newImage[x, j].R = 255;
+                    newImage[x, j+1].R = 255;
+                    newImage[x, j+2].R = 255;
+                }
+                for (int x = 0; x < (tabCouleurG[j/3] * 300 / maxG); x++)
+                {
+                    newImage[x, j].G = 255;
+                    newImage[x, j + 1].G = 255;
+                    newImage[x, j + 2].G = 255;
+                }
+                for (int x = 0; x < (tabCouleurB[j/3] * 300 / maxB); x++)
+                {
+                    newImage[x, j].B = 255;
+                    newImage[x, j + 1].B = 255;
+                    newImage[x, j + 2].B = 255;
+                }
+            }
+            
+            int tailleFichier = 300 * 768 * 3 + 54;
+            int tailleOffset = tailleFichier - 54;
+            MyImage nouvelleImage = new MyImage("BitMap", tailleFichier, tailleOffset, 300, 768, this.nbBitsCouleur, newImage);
+            return nouvelleImage;
+        }
+
+        public MyImage Degrade()
+        {
+            Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
+            for (int i = 0; i < this.hauteurImage; i++) for (int j = 0; j < this.largeurImage; j++) newImage[i, j] = new Pixel(0,0,0);
+            for (int i=0; i<this.hauteurImage; i++)
+            {
+                for (int j=0; j<this.largeurImage; j++)
+                {
+                    newImage[i, j].R = (byte)Math.Abs(this.image[i, j].R - i + j);
+                    newImage[i, j].G = (byte)Math.Abs(this.image[i, j].G + 2*i - 2*j);
+                    newImage[i, j].B = (byte)Math.Abs(this.image[i, j].B - i + j);
+                }
+            }
+            MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
         }
 
