@@ -53,7 +53,7 @@ namespace PSI___Louis___Meric
                                      + "6 : Afficher l'image avec un effet miroir vertical\n"
                                      + "7 : Agrandir l'image\n"
                                      + "8 : Réduire l'image\n"
-                                     + "9 : Appliquer une rotation à l'image (pas fini !)\n"
+                                     + "9 : Appliquer une rotation à l'image\n"
                                      + "10 : Afficher la détection des contours de l'image\n"
                                      + "11 : Afficher l'image floutée\n"
                                      + "12 : Afficher l'image avec un effet psychédélique\n"
