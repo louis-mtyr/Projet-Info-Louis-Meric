@@ -17,7 +17,7 @@ namespace PSI___Louis___Meric
         {
             Console.WindowHeight = 50;
             Console.WindowWidth = 200;
-            Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / tigre / lena / lac / nature / Test001 / carreTest)");
+            Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / lena / lac / land / nature / champs / deer / Test001 / carreTest)");
             string nom = Console.ReadLine() + ".bmp";
             MyImage test;
             try
@@ -71,6 +71,8 @@ namespace PSI___Louis___Meric
                                      + "24 : Appliquer un effet de symétrie sur un axe horizontal\n"
                                      + "25 : Appliquer un effet de symétrie sur un axe vertical\n"
                                      + "26 : Appliquer un effet de symétrie sur un axe vertical et horizontal\n"
+                                     + "27 : Donner un changement de couleurs de manière aléatoire à l'image\n"
+                                     + "28 : Appliquer un effet de saturation à l'image\n"
                                      + "\n"
                                      + "Sélectionnez la fonction désirée ");
                     Console.WriteLine("Tapez le numéro d'une fonction pour la lancer, ou 'Quitter' pour fermer le programme");
@@ -80,14 +82,14 @@ namespace PSI___Louis___Meric
                         case "0":
                             do
                             {
-                                if (nom != "coco.bmp" && nom != "tigre.bmp" && nom != "lena.bmp" && nom != "lac.bmp" && nom != "nature.bmp" && nom != "Test001.bmp" && nom != "carreTest.bmp")
+                                if (nom != "coco.bmp" && nom != "tigre.bmp" && nom != "lena.bmp" && nom != "lac.bmp" && nom != "nature.bmp" && nom != "Test001.bmp" && nom != "carreTest.bmp" && nom != "champs.bmp" && nom != "land.bmp" && nom != "deer.bmp" && nom != "renard.bmp")
                                 {
                                     Console.WriteLine("L'image fournie n'est pas un BitMap ou n'existe pas");
                                 }
-                                Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / tigre / lena / lac / nature / Test001 / carreTest)");
+                                Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / lena / lac / land / nature / champs / deer / Test001 / carreTest)");
                                 nom = Console.ReadLine() + ".bmp";
                             } 
-                            while (nom != "coco.bmp" && nom != "tigre.bmp" && nom != "lena.bmp" && nom != "lac.bmp" && nom != "nature.bmp" && nom != "Test001.bmp" && nom != "carreTest.bmp");
+                            while (nom != "coco.bmp" && nom != "tigre.bmp" && nom != "lena.bmp" && nom != "lac.bmp" && nom != "nature.bmp" && nom != "Test001.bmp" && nom != "carreTest.bmp" && nom != "champs.bmp" && nom != "land.bmp" && nom != "deer.bmp" && nom != "renard.bmp");
                             test = new MyImage(nom);
                             break;
                         case "1":
@@ -205,18 +207,18 @@ namespace PSI___Louis___Meric
                             Process.Start("testRotation90Gauche.bmp");
                             break;
                         case "22":
-                            Console.WriteLine("Veuillez choisir l'image à cacher dans celle sélectionnée (coco / tigre / lena / lac / nature / Test001 / carreTest)");
+                            Console.WriteLine("Veuillez choisir l'image à cacher dans celle sélectionnée (coco / renard / tigre / lena / lac / land / nature / champs / deer / Test001 / carreTest)");
                             string imageACacher = Console.ReadLine() + ".bmp";
                             do
                             {
-                                if (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp")
+                                if (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp" && imageACacher != "champs.bmp" && imageACacher != "land.bmp" && imageACacher != "deer.bmp" && imageACacher != "renard.bmp")
                                 {
                                     Console.WriteLine("L'image fournie n'est pas un BitMap ou n'existe pas");
-                                    Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / tigre / lena / lac / nature / Test001 / carreTest)");
+                                    Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / lena / lac / land / nature / champs / deer / Test001 / carreTest)");
                                     imageACacher = Console.ReadLine() + ".bmp";
                                 }
                             }
-                            while (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp");
+                            while (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp" && imageACacher != "champs.bmp" && imageACacher != "land.bmp" && imageACacher != "deer.bmp" && imageACacher != "renard.bmp");
                             if (imageACacher==nom)
                             {
                                 string fonctionACacher;
@@ -242,6 +244,8 @@ namespace PSI___Louis___Meric
                                          + "16 : Cacher un effet de symétrie sur un axe horizontal\n"
                                          + "17 : Cacher un effet de symétrie sur un axe vertical\n"
                                          + "18 : Cacher un effet de symétrie sur un axe vertical et horizontal\n"
+                                         + "19 : Cacher un changement de couleurs de manière aléatoire\n"
+                                         + "20 : Cacher un effet de saturation à l'image\n"
                                          + "\n");
                                     Console.WriteLine("Veuillez choisir la modification de votre image a cacher dans celle sélectionnée");
                                     fonctionACacher = Console.ReadLine();
@@ -337,17 +341,25 @@ namespace PSI___Louis___Meric
                                             testSymetrieCentrale2.From_Image_To_File("testSymetrieCentrale.bmp");
                                             imageACacher = "testSymetrieCentrale.bmp";
                                             break;
+                                        case "19":
+                                            test.CouleurAléatoire().From_Image_To_File("testCouleurAleatoire.bmp");
+                                            imageACacher = "testCouleurAleatoire.bmp";
+                                            break;
+                                        case "20":
+                                            test.Saturage().From_Image_To_File("testSaturage.bmp");
+                                            imageACacher = "testSaturage.bmp";
+                                            break;
                                         default:
                                             Console.WriteLine();
                                             Console.WriteLine("Cet fonction n'existe pas.");
                                             break;
                                     }
-                                    if (fonctionACacher != "1" && fonctionACacher != "2" && fonctionACacher != "3" && fonctionACacher != "4" && fonctionACacher != "5" && fonctionACacher != "6" && fonctionACacher != "7" && fonctionACacher != "8" && fonctionACacher != "9" && fonctionACacher != "10" && fonctionACacher != "11" && fonctionACacher != "12" && fonctionACacher != "13" && fonctionACacher != "14" && fonctionACacher != "15" && fonctionACacher != "16" && fonctionACacher != "17" && fonctionACacher != "18")
+                                    if (fonctionACacher != "1" && fonctionACacher != "2" && fonctionACacher != "3" && fonctionACacher != "4" && fonctionACacher != "5" && fonctionACacher != "6" && fonctionACacher != "7" && fonctionACacher != "8" && fonctionACacher != "9" && fonctionACacher != "10" && fonctionACacher != "11" && fonctionACacher != "12" && fonctionACacher != "13" && fonctionACacher != "14" && fonctionACacher != "15" && fonctionACacher != "16" && fonctionACacher != "17" && fonctionACacher != "18" && fonctionACacher != "19" && fonctionACacher != "20")
                                     {
-                                        Console.WriteLine("Appuyez sur n'importe quelle touche pour revenir au menu");
+                                        Console.WriteLine("Cette fonction n'existe pas\nAppuyez sur n'importe quelle touche pour revenir au menu");
                                         Console.ReadKey();
                                     }
-                                } while (fonctionACacher != "1" && fonctionACacher != "2" && fonctionACacher != "3" && fonctionACacher != "4" && fonctionACacher != "5" && fonctionACacher != "6" && fonctionACacher != "7" && fonctionACacher != "8" && fonctionACacher != "9" && fonctionACacher != "10" && fonctionACacher != "11" && fonctionACacher != "12" && fonctionACacher != "13" && fonctionACacher != "14" && fonctionACacher != "15" && fonctionACacher != "16" && fonctionACacher != "17" && fonctionACacher != "18");
+                                } while (fonctionACacher != "1" && fonctionACacher != "2" && fonctionACacher != "3" && fonctionACacher != "4" && fonctionACacher != "5" && fonctionACacher != "6" && fonctionACacher != "7" && fonctionACacher != "8" && fonctionACacher != "9" && fonctionACacher != "10" && fonctionACacher != "11" && fonctionACacher != "12" && fonctionACacher != "13" && fonctionACacher != "14" && fonctionACacher != "15" && fonctionACacher != "16" && fonctionACacher != "17" && fonctionACacher != "18" && fonctionACacher != "19" && fonctionACacher != "20");
                             }
                             MyImage testImageCachee = test.CacherImage(imageACacher);
                             testImageCachee.From_Image_To_File("testImageCachee.bmp");
@@ -377,6 +389,16 @@ namespace PSI___Louis___Meric
                             MyImage testSymetrieCentrale = test.SymetrieCentrale();
                             testSymetrieCentrale.From_Image_To_File("testSymetrieCentrale.bmp");
                             Process.Start("testSymetrieCentrale.bmp");
+                            break;
+                        case "27":
+                            MyImage testCouleurAleatoire = test.CouleurAléatoire();
+                            testCouleurAleatoire.From_Image_To_File("testCouleurAleatoire.bmp");
+                            Process.Start("testCouleurAleatoire.bmp");
+                            break;
+                        case "28":
+                            MyImage testSaturage = test.Saturage();
+                            testSaturage.From_Image_To_File("testSaturage.bmp");
+                            Process.Start("testSaturage.bmp");
                             break;
                         case "quitter":
                         case "Quitter":

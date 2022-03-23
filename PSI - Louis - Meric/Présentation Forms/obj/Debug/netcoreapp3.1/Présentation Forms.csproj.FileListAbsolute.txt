@@ -1,0 +1,15 @@
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\bin\Debug\netcoreapp3.1\Présentation Forms.exe
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\bin\Debug\netcoreapp3.1\Présentation Forms.deps.json
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\bin\Debug\netcoreapp3.1\Présentation Forms.runtimeconfig.json
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\bin\Debug\netcoreapp3.1\Présentation Forms.runtimeconfig.dev.json
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\bin\Debug\netcoreapp3.1\Présentation Forms.dll
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\bin\Debug\netcoreapp3.1\Présentation Forms.pdb
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.csprojAssemblyReference.cache
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation_Forms.Form1.resources
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.csproj.GenerateResource.cache
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.AssemblyInfoInputs.cache
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.AssemblyInfo.cs
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.csproj.CoreCompileInputs.cache
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.dll
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.pdb
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.genruntimeconfig.cache

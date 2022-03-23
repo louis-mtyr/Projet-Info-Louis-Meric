@@ -243,6 +243,311 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }
 
+        public MyImage CouleurAléatoire()
+        {
+            MyImage nouvelleImage = new MyImage(this.Myfile);
+            Random aleatoire = new Random();
+            int tirage = aleatoire.Next(1, 48);
+            for (int i = 0; i < this.Image.GetLength(0); i++)
+            {
+                for (int j = 0; j < this.Image.GetLength(1); j++)
+                {
+                    switch (tirage)
+                    {
+                        case 1:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].B);
+                            break;
+                        case 2:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].B);
+                            break;
+                        case 3:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].G);
+                            break;
+                        case 4:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].R);
+                            break;
+                        case 5:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].R);
+                            break;
+                        case 6:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].R);
+                            break;
+                        case 7:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].R);
+                            break;
+                        case 8:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].R);
+                            break;
+                        case 9:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].B);
+                            break;
+                        case 10:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].G);
+                            break;
+                        case 11:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].G);
+                            break;
+                        case 12:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].G);
+                            break;
+                        case 13:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].G);
+                            break;
+                        case 14:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].R);
+                            break;
+                        case 15:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].G);
+                            break;
+                        case 16:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].B);
+                            break;
+                        case 17:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].B);
+                            break;
+                        case 18:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].B);
+                            break;
+                        case 19:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].B);
+                            break;
+                        case 20:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].R);
+                            break;
+                        case 21:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].R);
+                            break;
+                        case 22:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].B);
+                            break;
+                        case 23:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].R);
+                            break;
+                        case 24:
+                            nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].G);
+                            break;
+                        case 25:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].B);
+                            break;
+                        case 26:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].G);
+                            break;
+                        case 27:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].R);
+                            break;
+                        case 28:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].R);
+                            break;
+                        case 29:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].R);
+                            break;
+                        case 30:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].R);
+                            break;
+                        case 31:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].R);
+                            break;
+                        case 32:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].B);
+                            break;
+                        case 33:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].G);
+                            break;
+                        case 34:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].G);
+                            break;
+                        case 35:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].G);
+                            break;
+                        case 36:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].G);
+                            break;
+                        case 37:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].R);
+                            break;
+                        case 38:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].G);
+                            break;
+                        case 39:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].B);
+                            break;
+                        case 40:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].B);
+                            break;
+                        case 41:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].B);
+                            break;
+                        case 42:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].B);
+                            break;
+                        case 43:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].R);
+                            break;
+                        case 44:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].R);
+                            break;
+                        case 45:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].B);
+                            break;
+                        case 46:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].G);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].R);
+                            break;
+                        case 47:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].R);
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].B);
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].G);
+                            break;
+                    }
+                }
+            }
+            return nouvelleImage;
+        }               //return l'image avec un différent jeu de couleur obtenu de manière aléatoire
+
+        public MyImage Saturage()
+        {
+            MyImage nouvelleImage = new MyImage(this.Myfile);
+            Random aleatoire = new Random();
+            int tirage;
+            for (int i = 0; i < this.Image.GetLength(0); i++)
+            {
+                for (int j = 0; j < this.Image.GetLength(1); j++)
+                {
+                    tirage = aleatoire.Next(1, 4);
+                    switch (tirage)
+                    {
+                        case 1:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].R);
+                            break;
+                        case 2:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].G);
+                            break;
+                        case 3:
+                            nouvelleImage.Image[i, j].R = (byte)(this.Image[i, j].B);
+                            break;
+                    }
+                    tirage = aleatoire.Next(1, 4);
+                    switch (tirage)
+                    {
+                        case 1:
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].R);
+                            break;
+                        case 2:
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].G);
+                            break;
+                        case 3:
+                            nouvelleImage.Image[i, j].G = (byte)(this.Image[i, j].B);
+                            break;
+                    }
+                    tirage = aleatoire.Next(1, 4);
+                    switch (tirage)
+                    {
+                        case 1:
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].R);
+                            break;
+                        case 2:
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].G);
+                            break;
+                        case 3:
+                            nouvelleImage.Image[i, j].B = (byte)(this.Image[i, j].B);
+                            break;
+                    }
+                }
+            }
+            return nouvelleImage;
+        }                   //return l'image avec un effet saturé
+
         public MyImage NuanceDeGris()            //return l'image en nuance de gris
         {
             MyImage nouvelleImage = new MyImage(this.Myfile);
@@ -398,7 +703,7 @@ namespace PSI___Louis___Meric
             }
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, newHauteur, newLargeur, this.NbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                   //return l'image tournée de 90° vers la droite
 
         public MyImage Rotation90Gauche()
         {
@@ -417,7 +722,7 @@ namespace PSI___Louis___Meric
             }
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, newHauteur, newLargeur, this.NbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                       //return l'image tournée de 90° vers la gauche
 
         public MyImage Reduire(int coefHauteur, int coefLargeur)                    //return l'image réduite -coefHauteur * coefLargeur- fois
         {
@@ -712,7 +1017,7 @@ namespace PSI___Louis___Meric
 
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                                      //return l'image avec un effet flou
 
         public MyImage Psychedelique()
         {
@@ -944,7 +1249,7 @@ namespace PSI___Louis___Meric
 
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                                     //return l'image avec un effet psychédélique
 
         public MyImage DetectionContours()
         {
@@ -993,7 +1298,7 @@ namespace PSI___Louis___Meric
             }
             MyImage areturn = new MyImage("BitMap", this.TailleFichier, this.TailleOffset, this.HauteurImage, this.LargeurImage, this.NbBitsCouleur, newImage);
             return areturn;
-        }
+        }                               //return la détection des contours de l'image
 
         public MyImage AugmentationContraste()
         {
@@ -1276,7 +1581,7 @@ namespace PSI___Louis___Meric
 
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                                    //return l'image avec une augmentation de ses contrastes
 
         public MyImage RenforcementBordsVertical()
         {
@@ -1559,7 +1864,7 @@ namespace PSI___Louis___Meric
 
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                       //return l'image avec un renforcement des bords sur la verticale
 
         public MyImage RenforcementBordsHorizontal()
         {
@@ -1842,7 +2147,7 @@ namespace PSI___Louis___Meric
 
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                           //return l'image avec un renforcement des bords sur l'horizontale
 
         public MyImage Repoussage()
         {
@@ -2125,7 +2430,7 @@ namespace PSI___Louis___Meric
 
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                               //return l'image avec un effet de repoussage
 
         public MyImage FiltreSobel()
         {
@@ -2408,7 +2713,7 @@ namespace PSI___Louis___Meric
 
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                                           //return l'image avec un filtre de Sobel appliqué
 
         public MyImage ConvolutionAleatoire()
         {
@@ -2691,7 +2996,7 @@ namespace PSI___Louis___Meric
 
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                           //return l'image avec un genre d'effet flou obtenu en jouant avec des matrices de convolution
 
         public MyImage Histogramme()
         {
@@ -2744,7 +3049,7 @@ namespace PSI___Louis___Meric
             int tailleOffset = tailleFichier - 54;
             MyImage nouvelleImage = new MyImage("BitMap", tailleFichier, tailleOffset, 300, 768, this.nbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                       //return l'histogramme de l'image
 
         public MyImage DegradeMulticolore()
         {
@@ -2761,7 +3066,7 @@ namespace PSI___Louis___Meric
             }
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                       //return l'image avec un filtre de dégradé multicolore
 
         public MyImage SymetrieHorizontale()
         {
@@ -2785,7 +3090,7 @@ namespace PSI___Louis___Meric
             }
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                   //return l'image avec une symétrie sur un axe horizontal
 
         public MyImage SymetrieVerticale()
         {
@@ -2810,7 +3115,7 @@ namespace PSI___Louis___Meric
             }
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                   //return l'image avec une symétrie sur un axe vertical
 
         public MyImage SymetrieCentrale()
         {
@@ -2856,7 +3161,7 @@ namespace PSI___Louis___Meric
             }
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                       //return l'image avec une symétrie sur un axe vertical et horizontal
 
         public int[] Convert_Byte_To_Hexadecimal(byte valeur)
         {
@@ -2867,7 +3172,7 @@ namespace PSI___Louis___Meric
                 valeur = (byte)(valeur % Math.Pow(2, 7 - i));
             }
             return tabHexadecimal;
-        }
+        }           //return le byte entré en un tableau de int correspond aux valeurs binaires de la valeur en hexadécimal
 
         public byte Convert_Hexadecimal_To_Byte(int[] tabHexadecimal)
         {
@@ -2877,7 +3182,7 @@ namespace PSI___Louis___Meric
                 valeur += (byte)(tabHexadecimal[i] * Math.Pow(2, 7 - i));
             }
             return valeur;
-        }
+        }           //return le tableau binaire d'un nombre en hexadécimal transformé en byte
 
         public MyImage CacherImage(string nomImage2)
         {
@@ -2927,7 +3232,7 @@ namespace PSI___Louis___Meric
             }
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
-        }
+        }                   //return une image avec une autre cachée dedans
 
         public MyImage RetrouverImage()
         {
@@ -2967,6 +3272,11 @@ namespace PSI___Louis___Meric
             }
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
+        }                                   //return l'image cachée derrière celle fabriquée
+
+        public MyImage Fractale()
+        {
+            return null;
         }
     }
 }
