@@ -68,6 +68,9 @@ namespace PSI___Louis___Meric
                                      + "21 : Appliquer une rotation à l'image de 90° vers la gauche\n"
                                      + "22 : Cacher une image dans une autre\n"
                                      + "23 : Appliquer un dégradé multicolore sur l'image\n"
+                                     + "24 : Appliquer un effet de symétrie sur un axe horizontal\n"
+                                     + "25 : Appliquer un effet de symétrie sur un axe vertical\n"
+                                     + "26 : Appliquer un effet de symétrie sur un axe vertical et horizontal\n"
                                      + "\n"
                                      + "Sélectionnez la fonction désirée ");
                     Console.WriteLine("Tapez le numéro d'une fonction pour la lancer, ou 'Quitter' pour fermer le programme");
@@ -214,14 +217,166 @@ namespace PSI___Louis___Meric
                                 }
                             }
                             while (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp");
+                            if (imageACacher==nom)
+                            {
+                                string fonctionACacher;
+                                do
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Menu :\n"
+                                         + "1 : Cacher l'image en noir et blanc\n"
+                                         + "2 : Cacher l'image en nuances de gris\n"
+                                         + "3 : Cacher l'image en couleurs inversées\n"
+                                         + "4 : Cacher l'image avec un effet miroir horizontal\n"
+                                         + "5 : Cacher l'image avec un effet miroir vertical\n"
+                                         + "6 : Cacher la détection des contours de l'image\n"
+                                         + "7 : Cacher l'image floutée\n"
+                                         + "8 : Cacher l'image avec un effet psychédélique\n"
+                                         + "9 : Cacher l'image avec une augmentation des contrastes\n"
+                                         + "10 : Cacher l'image avec un renforcement des bords sur la verticale\n"
+                                         + "11 : Cacher l'image avec un renforcement des bords sur l'horizontale\n"
+                                         + "12 : Cacher l'image avec un effet de repoussage\n"
+                                         + "13 : Cacher l'image avec un filtre de Sobel\n"
+                                         + "14 : Cacher l'image avec une matrice de convolution aléatoire\n"
+                                         + "15 : Cacher un dégradé multicolore sur l'image\n"
+                                         + "16 : Cacher un effet de symétrie sur un axe horizontal\n"
+                                         + "17 : Cacher un effet de symétrie sur un axe vertical\n"
+                                         + "18 : Cacher un effet de symétrie sur un axe vertical et horizontal\n"
+                                         + "\n");
+                                    Console.WriteLine("Veuillez choisir la modification de votre image a cacher dans celle sélectionnée");
+                                    fonctionACacher = Console.ReadLine();
+                                    switch (fonctionACacher)
+                                    {
+                                        case "1":
+                                            testNoirEtBlanc = test.NoirEtBlanc();
+                                            testNoirEtBlanc.From_Image_To_File("testNoirEtBlanc.bmp");
+                                            imageACacher = "testNoirEtBlanc.bmp";
+                                            break;
+                                        case "2":
+                                            testNuanceDeGris = test.NuanceDeGris();
+                                            testNuanceDeGris.From_Image_To_File("testNuanceDeGris.bmp");
+                                            imageACacher = "testNuanceDeGris.bmp";
+                                            break;
+                                        case "3":
+                                            testInverse = test.Inverse();
+                                            testInverse.From_Image_To_File("testInverse.bmp");
+                                            imageACacher = "testInverse.bmp";
+                                            break;
+                                        case "4":
+                                            testMiroirHorizontal = test.MiroirHorizontal();
+                                            testMiroirHorizontal.From_Image_To_File("testMiroirHorizontal.bmp");
+                                            imageACacher = "testMiroirHorizontal.bmp";
+                                            break;
+                                        case "5":
+                                            testMiroirVertical = test.MiroirVertical();
+                                            testMiroirVertical.From_Image_To_File("testMiroirVertical.bmp");
+                                            imageACacher = "testMiroirVertical.bmp";
+                                            break;
+                                        case "6":
+                                            testDetectionContours = test.DetectionContours();
+                                            testDetectionContours.From_Image_To_File("testDetectionContours.bmp");
+                                            imageACacher = "testDetectionContours.bmp";
+                                            break;
+                                        case "7":
+                                            testFlou = test.Flou();
+                                            testFlou.From_Image_To_File("testFlou.bmp");
+                                            imageACacher = "testFlou.bmp";
+                                            break;
+                                        case "8":
+                                            testPsychedelique = test.Psychedelique();
+                                            testPsychedelique.From_Image_To_File("testPsychedelique.bmp");
+                                            imageACacher = "testPsychedelique.bmp";
+                                            break;
+                                        case "9":
+                                            testAugmentationContraste = test.AugmentationContraste();
+                                            testAugmentationContraste.From_Image_To_File("testAugmentationContraste.bmp");
+                                            imageACacher = "testAugmentationContraste.bmp";
+                                            break;
+                                        case "10":
+                                            testRenforcementBordsVertical = test.RenforcementBordsVertical();
+                                            testRenforcementBordsVertical.From_Image_To_File("testRenforcementBordsVertical.bmp");
+                                            imageACacher = "testRenforcementBordsVertical.bmp";
+                                            break;
+                                        case "11":
+                                            testRenforcementBordsHorizontal = test.RenforcementBordsHorizontal();
+                                            testRenforcementBordsHorizontal.From_Image_To_File("testRenforcementBordsHorizontal.bmp");
+                                            imageACacher = "testRenforcementBordsHorizontal.bmp";
+                                            break;
+                                        case "12":
+                                            testRepoussage = test.Repoussage();
+                                            testRepoussage.From_Image_To_File("testRepoussage.bmp");
+                                            imageACacher = "testRepoussage.bmp";
+                                            break;
+                                        case "13":
+                                            testFiltreSobel = test.FiltreSobel();
+                                            testFiltreSobel.From_Image_To_File("testFiltreSobel.bmp");
+                                            imageACacher = "testFiltreSobel.bmp";
+                                            break;
+                                        case "14":
+                                            testJSP = test.ConvolutionAleatoire();
+                                            testJSP.From_Image_To_File("testConvolutionAleatoire.bmp");
+                                            imageACacher = "testConvolutionAleatoire.bmp";
+                                            break;
+                                        case "15":
+                                            MyImage testDegrade2 = test.DegradeMulticolore();
+                                            testDegrade2.From_Image_To_File("testDegrade.bmp");
+                                            imageACacher = "testDegrade.bmp";
+                                            break;
+                                        case "16":
+                                            MyImage testSymetrieHorizontale2 = test.SymetrieHorizontale();
+                                            testSymetrieHorizontale2.From_Image_To_File("testSymetrieHorizontale.bmp");
+                                            imageACacher = "testSymetrieHorizontale.bmp";
+                                            break;
+                                        case "17":
+                                            MyImage testSymetrieVerticale2 = test.SymetrieVerticale();
+                                            testSymetrieVerticale2.From_Image_To_File("testSymetrieVerticale.bmp");
+                                            imageACacher = "testSymetrieVerticale.bmp";
+                                            break;
+                                        case "18":
+                                            MyImage testSymetrieCentrale2 = test.SymetrieCentrale();
+                                            testSymetrieCentrale2.From_Image_To_File("testSymetrieCentrale.bmp");
+                                            imageACacher = "testSymetrieCentrale.bmp";
+                                            break;
+                                        default:
+                                            Console.WriteLine();
+                                            Console.WriteLine("Cet fonction n'existe pas.");
+                                            break;
+                                    }
+                                    if (fonctionACacher != "1" && fonctionACacher != "2" && fonctionACacher != "3" && fonctionACacher != "4" && fonctionACacher != "5" && fonctionACacher != "6" && fonctionACacher != "7" && fonctionACacher != "8" && fonctionACacher != "9" && fonctionACacher != "10" && fonctionACacher != "11" && fonctionACacher != "12" && fonctionACacher != "13" && fonctionACacher != "14" && fonctionACacher != "15" && fonctionACacher != "16" && fonctionACacher != "17" && fonctionACacher != "18")
+                                    {
+                                        Console.WriteLine("Appuyez sur n'importe quelle touche pour revenir au menu");
+                                        Console.ReadKey();
+                                    }
+                                } while (fonctionACacher != "1" && fonctionACacher != "2" && fonctionACacher != "3" && fonctionACacher != "4" && fonctionACacher != "5" && fonctionACacher != "6" && fonctionACacher != "7" && fonctionACacher != "8" && fonctionACacher != "9" && fonctionACacher != "10" && fonctionACacher != "11" && fonctionACacher != "12" && fonctionACacher != "13" && fonctionACacher != "14" && fonctionACacher != "15" && fonctionACacher != "16" && fonctionACacher != "17" && fonctionACacher != "18");
+                            }
                             MyImage testImageCachee = test.CacherImage(imageACacher);
                             testImageCachee.From_Image_To_File("testImageCachee.bmp");
                             Process.Start("testImageCachee.bmp");
+                            Console.WriteLine("Appuyez sur une touche pour retrouver l'image cachée");
+                            Console.ReadKey();
+                            MyImage testImageRetrouvee = testImageCachee.RetrouverImage();
+                            testImageRetrouvee.From_Image_To_File("testImageRetrouvee.bmp");
+                            Process.Start("testImageRetrouvee.bmp");
                             break;
                         case "23":
-                            MyImage testDegrade = test.Degrade();
+                            MyImage testDegrade = test.DegradeMulticolore();
                             testDegrade.From_Image_To_File("testDegrade.bmp");
                             Process.Start("testDegrade.bmp");
+                            break;
+                        case "24":
+                            MyImage testSymetrieHorizontale = test.SymetrieHorizontale();
+                            testSymetrieHorizontale.From_Image_To_File("testSymetrieHorizontale.bmp");
+                            Process.Start("testSymetrieHorizontale.bmp");
+                            break;
+                        case "25":
+                            MyImage testSymetrieVerticale = test.SymetrieVerticale();
+                            testSymetrieVerticale.From_Image_To_File("testSymetrieVerticale.bmp");
+                            Process.Start("testSymetrieVerticale.bmp");
+                            break;
+                        case "26":
+                            MyImage testSymetrieCentrale = test.SymetrieCentrale();
+                            testSymetrieCentrale.From_Image_To_File("testSymetrieCentrale.bmp");
+                            Process.Start("testSymetrieCentrale.bmp");
                             break;
                         case "quitter":
                         case "Quitter":

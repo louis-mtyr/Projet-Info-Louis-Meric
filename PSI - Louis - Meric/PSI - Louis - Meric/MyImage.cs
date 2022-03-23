@@ -131,16 +131,12 @@ namespace PSI___Louis___Meric
 
         public void From_Image_To_File(string file)
         {
-            int coefHauteur = 0;
             int coefLargeur = 0;
             if (this.largeurImage*3 % 4 == 3) coefLargeur = 1;
             if (this.largeurImage*3 % 4 == 2) coefLargeur = 2;
             if (this.largeurImage*3 % 4 == 1) coefLargeur = 3;
-            if (this.hauteurImage % 4 == 3) coefHauteur = 1;
-            if (this.hauteurImage % 4 == 2) coefHauteur = 2;
-            if (this.hauteurImage % 4 == 1) coefHauteur = 3;
             //début recopiage header + header info
-            byte[] nouveauFichier = new byte[this.tailleFichier + coefHauteur * (this.largeurImage + coefLargeur) * 3 + coefLargeur * this.hauteurImage * 3];
+            byte[] nouveauFichier = new byte[this.tailleFichier + coefLargeur * this.hauteurImage * 3];
             nouveauFichier[0] = Convert.ToByte(66);
             nouveauFichier[1] = Convert.ToByte(77);
             byte[] tailleFichierEndian = Convert_Int_To_Endian(this.tailleFichier);
@@ -192,12 +188,6 @@ namespace PSI___Louis___Meric
                         x++;
                     }
                 }
-                else
-                {
-                    nouveauFichier[i] = 0;
-                    nouveauFichier[i + 1] = 0;
-                    nouveauFichier[i + 2] = 0;
-                }
             }
             this.fichierComplet = nouveauFichier;
             File.WriteAllBytes(file, nouveauFichier);
@@ -237,6 +227,7 @@ namespace PSI___Louis___Meric
             if (val >= 0) tab[0] = Convert.ToByte(val);
             return tab;
         }
+
         public MyImage Inverse()                        //return l'image avec les coleurs inversés en fct du spectre
         {
             MyImage nouvelleImage = new MyImage(this.Myfile);
@@ -2702,64 +2693,6 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }
 
-        /*public MyImage Histogramme()
-        {
-            Pixel[,] newImage = new Pixel[100, 512];
-            for (int i = 0; i < 100; i++) for (int j = 0; j < 512; j++) newImage[i, j] = new Pixel(0, 0, 0);
-            int taille = this.hauteurImage * this.largeurImage;
-            int[] tabCompteurCouleurs = new int[8 * 8 * 8];
-            int zoneR;
-            int zoneG;
-            int zoneB;
-            for (int i=0; i<this.hauteurImage; i++)
-            {
-                for (int j=0; j<largeurImage; j++)
-                {
-                    if (this.image[i, j].R < 32) zoneR = 0;
-                    else if (this.image[i, j].R < 64) zoneR = 1;
-                    else if (this.image[i, j].R < 96) zoneR = 2;
-                    else if (this.image[i, j].R < 128) zoneR = 3;
-                    else if (this.image[i, j].R < 160) zoneR = 4;
-                    else if (this.image[i, j].R < 192) zoneR = 5;
-                    else if (this.image[i, j].R < 224) zoneR = 6;
-                    else zoneR = 7;
-
-                    if (this.image[i, j].G < 32) zoneG = 0;
-                    else if (this.image[i, j].G < 64) zoneG = 1;
-                    else if (this.image[i, j].G < 96) zoneG = 2;
-                    else if (this.image[i, j].G < 128) zoneG = 3;
-                    else if (this.image[i, j].G < 160) zoneG = 4;
-                    else if (this.image[i, j].G < 192) zoneG = 5;
-                    else if (this.image[i, j].G < 224) zoneG = 6;
-                    else zoneG = 7;
-
-                    if (this.image[i, j].B < 32) zoneB = 0;
-                    else if (this.image[i, j].B < 64) zoneB = 1;
-                    else if (this.image[i, j].B < 96) zoneB = 2;
-                    else if (this.image[i, j].B < 128) zoneB = 3;
-                    else if (this.image[i, j].B < 160) zoneB = 4;
-                    else if (this.image[i, j].B < 192) zoneB = 5;
-                    else if (this.image[i, j].B < 224) zoneB = 6;
-                    else zoneB = 7;
-
-                    tabCompteurCouleurs[zoneR * 64 + zoneG * 8 + zoneB]++;
-                }
-            }
-            int max = tabCompteurCouleurs[0];
-            for (int i = 0; i < tabCompteurCouleurs.Length; i++) if (max < tabCompteurCouleurs[i]) max = tabCompteurCouleurs[i];
-            for (int j = 0; j < 512; j++)
-            {
-                for (int x=0; x<(tabCompteurCouleurs[j]*100/max); x++)
-                {
-                    newImage[x, j] = new Pixel((byte)(Math.Abs(255 - 3*x)), (byte)(Math.Abs(255 - 2*x)), (byte)(Math.Abs(255 - x)));
-                }
-            }
-            int tailleFichier = 100 * 512 * 3 + 54;
-            int tailleOffset = tailleFichier - 54;
-            MyImage nouvelleImage = new MyImage("BitMap", tailleFichier, tailleOffset, 100, 512, this.nbBitsCouleur, newImage);
-            return nouvelleImage;
-        }*/
-
         public MyImage Histogramme()
         {
             Pixel[,] newImage = new Pixel[300, 768];
@@ -2813,7 +2746,7 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }
 
-        public MyImage Degrade()
+        public MyImage DegradeMulticolore()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
             for (int i = 0; i < this.hauteurImage; i++) for (int j = 0; j < this.largeurImage; j++) newImage[i, j] = new Pixel(0,0,0);
@@ -2825,6 +2758,101 @@ namespace PSI___Louis___Meric
                     newImage[i, j].G = (byte)Math.Abs(this.image[i, j].G + 2*i - 2*j);
                     newImage[i, j].B = (byte)Math.Abs(this.image[i, j].B - i + j);
                 }
+            }
+            MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
+            return nouvelleImage;
+        }
+
+        public MyImage SymetrieHorizontale()
+        {
+            Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
+            for (int i = 0; i < this.hauteurImage; i++) for (int j = 0; j < this.largeurImage; j++) newImage[i, j] = new Pixel(0, 0, 0);
+            int k = this.hauteurImage/2;
+            for (int i = 0; i < this.hauteurImage/2; i++)
+            {
+                for (int j = 0; j < this.largeurImage; j++)
+                {
+                    newImage[i, j] = this.image[i, j];
+                }
+            }
+            for (int i = this.hauteurImage/2; i < this.hauteurImage; i++)
+            {
+                for (int j = 0; j < this.largeurImage; j++)
+                {
+                    newImage[i, j] = this.image[k, j];
+                }
+                k--;
+            }
+            MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
+            return nouvelleImage;
+        }
+
+        public MyImage SymetrieVerticale()
+        {
+            Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
+            for (int i = 0; i < this.hauteurImage; i++) for (int j = 0; j < this.largeurImage; j++) newImage[i, j] = new Pixel(0, 0, 0);
+            int k = this.largeurImage / 2;
+            for (int i = 0; i < this.hauteurImage; i++)
+            {
+                for (int j = 0; j < this.largeurImage/2; j++)
+                {
+                    newImage[i, j] = this.image[i, j];
+                }
+            }
+            for (int i = 0; i < this.hauteurImage; i++)
+            {
+                k = this.largeurImage / 2;
+                for (int j = this.largeurImage/2; j < this.largeurImage; j++)
+                {
+                    newImage[i, j] = this.image[i, k];
+                    k--;
+                }
+            }
+            MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
+            return nouvelleImage;
+        }
+
+        public MyImage SymetrieCentrale()
+        {
+            Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
+            for (int i = 0; i < this.hauteurImage; i++) for (int j = 0; j < this.largeurImage; j++) newImage[i, j] = new Pixel(0, 0, 0);
+            int k = this.largeurImage / 2;
+            int n = this.hauteurImage / 2;
+            for (int i = 0; i < this.hauteurImage / 2; i++)
+            {
+                for (int j = 0; j < this.largeurImage / 2; j++)
+                {
+                    newImage[i, j] = this.image[i, j];
+                }
+            }
+            for (int i = 0; i < this.hauteurImage / 2; i++)
+            {
+                k = this.largeurImage / 2;
+                for (int j = this.largeurImage / 2; j < this.largeurImage; j++)
+                {
+                    newImage[i, j] = this.image[i, k];
+                    k--;
+                }
+            }
+            for (int i = this.hauteurImage / 2; i < this.hauteurImage; i++)
+            {
+                for (int j = 0; j < this.largeurImage / 2; j++)
+                {
+                    newImage[i, j] = this.image[n, j];
+                }
+                n--;
+            }
+            k = this.largeurImage / 2;
+            n = this.hauteurImage / 2;
+            for (int i = this.hauteurImage / 2; i < this.hauteurImage; i++)
+            {
+                k = this.largeurImage / 2;
+                for (int j = this.largeurImage / 2; j < this.largeurImage; j++)
+                {
+                    newImage[i, j] = this.image[n, k];
+                    k--;
+                }
+                n--;
             }
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
@@ -2872,25 +2900,67 @@ namespace PSI___Louis___Meric
                     for (int k = 0; k < 8; k++)
                     {
                         if (k < 4) newHexaR[k] = hexaImage1R[k];
-                        else newHexaR[k] = hexaImage2R[k];
+                        else newHexaR[k] = hexaImage2R[k-4];
                     }
                     newImage[i, j].R = Convert_Hexadecimal_To_Byte(newHexaR);
+
                     int[] hexaImage1G = Convert_Byte_To_Hexadecimal(this.image[i, j].G);
                     int[] hexaImage2G = Convert_Byte_To_Hexadecimal(image2.image[i, j].G);
                     int[] newHexaG = new int[8];
                     for (int k = 0; k < 8; k++)
                     {
                         if (k < 4) newHexaG[k] = hexaImage1G[k];
-                        else newHexaG[k] = hexaImage2G[k];
+                        else newHexaG[k] = hexaImage2G[k-4];
                     }
                     newImage[i, j].G = Convert_Hexadecimal_To_Byte(newHexaG);
+
                     int[] hexaImage1B = Convert_Byte_To_Hexadecimal(this.image[i, j].B);
                     int[] hexaImage2B = Convert_Byte_To_Hexadecimal(image2.image[i, j].B);
                     int[] newHexaB = new int[8];
                     for (int k = 0; k < 8; k++)
                     {
                         if (k < 4) newHexaB[k] = hexaImage1B[k];
-                        else newHexaB[k] = hexaImage2B[k];
+                        else newHexaB[k] = hexaImage2B[k-4];
+                    }
+                    newImage[i, j].B = Convert_Hexadecimal_To_Byte(newHexaB);
+                }
+            }
+            MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
+            return nouvelleImage;
+        }
+
+        public MyImage RetrouverImage()
+        {
+            Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
+            for (int i = 0; i < this.hauteurImage; i++) for (int j = 0; j < this.largeurImage; j++) newImage[i, j] = new Pixel(0,0,0);
+            for (int i=0; i<this.hauteurImage; i++)
+            {
+                for (int j=0; j<this.largeurImage; j++)
+                {
+                    int[] hexaImageR = Convert_Byte_To_Hexadecimal(this.image[i, j].R);
+                    int[] newHexaR = new int[8];
+                    for (int k = 0; k < 8; k++)
+                    {
+                        if (k < 4) newHexaR[k] = hexaImageR[k+4];
+                        else newHexaR[k] = 0;
+                    }
+                    newImage[i, j].R = Convert_Hexadecimal_To_Byte(newHexaR);
+
+                    int[] hexaImageG = Convert_Byte_To_Hexadecimal(this.image[i, j].G);
+                    int[] newHexaG = new int[8];
+                    for (int k = 0; k < 8; k++)
+                    {
+                        if (k < 4) newHexaG[k] = hexaImageG[k + 4];
+                        else newHexaG[k] = 0;
+                    }
+                    newImage[i, j].G = Convert_Hexadecimal_To_Byte(newHexaG);
+
+                    int[] hexaImageB = Convert_Byte_To_Hexadecimal(this.image[i, j].B);
+                    int[] newHexaB = new int[8];
+                    for (int k = 0; k < 8; k++)
+                    {
+                        if (k < 4) newHexaB[k] = hexaImageB[k + 4];
+                        else newHexaB[k] = 0;
                     }
                     newImage[i, j].B = Convert_Hexadecimal_To_Byte(newHexaB);
                 }
