@@ -53,7 +53,7 @@ namespace PSI___Louis___Meric
                                      + "6 : Afficher l'image avec un effet miroir vertical\n"
                                      + "7 : Agrandir l'image\n"
                                      + "8 : Réduire l'image\n"
-                                     + "9 : Appliquer une rotation à l'image (pas fini !)\n"
+                                     + "9 : Appliquer une rotation à l'image\n"
                                      + "10 : Afficher la détection des contours de l'image\n"
                                      + "11 : Afficher l'image floutée\n"
                                      + "12 : Afficher l'image avec un effet psychédélique\n"
@@ -66,6 +66,8 @@ namespace PSI___Louis___Meric
                                      + "19 : Afficher l'histogramme de l'image\n"
                                      + "20 : Appliquer une rotation à l'image de 90° vers la droite\n"
                                      + "21 : Appliquer une rotation à l'image de 90° vers la gauche\n"
+                                     + "22 : Cacher une image dans une autre\n"
+                                     + "23 : Appliquer un dégradé multicolore sur l'image\n"
                                      + "\n"
                                      + "Sélectionnez la fonction désirée ");
                     Console.WriteLine("Tapez le numéro d'une fonction pour la lancer, ou 'Quitter' pour fermer le programme");
@@ -198,6 +200,28 @@ namespace PSI___Louis___Meric
                             MyImage testRotation90Gauche = test.Rotation90Gauche();
                             testRotation90Gauche.From_Image_To_File("testRotation90Gauche.bmp");
                             Process.Start("testRotation90Gauche.bmp");
+                            break;
+                        case "22":
+                            Console.WriteLine("Veuillez choisir l'image à cacher dans celle sélectionnée (coco / tigre / lena / lac / nature / Test001 / carreTest)");
+                            string imageACacher = Console.ReadLine() + ".bmp";
+                            do
+                            {
+                                if (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp")
+                                {
+                                    Console.WriteLine("L'image fournie n'est pas un BitMap ou n'existe pas");
+                                    Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / tigre / lena / lac / nature / Test001 / carreTest)");
+                                    imageACacher = Console.ReadLine() + ".bmp";
+                                }
+                            }
+                            while (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp");
+                            MyImage testImageCachee = test.CacherImage(imageACacher);
+                            testImageCachee.From_Image_To_File("testImageCachee.bmp");
+                            Process.Start("testImageCachee.bmp");
+                            break;
+                        case "23":
+                            MyImage testDegrade = test.Degrade();
+                            testDegrade.From_Image_To_File("testDegrade.bmp");
+                            Process.Start("testDegrade.bmp");
                             break;
                         case "quitter":
                         case "Quitter":
