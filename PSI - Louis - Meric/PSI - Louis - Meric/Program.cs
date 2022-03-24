@@ -400,6 +400,15 @@ namespace PSI___Louis___Meric
                             testSaturage.From_Image_To_File("testSaturage.bmp");
                             Process.Start("testSaturage.bmp");
                             break;
+                        case "29":
+                            Console.WriteLine("Veuillez choisir la hauteur de votre fractale :");
+                            int hauteurFractaleMandelbrot = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("Veuillez choisir la largeur de votre fractale :");
+                            int largeurFractaleMandelbrot = Convert.ToInt32(Console.ReadLine());
+                            MyImage testFractaleMandelbrot = test.FractaleMandelbrot(hauteurFractaleMandelbrot,largeurFractaleMandelbrot);
+                            testFractaleMandelbrot.From_Image_To_File("testFractaleMandelbrot.bmp");
+                            Process.Start("testFractaleMandelbrot.bmp");
+                            break;
                         case "quitter":
                         case "Quitter":
                         case "QUITTER":

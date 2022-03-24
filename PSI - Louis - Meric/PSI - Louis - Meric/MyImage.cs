@@ -3274,9 +3274,50 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                                   //return l'image cachée derrière celle fabriquée
 
-        public MyImage Fractale()
+        public MyImage FractaleMandelbrot(int hauteur, int largeur)
         {
-            return null;
+            Pixel[,] newImage = new Pixel[hauteur, largeur];
+            for (int n = 0; n < hauteur; n++) for (int m = 0; m < largeur; m++) newImage[n, m] = new Pixel(0, 0, 0);
+            double xMin = -2;
+            double xMax = 0.5;
+            double yMin = -1.25;
+            double yMax = 1.25;
+            //int zoom = 100;
+            int iteration_max = 50;
+
+            double cx;
+            double cy;
+            double xn;
+            double yn;
+            int i = 0;
+            double tmp_x;
+            double tmp_y;
+
+            for (int x=0; x<hauteur; x++)
+            {
+                for (int y=0; y<largeur; y++)
+                {
+                    cx = (x * (xMax - xMin) / hauteur + xMin);
+                    cy = (y * (yMax - yMin) / largeur + yMin);
+                    xn = 0;
+                    yn = 0;
+                    i = 0;
+
+                    while ((xn * xn + yn * yn) < 4 && i < iteration_max)
+                    {
+                        tmp_x = xn;
+                        tmp_y = yn;
+                        xn = tmp_x * tmp_x - tmp_y * tmp_y + cx;
+                        yn = 2 * tmp_x * tmp_y + cy;
+                        i++;
+                    }
+                    if (i != iteration_max) newImage[x, y] = new Pixel((byte)((1*i)%256), (byte)((10*i)%256), (byte)((3*i)%256));
+                }
+            }
+            int tailleFichier = hauteur * largeur * 3 + 54;
+            int tailleOffset = tailleFichier - 54;
+            MyImage nouvelleImage = new MyImage("BitMap", tailleFichier, tailleOffset, hauteur, largeur, this.nbBitsCouleur, newImage);
+            return nouvelleImage;
         }
     }
 }
