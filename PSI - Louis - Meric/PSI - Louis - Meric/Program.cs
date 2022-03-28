@@ -17,7 +17,7 @@ namespace PSI___Louis___Meric
         {
             Console.WindowHeight = 50;
             Console.WindowWidth = 200;
-            Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / beluga / lena / lac / land / nature / champs / antilope / Test001 / carreTest)");
+            Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / beluga / lena / lac / land / nature / galaxie / desert / foret / paysage / sakura / champs / planete / antilope / Test001 / carreTest)");
             string nom = Console.ReadLine() + ".bmp";
             MyImage test;
             try
@@ -62,12 +62,12 @@ namespace PSI___Louis___Meric
                                      + "15 : Afficher l'image avec un renforcement des bords sur l'horizontale\n"
                                      + "16 : Afficher l'image avec un effet de repoussage\n"
                                      + "17 : Afficher l'image avec un filtre de Sobel\n"
-                                     + "18 : Afficher l'image avec une matrice de convolution aléatoire\n"
+                                     + "18 : Afficher l'image avec une matrice de convolution personnalisée\n"
                                      + "19 : Afficher l'histogramme de l'image\n"
                                      + "20 : Appliquer une rotation à l'image de 90° vers la droite\n"
                                      + "21 : Appliquer une rotation à l'image de 90° vers la gauche\n"
                                      + "22 : Cacher une image dans une autre\n"
-                                     + "23 : Appliquer un dégradé multicolore sur l'image\n"
+                                     + "23 : Appliquer un filtre multicolore sur l'image\n"
                                      + "24 : Appliquer un effet de symétrie sur un axe horizontal\n"
                                      + "25 : Appliquer un effet de symétrie sur un axe vertical\n"
                                      + "26 : Appliquer un effet de symétrie sur un axe vertical et horizontal\n"
@@ -82,14 +82,14 @@ namespace PSI___Louis___Meric
                         case "0":
                             do
                             {
-                                if (nom != "coco.bmp" && nom != "tigre.bmp" && nom != "lena.bmp" && nom != "lac.bmp" && nom != "nature.bmp" && nom != "Test001.bmp" && nom != "carreTest.bmp" && nom != "champs.bmp" && nom != "land.bmp" && nom != "antilope.bmp" && nom != "renard.bmp" && nom != "beluga.bmp")
+                                if (nom != "coco.bmp" && nom != "tigre.bmp" && nom != "lena.bmp" && nom != "lac.bmp" && nom != "nature.bmp" && nom != "Test001.bmp" && nom != "carreTest.bmp" && nom != "champs.bmp" && nom != "land.bmp" && nom != "antilope.bmp" && nom != "renard.bmp" && nom != "beluga.bmp" && nom != "galaxie.bmp" && nom != "desert.bmp" && nom != "foret.bmp" && nom != "paysage.bmp" && nom != "sakura.bmp" && nom != "planete.bmp")
                                 {
                                     Console.WriteLine("L'image fournie n'est pas un BitMap ou n'existe pas");
                                 }
-                                Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / beluga / lena / lac / land / nature / champs / antilope / Test001 / carreTest)");
+                                Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / beluga / lena / lac / land / nature / galaxie / desert / foret / paysage / sakura / champs / planete / antilope / Test001 / carreTest)");
                                 nom = Console.ReadLine() + ".bmp";
                             } 
-                            while (nom != "coco.bmp" && nom != "tigre.bmp" && nom != "lena.bmp" && nom != "lac.bmp" && nom != "nature.bmp" && nom != "Test001.bmp" && nom != "carreTest.bmp" && nom != "champs.bmp" && nom != "land.bmp" && nom != "antilope.bmp" && nom != "renard.bmp" && nom != "beluga.bmp");
+                            while (nom != "coco.bmp" && nom != "tigre.bmp" && nom != "lena.bmp" && nom != "lac.bmp" && nom != "nature.bmp" && nom != "Test001.bmp" && nom != "carreTest.bmp" && nom != "champs.bmp" && nom != "land.bmp" && nom != "antilope.bmp" && nom != "renard.bmp" && nom != "beluga.bmp" && nom != "galaxie.bmp" && nom != "desert.bmp" && nom != "foret.bmp" && nom != "paysage.bmp" && nom != "sakura.bmp" && nom != "planete.bmp");
                             test = new MyImage(nom);
                             break;
                         case "1":
@@ -207,18 +207,18 @@ namespace PSI___Louis___Meric
                             Process.Start("testRotation90Gauche.bmp");
                             break;
                         case "22":
-                            Console.WriteLine("Veuillez choisir l'image à cacher dans celle sélectionnée (coco / renard / tigre / beluga / lena / lac / land / nature / champs / antilope / Test001 / carreTest)");
+                            Console.WriteLine("Veuillez choisir l'image à cacher dans celle sélectionnée (coco / renard / tigre / beluga / lena / lac / land / nature / galaxie / desert / foret / paysage / sakura / champs / planete / antilope / Test001 / carreTest)");
                             string imageACacher = Console.ReadLine() + ".bmp";
                             do
                             {
-                                if (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp" && imageACacher != "champs.bmp" && imageACacher != "land.bmp" && imageACacher != "antilope.bmp" && imageACacher != "renard.bmp" && imageACacher != "beluga.bmp")
+                                if (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp" && imageACacher != "champs.bmp" && imageACacher != "land.bmp" && imageACacher != "antilope.bmp" && imageACacher != "renard.bmp" && imageACacher != "beluga.bmp" && imageACacher != "galaxie.bmp" && imageACacher != "desert.bmp" && imageACacher != "foret.bmp" && imageACacher != "paysage.bmp" && imageACacher != "sakura.bmp" && imageACacher != "planete.bmp")
                                 {
                                     Console.WriteLine("L'image fournie n'est pas un BitMap ou n'existe pas");
-                                    Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / beluga / lena / lac / land / nature / champs / antilope / Test001 / carreTest)");
+                                    Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / beluga / lena / lac / land / nature / galaxie / desert / foret / paysage / sakura / champs / planete / antilope / Test001 / carreTest)");
                                     imageACacher = Console.ReadLine() + ".bmp";
                                 }
                             }
-                            while (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp" && imageACacher != "champs.bmp" && imageACacher != "land.bmp" && imageACacher != "antilope.bmp" && imageACacher != "renard.bmp" && imageACacher != "beluga.bmp");
+                            while (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp" && imageACacher != "champs.bmp" && imageACacher != "land.bmp" && imageACacher != "antilope.bmp" && imageACacher != "renard.bmp" && imageACacher != "beluga.bmp" && imageACacher != "galaxie.bmp" && imageACacher != "desert.bmp" && imageACacher != "foret.bmp" && imageACacher != "paysage.bmp" && imageACacher != "sakura.bmp" && imageACacher != "planete.bmp");
                             if (imageACacher==nom)
                             {
                                 string fonctionACacher;
@@ -239,8 +239,8 @@ namespace PSI___Louis___Meric
                                          + "11 : Cacher l'image avec un renforcement des bords sur l'horizontale\n"
                                          + "12 : Cacher l'image avec un effet de repoussage\n"
                                          + "13 : Cacher l'image avec un filtre de Sobel\n"
-                                         + "14 : Cacher l'image avec une matrice de convolution aléatoire\n"
-                                         + "15 : Cacher un dégradé multicolore sur l'image\n"
+                                         + "14 : Cacher l'image avec une matrice de convolution personnalisée\n"
+                                         + "15 : Cacher un filtre multicolore sur l'image\n"
                                          + "16 : Cacher un effet de symétrie sur un axe horizontal\n"
                                          + "17 : Cacher un effet de symétrie sur un axe vertical\n"
                                          + "18 : Cacher un effet de symétrie sur un axe vertical et horizontal\n"

@@ -13,3 +13,4 @@ C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\P
 C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.dll
 C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.pdb
 C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.genruntimeconfig.cache
+C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation_Forms.Properties.Resources.resources
