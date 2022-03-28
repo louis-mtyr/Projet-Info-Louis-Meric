@@ -17,7 +17,7 @@ namespace PSI___Louis___Meric
         {
             Console.WindowHeight = 50;
             Console.WindowWidth = 200;
-            Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / lena / lac / land / nature / champs / deer / Test001 / carreTest)");
+            Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / beluga / lena / lac / land / nature / champs / antilope / Test001 / carreTest)");
             string nom = Console.ReadLine() + ".bmp";
             MyImage test;
             try
@@ -82,14 +82,14 @@ namespace PSI___Louis___Meric
                         case "0":
                             do
                             {
-                                if (nom != "coco.bmp" && nom != "tigre.bmp" && nom != "lena.bmp" && nom != "lac.bmp" && nom != "nature.bmp" && nom != "Test001.bmp" && nom != "carreTest.bmp" && nom != "champs.bmp" && nom != "land.bmp" && nom != "deer.bmp" && nom != "renard.bmp")
+                                if (nom != "coco.bmp" && nom != "tigre.bmp" && nom != "lena.bmp" && nom != "lac.bmp" && nom != "nature.bmp" && nom != "Test001.bmp" && nom != "carreTest.bmp" && nom != "champs.bmp" && nom != "land.bmp" && nom != "antilope.bmp" && nom != "renard.bmp" && nom != "beluga.bmp")
                                 {
                                     Console.WriteLine("L'image fournie n'est pas un BitMap ou n'existe pas");
                                 }
-                                Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / lena / lac / land / nature / champs / deer / Test001 / carreTest)");
+                                Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / beluga / lena / lac / land / nature / champs / antilope / Test001 / carreTest)");
                                 nom = Console.ReadLine() + ".bmp";
                             } 
-                            while (nom != "coco.bmp" && nom != "tigre.bmp" && nom != "lena.bmp" && nom != "lac.bmp" && nom != "nature.bmp" && nom != "Test001.bmp" && nom != "carreTest.bmp" && nom != "champs.bmp" && nom != "land.bmp" && nom != "deer.bmp" && nom != "renard.bmp");
+                            while (nom != "coco.bmp" && nom != "tigre.bmp" && nom != "lena.bmp" && nom != "lac.bmp" && nom != "nature.bmp" && nom != "Test001.bmp" && nom != "carreTest.bmp" && nom != "champs.bmp" && nom != "land.bmp" && nom != "antilope.bmp" && nom != "renard.bmp" && nom != "beluga.bmp");
                             test = new MyImage(nom);
                             break;
                         case "1":
@@ -207,18 +207,18 @@ namespace PSI___Louis___Meric
                             Process.Start("testRotation90Gauche.bmp");
                             break;
                         case "22":
-                            Console.WriteLine("Veuillez choisir l'image à cacher dans celle sélectionnée (coco / renard / tigre / lena / lac / land / nature / champs / deer / Test001 / carreTest)");
+                            Console.WriteLine("Veuillez choisir l'image à cacher dans celle sélectionnée (coco / renard / tigre / beluga / lena / lac / land / nature / champs / antilope / Test001 / carreTest)");
                             string imageACacher = Console.ReadLine() + ".bmp";
                             do
                             {
-                                if (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp" && imageACacher != "champs.bmp" && imageACacher != "land.bmp" && imageACacher != "deer.bmp" && imageACacher != "renard.bmp")
+                                if (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp" && imageACacher != "champs.bmp" && imageACacher != "land.bmp" && imageACacher != "antilope.bmp" && imageACacher != "renard.bmp" && imageACacher != "beluga.bmp")
                                 {
                                     Console.WriteLine("L'image fournie n'est pas un BitMap ou n'existe pas");
-                                    Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / lena / lac / land / nature / champs / deer / Test001 / carreTest)");
+                                    Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / beluga / lena / lac / land / nature / champs / antilope / Test001 / carreTest)");
                                     imageACacher = Console.ReadLine() + ".bmp";
                                 }
                             }
-                            while (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp" && imageACacher != "champs.bmp" && imageACacher != "land.bmp" && imageACacher != "deer.bmp" && imageACacher != "renard.bmp");
+                            while (imageACacher != "coco.bmp" && imageACacher != "tigre.bmp" && imageACacher != "lena.bmp" && imageACacher != "lac.bmp" && imageACacher != "nature.bmp" && imageACacher != "Test001.bmp" && imageACacher != "carreTest.bmp" && imageACacher != "champs.bmp" && imageACacher != "land.bmp" && imageACacher != "antilope.bmp" && imageACacher != "renard.bmp" && imageACacher != "beluga.bmp");
                             if (imageACacher==nom)
                             {
                                 string fonctionACacher;
@@ -417,7 +417,7 @@ namespace PSI___Louis___Meric
                             break;
                         default:
                             Console.WriteLine();
-                            Console.WriteLine("Cet fonction n'existe pas.");
+                            Console.WriteLine("Cette fonction n'existe pas.");
                             break;
                     }
                     if (reponse != "Quitter" && reponse != "quitter" && reponse != "QUITTER" && reponse != "q" && reponse != "Q")
