@@ -3278,37 +3278,40 @@ namespace PSI___Louis___Meric
         {
             Pixel[,] newImage = new Pixel[hauteur, largeur];
             for (int n = 0; n < hauteur; n++) for (int m = 0; m < largeur; m++) newImage[n, m] = new Pixel(0, 0, 0);
-            double xMin = -2;
-            double xMax = 0.5;
-            double yMin = -1.25;
-            double yMax = 1.25;
-            //int zoom = 100;
+            double xMin = -1.25;
+            double xMax = 1.25;
+            double yMin = -2;
+            double yMax = 0.5;
             int iteration_max = 50;
 
             double cx;
             double cy;
-            double xn;
-            double yn;
+            double xi;
+            double yi;
             int i = 0;
-            double tmp_x;
-            double tmp_y;
+            double tmp_x=0;
+            double tmp_y=0;
+            double tmp2_x;
+            double tmp2_y;
 
             for (int x=0; x<hauteur; x++)
             {
                 for (int y=0; y<largeur; y++)
                 {
-                    cx = (x * (xMax - xMin) / hauteur + xMin);
-                    cy = (y * (yMax - yMin) / largeur + yMin);
-                    xn = 0;
-                    yn = 0;
+                    cy = (x * (xMax - xMin) / hauteur + xMin);
+                    cx = (y * (yMax - yMin) / largeur + yMin);
+                    xi = 0;
+                    yi = 0;
                     i = 0;
 
-                    while ((xn * xn + yn * yn) < 4 && i < iteration_max)
+                    while ((xi * xi + yi * yi) < 4 && i < iteration_max)
                     {
-                        tmp_x = xn;
-                        tmp_y = yn;
-                        xn = tmp_x * tmp_x - tmp_y * tmp_y + cx;
-                        yn = 2 * tmp_x * tmp_y + cy;
+                        //tmp2_x = tmp_x;
+                        //tmp2_y = tmp_y;
+                        tmp_x = xi;
+                        tmp_y = yi;
+                        xi = tmp_x * tmp_x - tmp_y * tmp_y + cx;
+                        yi = 2 * tmp_x * tmp_y + cy;
                         i++;
                     }
                     if (i != iteration_max) newImage[x, y] = new Pixel((byte)((1*i)%256), (byte)((10*i)%256), (byte)((3*i)%256));
@@ -3319,5 +3322,22 @@ namespace PSI___Louis___Meric
             MyImage nouvelleImage = new MyImage("BitMap", tailleFichier, tailleOffset, hauteur, largeur, this.nbBitsCouleur, newImage);
             return nouvelleImage;
         }
+
+        /*public MyImage FractaleTriangle(int itérations, int taille)
+        {
+            Pixel[,] newImage = new Pixel[taille, taille];
+            for (int a = 0; a < taille; a++) for (int b = 0; b < taille; b++) newImage[a, b] = new Pixel(0, 0, 0);
+            for (int c = taille / 3; c < taille * 2 / 3; c++) newImage[taille / 3, c] = new Pixel(255, 0, 0);
+            int i = taille / 3;
+            int j = taille / 3;
+            while (i*i + j*j < taille*taille/9)
+            {
+
+            }
+            for (int n = 1; n <= itérations; n++)
+            {
+
+            }
+        }*/
     }
 }
