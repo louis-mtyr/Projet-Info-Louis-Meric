@@ -3278,10 +3278,10 @@ namespace PSI___Louis___Meric
         {
             Pixel[,] newImage = new Pixel[hauteur, largeur];
             for (int n = 0; n < hauteur; n++) for (int m = 0; m < largeur; m++) newImage[n, m] = new Pixel(0, 0, 0);
-            double xMin = -2;
-            double xMax = 0.5;
-            double yMin = -1.25;
-            double yMax = 1.25;
+            double xMin = -1.25;
+            double xMax = 1.25;
+            double yMin = -2;
+            double yMax = 0.5;
             //int zoom = 100;
             int iteration_max = 50;
 
@@ -3297,8 +3297,8 @@ namespace PSI___Louis___Meric
             {
                 for (int y=0; y<largeur; y++)
                 {
-                    cx = (x * (xMax - xMin) / hauteur + xMin);
-                    cy = (y * (yMax - yMin) / largeur + yMin);
+                    cy = (x * (xMax - xMin) / hauteur + xMin);
+                    cx = (y * (yMax - yMin) / largeur + yMin);
                     xn = 0;
                     yn = 0;
                     i = 0;
