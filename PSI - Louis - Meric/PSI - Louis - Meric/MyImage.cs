@@ -3319,5 +3319,180 @@ namespace PSI___Louis___Meric
             MyImage nouvelleImage = new MyImage("BitMap", tailleFichier, tailleOffset, hauteur, largeur, 24, newImage);
             return nouvelleImage;
         }
+
+        public static int ConvertCharToAlphanum(char lettre)
+        {
+            int val = -1;
+            switch (lettre)
+            {
+                case '0':
+                    val = 0;
+                    break;
+                case '1':
+                    val = 1;
+                    break;
+                case '2':
+                    val = 2;
+                    break;
+                case '3':
+                    val = 3;
+                    break;
+                case '4':
+                    val = 4;
+                    break;
+                case '5':
+                    val = 5;
+                    break;
+                case '6':
+                    val = 6;
+                    break;
+                case '7':
+                    val = 7;
+                    break;
+                case '8':
+                    val = 8;
+                    break;
+                case '9':
+                    val = 9;
+                    break;
+                case 'A':
+                    val = 10;
+                    break;
+                case 'B':
+                    val = 11;
+                    break;
+                case 'C':
+                    val = 12;
+                    break;
+                case 'D':
+                    val = 13;
+                    break;
+                case 'E':
+                    val = 14;
+                    break;
+                case 'F':
+                    val = 15;
+                    break;
+                case 'G':
+                    val = 16;
+                    break;
+                case 'H':
+                    val = 17;
+                    break;
+                case 'I':
+                    val = 18;
+                    break;
+                case 'J':
+                    val = 19;
+                    break;
+                case 'K':
+                    val = 20;
+                    break;
+                case 'L':
+                    val = 21;
+                    break;
+                case 'M':
+                    val = 22;
+                    break;
+                case 'N':
+                    val = 23;
+                    break;
+                case 'O':
+                    val = 24;
+                    break;
+                case 'P':
+                    val = 25;
+                    break;
+                case 'Q':
+                    val = 26;
+                    break;
+                case 'R':
+                    val = 27;
+                    break;
+                case 'S':
+                    val = 28;
+                    break;
+                case 'T':
+                    val = 29;
+                    break;
+                case 'U':
+                    val = 30;
+                    break;
+                case 'V':
+                    val = 31;
+                    break;
+                case 'W':
+                    val = 32;
+                    break;
+                case 'X':
+                    val = 33;
+                    break;
+                case 'Y':
+                    val = 34;
+                    break;
+                case 'Z':
+                    val = 35;
+                    break;
+                case ' ':
+                    val = 36;
+                    break;
+                case '$':
+                    val = 37;
+                    break;
+                case '%':
+                    val = 38;
+                    break;
+                case '*':
+                    val = 39;
+                    break;
+                case '+':
+                    val = 40;
+                    break;
+                case '-':
+                    val = 41;
+                    break;
+                case '.':
+                    val = 42;
+                    break;
+                case '/':
+                    val = 43;
+                    break;
+                case ':':
+                    val = 44;
+                    break;
+                default:
+                    break;
+            }
+            return val;
+        }
+
+        public static int[] Convert2CharTo8Bits(char[] lettres)
+        {
+            int[] tab8bits = null;
+            if (lettres.Length!=2)
+            {
+                int val1 = ConvertCharToAlphanum(lettres[0]);
+                int val2 = ConvertCharToAlphanum(lettres[1]);
+                if (val1 != -1 && val2 != -1)
+                {
+                    tab8bits = new int[8];
+                    tab8bits[0] = val1 / (2 * 2 * 2);
+                    val1 = val1 % (2 * 2 * 2);
+                    tab8bits[1] = val1 / (2 * 2);
+                    val1 = val1 % (2 * 2);
+                    tab8bits[2] = val1 / (2);
+                    val1 = val1 % (2);
+                    tab8bits[3] = val1;
+                    tab8bits[4] = val2 / (2 * 2 * 2);
+                    val2 = val2 % (2 * 2 * 2);
+                    tab8bits[5] = val2 / (2 * 2);
+                    val2 = val2 % (2 * 2);
+                    tab8bits[6] = val2 / (2);
+                    val2 = val2 % (2);
+                    tab8bits[7] = val2;
+                }
+            }
+            return tab8bits;
+        }
     }
 }

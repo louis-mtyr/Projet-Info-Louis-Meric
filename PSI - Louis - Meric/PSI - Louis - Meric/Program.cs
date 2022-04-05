@@ -424,6 +424,21 @@ namespace PSI___Louis___Meric
                                 Process.Start("testSaturage.bmp");
                                 break;
                             case "29":
+                                string testing = ("Hello world").ToUpper();
+                                if (testing.Length % 2 == 1) testing = testing + " ";
+                                int[] tabtest = new int[8];
+                                char[] lettres = new char[2];
+                                for (int i=0; i<testing.Length; i+=2)
+                                {
+                                    lettres[0] = testing[i];
+                                    lettres[1] = testing[i + 1];
+                                    tabtest = MyImage.Convert2CharTo8Bits(lettres);
+                                    for (int j=0; j<8; j++)
+                                    {
+                                        Console.Write(tabtest[j] + " ; ");
+                                    }
+                                    Console.WriteLine();
+                                }
                                 break;
                             case "quitter":
                             case "Quitter":
