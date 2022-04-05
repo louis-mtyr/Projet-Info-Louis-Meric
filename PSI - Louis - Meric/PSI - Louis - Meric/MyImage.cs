@@ -3466,33 +3466,38 @@ namespace PSI___Louis___Meric
             return val;
         }
 
-        public static int[] Convert2CharTo8Bits(char[] lettres)
+        public static int[] Convert2CharTo11Bits(char[] lettres)
         {
-            int[] tab8bits = null;
-            if (lettres.Length!=2)
+            int[] tab11bits = null;
+            if (lettres.Length==2)
             {
                 int val1 = ConvertCharToAlphanum(lettres[0]);
                 int val2 = ConvertCharToAlphanum(lettres[1]);
                 if (val1 != -1 && val2 != -1)
                 {
-                    tab8bits = new int[8];
-                    tab8bits[0] = val1 / (2 * 2 * 2);
-                    val1 = val1 % (2 * 2 * 2);
-                    tab8bits[1] = val1 / (2 * 2);
-                    val1 = val1 % (2 * 2);
-                    tab8bits[2] = val1 / (2);
-                    val1 = val1 % (2);
-                    tab8bits[3] = val1;
-                    tab8bits[4] = val2 / (2 * 2 * 2);
-                    val2 = val2 % (2 * 2 * 2);
-                    tab8bits[5] = val2 / (2 * 2);
-                    val2 = val2 % (2 * 2);
-                    tab8bits[6] = val2 / (2);
-                    val2 = val2 % (2);
-                    tab8bits[7] = val2;
+                    int somme = 45 * val1 + val2;
+                    tab11bits = new int[11];
+                    for (int i=0; i<11; i++)
+                    {
+                        tab11bits[i] = somme / (int)Math.Pow(2, 10 - i);
+                        somme = somme % (int)Math.Pow(2, 10 - i);
+                    }
                 }
             }
-            return tab8bits;
+            if (lettres.Length==1)
+            {
+                int val3 = ConvertCharToAlphanum(lettres[0]);
+                if (val3!=-1)
+                {
+                    tab11bits = new int[6];
+                    for (int i = 0; i < 6; i++)
+                    {
+                        tab11bits[i] = val3 / (int)Math.Pow(2, 5 - i);
+                        val3 = val3 % (int)Math.Pow(2, 5 - i);
+                    }
+                }
+            }
+            return tab11bits;
         }
     }
 }
