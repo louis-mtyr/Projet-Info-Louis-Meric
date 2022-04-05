@@ -15,8 +15,8 @@ namespace PSI___Louis___Meric
     {
         static void Main(string[] args)
         {
-            Console.WindowHeight = 50;
-            Console.WindowWidth = 200;
+            Console.WindowHeight = Console.LargestWindowHeight;
+            Console.WindowWidth = Console.LargestWindowWidth;
             Console.WriteLine("Que souhaitez-vous faire ?\n"
                             + "1 : Traiter une image\n"
                             + "2 : Dessiner une fractale\n");
@@ -96,6 +96,7 @@ namespace PSI___Louis___Meric
                                          + "26 : Appliquer un effet de symétrie sur un axe vertical et horizontal\n"
                                          + "27 : Donner un changement de couleurs de manière aléatoire à l'image\n"
                                          + "28 : Appliquer un effet de saturation à l'image\n"
+                                         + "29 : Dessiner l'image en ASCII Art (n'oubliez pas de dézoomer sur votre console)\n"
                                          + "\n"
                                          + "Sélectionnez la fonction désirée ");
                         Console.WriteLine("Tapez le numéro d'une fonction pour la lancer, ou 'Quitter' pour fermer le programme");
@@ -424,6 +425,12 @@ namespace PSI___Louis___Meric
                                 Process.Start("testSaturage.bmp");
                                 break;
                             case "29":
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.White;
+                                test.Ascii();
+                                Console.ForegroundColor = ConsoleColor.Gray;
+                                break;
+                            case "30":
                                 string testing = ("Hello world").ToUpper();
                                 //if (testing.Length % 2 == 1) testing = testing + " ";
                                 int[] tabtest = new int[11];

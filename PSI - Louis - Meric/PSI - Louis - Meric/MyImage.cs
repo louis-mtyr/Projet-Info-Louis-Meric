@@ -3274,44 +3274,179 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                                   //return l'image cachée derrière celle fabriquée
 
+        public void Ascii()                                         //return dans la console l'image en ascii art
+        {
+            int moyenne;
+            int coef = (this.largeurImage / 211) + 1;
+            for (int i=this.hauteurImage-1; i>=0; i-=coef)
+            {
+                Console.WriteLine();
+                for (int j=0; j<this.largeurImage; j+=coef)
+                {
+                    moyenne = (this.image[i,j].R + this.image[i,j].G + this.image[i,j].B) / 3;
+                    switch (moyenne/10)
+                    {
+                        case 0:
+                            Console.Write(" ");
+                            break;
+                        case 1:
+                            Console.Write(".");
+                            break;
+                        case 2:
+                            Console.Write("'");
+                            break;
+                        case 3:
+                            Console.Write("-");
+                            break;
+                        case 4:
+                            Console.Write("_");
+                            break;
+                        case 5:
+                            Console.Write("^");
+                            break;
+                        case 6:
+                            Console.Write(":");
+                            break;
+                        case 7:
+                            Console.Write(";");
+                            break;
+                        case 8:
+                            Console.Write("!");
+                            break;
+                        case 9:
+                            Console.Write('"');
+                            break;
+                        case 10:
+                            Console.Write("*");
+                            break;
+                        case 11:
+                            Console.Write("c");
+                            break;
+                        case 12:
+                            Console.Write("+");
+                            break;
+                        case 13:
+                            Console.Write("=");
+                            break;
+                        case 14:
+                            Console.Write("/");
+                            break;
+                        case 15:
+                            Console.Write("?");
+                            break;
+                        case 16:
+                            Console.Write("€");
+                            break;
+                        case 17:
+                            Console.Write("£");
+                            break;
+                        case 18:
+                            Console.Write("$");
+                            break;
+                        case 19:
+                            Console.Write("%");
+                            break;
+                        case 20:
+                            Console.Write("&");
+                            break;
+                        case 21:
+                            Console.Write("§");
+                            break;
+                        case 22:
+                            Console.Write("#");
+                            break;
+                        case 23:
+                            Console.Write("B");
+                            break;
+                        case 24:
+                            Console.Write("@");
+                            break;
+                    }
+                }
+            }
+            /*for (int i = this.hauteurImage - 1; i >= 0; i--)
+            {
+                Console.WriteLine();
+                for (int j = this.largeurImage/2; j < this.largeurImage; j += 2)
+                {
+                    moyenne = (this.image[i, j].R + this.image[i, j].G + this.image[i, j].B) / 3;
+                    switch (moyenne / 25)
+                    {
+                        case 1:
+                            Console.Write("#");
+                            break;
+                        case 2:
+                            Console.Write("@");
+                            break;
+                        case 3:
+                            Console.Write("%");
+                            break;
+                        case 4:
+                            Console.Write("=");
+                            break;
+                        case 5:
+                            Console.Write("+");
+                            break;
+                        case 6:
+                            Console.Write("*");
+                            break;
+                        case 7:
+                            Console.Write(":");
+                            break;
+                        case 8:
+                            Console.Write("-");
+                            break;
+                        case 9:
+                            Console.Write(".");
+                            break;
+                        case 10:
+                            Console.Write(" ");
+                            break;
+                    }
+                }
+            }*/
+        }
+
         public static MyImage FractaleMandelbrot(int hauteur, int largeur, double coefR, double coefG, double coefB)
         {
             Pixel[,] newImage = new Pixel[hauteur, largeur];
             for (int n = 0; n < hauteur; n++) for (int m = 0; m < largeur; m++) newImage[n, m] = new Pixel(0, 0, 0);
-            double xMin = -1.25;
-            double xMax = 1.25;
-            double yMin = -2;
-            double yMax = 0.5;
+            double borneGauche = -1.5;
+            double borneDroite = 0.6;
+            double borneHaut = 1;
+            double borneBas = -1;
+
             //int zoom = 100;
             int iteration_max = 50;
 
-            double cx;
-            double cy;
-            double xn;
+            double cooReel;         //coo du point associé
+            double cooImaginaire;
+            double xn;              //termes de la suite
             double yn;
             int i = 0;
-            double tmp_x;
-            double tmp_y;
-
-            for (int x=0; x<hauteur; x++)
+            double tmp_x = 0;           // xn - 1
+            double tmp_y = 0;           //yn -1
+            for (int x = 0; x < hauteur; x++)
             {
-                for (int y=0; y<largeur; y++)
+                for (int y = 0; y < largeur; y++)
                 {
-                    cy = (x * (xMax - xMin) / hauteur + xMin);
-                    cx = (y * (yMax - yMin) / largeur + yMin);
+                    cooReel = ((y * (borneDroite - borneGauche) / largeur) + borneGauche);    //remise à l'échelle pour que les pixels de l'image soient associés à un point du plan
+                    cooImaginaire = ((x * (borneHaut - borneBas) / hauteur) + borneBas);
                     xn = 0;
                     yn = 0;
                     i = 0;
 
-                    while ((xn * xn + yn * yn) < 4 && i < iteration_max)
+                    while ((xn * xn + yn * yn) < 4 && i < iteration_max)        //il est admis que si xn² + yn² >4, la suite DV vers l'infini
                     {
-                        tmp_x = xn;
+                        tmp_x = xn; //stockage xn -1 et yn - 1
                         tmp_y = yn;
-                        xn = tmp_x * tmp_x - tmp_y * tmp_y + cx;
-                        yn = 2 * tmp_x * tmp_y + cy;
+                        //application de la suite terme(n+1) = terme(n)² + point
+                        xn = tmp_x * tmp_x - tmp_y * tmp_y + cooReel;
+                        yn = 2 * tmp_x * tmp_y + cooImaginaire;
                         i++;
                     }
-                    if (i != iteration_max) newImage[x, y] = new Pixel((byte)((coefR*i)%256), (byte)((coefG*i)%256), (byte)((coefB*i)%256));
+                    //si xn² + yn² >4 avant l'iteration max, la suite DV et on colorie
+                    if (i != iteration_max) newImage[x, y] = new Pixel((byte)((coefR * i) % 256), (byte)((coefG * i) % 256), (byte)((coefB * i) % 256));
                 }
             }
             int tailleFichier = hauteur * largeur * 3 + 54;
