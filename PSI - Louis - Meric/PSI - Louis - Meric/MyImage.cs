@@ -3274,7 +3274,7 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                                   //return l'image cachée derrière celle fabriquée
 
-        public MyImage FractaleMandelbrot(int hauteur, int largeur)
+        public static MyImage FractaleMandelbrot(int hauteur, int largeur, double coefR, double coefG, double coefB)
         {
             Pixel[,] newImage = new Pixel[hauteur, largeur];
             for (int n = 0; n < hauteur; n++) for (int m = 0; m < largeur; m++) newImage[n, m] = new Pixel(0, 0, 0);
@@ -3311,12 +3311,12 @@ namespace PSI___Louis___Meric
                         yn = 2 * tmp_x * tmp_y + cy;
                         i++;
                     }
-                    if (i != iteration_max) newImage[x, y] = new Pixel((byte)((1*i)%256), (byte)((10*i)%256), (byte)((3*i)%256));
+                    if (i != iteration_max) newImage[x, y] = new Pixel((byte)((coefR*i)%256), (byte)((coefG*i)%256), (byte)((coefB*i)%256));
                 }
             }
             int tailleFichier = hauteur * largeur * 3 + 54;
             int tailleOffset = tailleFichier - 54;
-            MyImage nouvelleImage = new MyImage("BitMap", tailleFichier, tailleOffset, hauteur, largeur, this.nbBitsCouleur, newImage);
+            MyImage nouvelleImage = new MyImage("BitMap", tailleFichier, tailleOffset, hauteur, largeur, 24, newImage);
             return nouvelleImage;
         }
     }
