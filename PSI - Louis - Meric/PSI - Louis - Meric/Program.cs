@@ -409,6 +409,11 @@ namespace PSI___Louis___Meric
                             testFractaleMandelbrot.From_Image_To_File("testFractaleMandelbrot.bmp");
                             Process.Start("testFractaleMandelbrot.bmp");
                             break;
+                        case "30":
+                            MyImage testTesting = test.Testing();
+                            testTesting.From_Image_To_File("verif_image.bmp");
+                            Process.Start("verif_image.bmp");
+                            break;
                         case "quitter":
                         case "Quitter":
                         case "QUITTER":

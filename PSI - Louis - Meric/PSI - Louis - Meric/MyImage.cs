@@ -3319,5 +3319,27 @@ namespace PSI___Louis___Meric
             MyImage nouvelleImage = new MyImage("BitMap", tailleFichier, tailleOffset, hauteur, largeur, this.nbBitsCouleur, newImage);
             return nouvelleImage;
         }
+
+        public MyImage Testing()
+        {
+            MyImage nouvelleImage = new MyImage(this.Myfile);
+            Random aleatoire = new Random();
+            int rouge = aleatoire.Next(1, 6);
+            int vert = aleatoire.Next(1, 6);
+            int bleu = aleatoire.Next(1, 6);
+            for (int i=0; i<this.hauteurImage; i++)
+            {
+                for (int j=0; j<this.largeurImage; j++)
+                {
+                    rouge = aleatoire.Next(1, 6);
+                    vert = aleatoire.Next(1, 6);
+                    bleu = aleatoire.Next(1, 6);
+                    nouvelleImage.image[i, j].R = (byte)(this.image[i, j].R / rouge);
+                    nouvelleImage.image[i, j].G = (byte)(this.image[i, j].G / vert);
+                    nouvelleImage.image[i, j].B = (byte)(this.image[i, j].B / bleu);
+                }
+            }
+            return nouvelleImage;
+        }
     }
 }
