@@ -97,6 +97,9 @@ namespace PSI___Louis___Meric
                                          + "27 : Donner un changement de couleurs de manière aléatoire à l'image\n"
                                          + "28 : Appliquer un effet de saturation à l'image\n"
                                          + "29 : Dessiner l'image en ASCII Art (n'oubliez pas de dézoomer sur votre console)\n"
+                                         + "30 : Dessiner l'image en ASCII Art en couleurs (n'oubliez pas de dézoomer sur votre console)\n"
+                                         + "31 : Appliquer un filtre d'une couleur aléatoire à l'image\n"
+                                         + "32 : Appliquer un effet de saturation coloré à l'image\n"
                                          + "\n"
                                          + "Sélectionnez la fonction désirée ");
                         Console.WriteLine("Tapez le numéro d'une fonction pour la lancer, ou 'Quitter' pour fermer le programme");
@@ -270,6 +273,8 @@ namespace PSI___Louis___Meric
                                              + "18 : Cacher un effet de symétrie sur un axe vertical et horizontal\n"
                                              + "19 : Cacher un changement de couleurs de manière aléatoire\n"
                                              + "20 : Cacher un effet de saturation à l'image\n"
+                                             + "21 : Cacher un filtre d'une couleur aléatoire\n"
+                                             + "22 : Cacher un effet de saturation coloré à l'image\n"
                                              + "\n");
                                         Console.WriteLine("Veuillez choisir la modification de votre image a cacher dans celle sélectionnée");
                                         fonctionACacher = Console.ReadLine();
@@ -373,17 +378,25 @@ namespace PSI___Louis___Meric
                                                 test.Saturage().From_Image_To_File("testSaturage.bmp");
                                                 imageACacher = "testSaturage.bmp";
                                                 break;
+                                            case "21":
+                                                test.FiltreCouleurAleatoire().From_Image_To_File("testFiltreCouleurAleatoire.bmp");
+                                                imageACacher = "testFiltreCouleurAleatoire.bmp";
+                                                break;
+                                            case "22":
+                                                test.SaturageCouleurs().From_Image_To_File("testSaturageCouleurs.bmp");
+                                                imageACacher = "testSaturageCouleurs.bmp";
+                                                break;
                                             default:
                                                 Console.WriteLine();
                                                 Console.WriteLine("Cet fonction n'existe pas.");
                                                 break;
                                         }
-                                        if (fonctionACacher != "1" && fonctionACacher != "2" && fonctionACacher != "3" && fonctionACacher != "4" && fonctionACacher != "5" && fonctionACacher != "6" && fonctionACacher != "7" && fonctionACacher != "8" && fonctionACacher != "9" && fonctionACacher != "10" && fonctionACacher != "11" && fonctionACacher != "12" && fonctionACacher != "13" && fonctionACacher != "14" && fonctionACacher != "15" && fonctionACacher != "16" && fonctionACacher != "17" && fonctionACacher != "18" && fonctionACacher != "19" && fonctionACacher != "20")
+                                        if (fonctionACacher != "1" && fonctionACacher != "2" && fonctionACacher != "3" && fonctionACacher != "4" && fonctionACacher != "5" && fonctionACacher != "6" && fonctionACacher != "7" && fonctionACacher != "8" && fonctionACacher != "9" && fonctionACacher != "10" && fonctionACacher != "11" && fonctionACacher != "12" && fonctionACacher != "13" && fonctionACacher != "14" && fonctionACacher != "15" && fonctionACacher != "16" && fonctionACacher != "17" && fonctionACacher != "18" && fonctionACacher != "19" && fonctionACacher != "20" && fonctionACacher != "21" && fonctionACacher != "22")
                                         {
                                             Console.WriteLine("Cette fonction n'existe pas\nAppuyez sur n'importe quelle touche pour revenir au menu");
                                             Console.ReadKey();
                                         }
-                                    } while (fonctionACacher != "1" && fonctionACacher != "2" && fonctionACacher != "3" && fonctionACacher != "4" && fonctionACacher != "5" && fonctionACacher != "6" && fonctionACacher != "7" && fonctionACacher != "8" && fonctionACacher != "9" && fonctionACacher != "10" && fonctionACacher != "11" && fonctionACacher != "12" && fonctionACacher != "13" && fonctionACacher != "14" && fonctionACacher != "15" && fonctionACacher != "16" && fonctionACacher != "17" && fonctionACacher != "18" && fonctionACacher != "19" && fonctionACacher != "20");
+                                    } while (fonctionACacher != "1" && fonctionACacher != "2" && fonctionACacher != "3" && fonctionACacher != "4" && fonctionACacher != "5" && fonctionACacher != "6" && fonctionACacher != "7" && fonctionACacher != "8" && fonctionACacher != "9" && fonctionACacher != "10" && fonctionACacher != "11" && fonctionACacher != "12" && fonctionACacher != "13" && fonctionACacher != "14" && fonctionACacher != "15" && fonctionACacher != "16" && fonctionACacher != "17" && fonctionACacher != "18" && fonctionACacher != "19" && fonctionACacher != "20" && fonctionACacher != "21" && fonctionACacher != "22");
                                 }
                                 MyImage testImageCachee = test.CacherImage(imageACacher);
                                 testImageCachee.From_Image_To_File("testImageCachee.bmp");
@@ -431,12 +444,28 @@ namespace PSI___Louis___Meric
                                 Console.ForegroundColor = ConsoleColor.Gray;
                                 break;
                             case "30":
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.White;
+                                test.AsciiCouleurs();
+                                Console.ForegroundColor = ConsoleColor.Gray;
+                                break;
+                            case "31":
+                                MyImage testFiltreCouleurAleatoire = test.FiltreCouleurAleatoire();
+                                testFiltreCouleurAleatoire.From_Image_To_File("testFiltreAleatoire.bmp");
+                                Process.Start("testFiltreAleatoire.bmp");
+                                break;
+                            case "32":
+                                MyImage testSaturageCouleurs = test.SaturageCouleurs();
+                                testSaturageCouleurs.From_Image_To_File("testSaturageCouleurs.bmp");
+                                Process.Start("testSaturageCouleurs.bmp");
+                                break;
+                            case "33":
                                 string testing = ("Hello world").ToUpper();
                                 //if (testing.Length % 2 == 1) testing = testing + " ";
                                 int[] tabtest = new int[11];
                                 char[] lettres2 = new char[2];
                                 char[] lettres1 = new char[1];
-                                for (int i=0; i<testing.Length; i+=2)
+                                for (int i = 0; i < testing.Length; i += 2)
                                 {
                                     if (i != testing.Length - 1)
                                     {
@@ -449,12 +478,17 @@ namespace PSI___Louis___Meric
                                         lettres1[0] = testing[i];
                                         tabtest = MyImage.Convert2CharTo11Bits(lettres1);
                                     }
-                                    for (int j=0; j<tabtest.Length; j++)
+                                    for (int j = 0; j < tabtest.Length; j++)
                                     {
                                         Console.Write(tabtest[j] + " ");
                                     }
                                     Console.WriteLine();
                                 }
+                                break;
+                            case "34":
+                                MyImage testQR = MyImage.QRcodeNiveau1("Hello world");
+                                testQR.From_Image_To_File("testQRniveau1.bmp");
+                                Process.Start("testQRniveau1.bmp");
                                 break;
                             case "quitter":
                             case "Quitter":
