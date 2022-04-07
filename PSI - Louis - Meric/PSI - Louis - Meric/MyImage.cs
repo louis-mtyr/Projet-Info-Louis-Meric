@@ -5,7 +5,7 @@ using System.IO;
 
 namespace PSI___Louis___Meric
 {
-    class MyImage
+    class MyImage       //hggjjg
     {
         private string myfile;
         private string typeImage;
