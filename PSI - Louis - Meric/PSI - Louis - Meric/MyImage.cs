@@ -20,51 +20,51 @@ namespace PSI___Louis___Meric
         public string Myfile
         {
             get { return this.myfile; }
-        }
+        } //correspond au nom de l'image dans le debug
 
         public string TypeImage
         {
             get { return this.typeImage; }
-        }
+        } //vaut "BitMap" si c'en est un, n'est pas défini si ce n'en est pas un
 
         public int TailleFichier
         {
             get { return this.tailleFichier; }
-        }
+        } //correspond à la taille totale du fichier complet de l'image
 
         public int TailleOffset
         {
             get { return this.tailleOffset; }
-        }
+        } //correspond à la taille offset (taille totale - taille header (=54)) de l'image
 
         public int HauteurImage
         {
             get { return this.hauteurImage; }
             set { this.hauteurImage = value; }
-        }
+        } //correspond à la hauteur de l'image en nombre de pixels
 
         public int LargeurImage
         {
             get { return this.largeurImage; }
             set { this.largeurImage = value; }
-        }
+        } //correspond à la largeur de l'image en nombre de pixels
 
         public int NbBitsCouleur
         {
             get { return this.nbBitsCouleur; }
-        }
+        } //vaut 24 par défaut pour les images que nous traitons
 
         public Pixel[,] Image
         {
             get { return this.image; }
             set { this.image = value; }
-        }
+        } //correspond à notre matrice de pixels (autrement dit notre image)
 
         public byte[] FichierComplet
         {
             get { return this.fichierComplet; }
             set { this.fichierComplet = value; }
-        }
+        } //correspond au tableau de byte que nous remplissons pour créer notre image sous forme de fichier lisible par l'ordinateur
 
         public MyImage(string typeImage, int tailleFichier, int tailleOffset, int hauteurImage, int largeurImage, int nbBitsCouleur, Pixel[,] image)
         {
@@ -76,7 +76,7 @@ namespace PSI___Louis___Meric
             this.nbBitsCouleur = nbBitsCouleur;     //cst
             this.image = image;
             //this.fichierComplet = fichierComplet;
-        }
+        } //permet de créer un MyImage en utilisant directement les bons champs
 
         public MyImage(string myfile)
         {
@@ -127,8 +127,11 @@ namespace PSI___Louis___Meric
                 this.myfile = myfile;
                 this.fichierComplet = tab;
             }
-        }
-
+        } //permet de créer un MyImage à partir d'une image au format .bmp 24 bits déjà existante
+        /// <summary>
+        /// Recupère le this.FichierComplet du MyImage utilisé pour l'écrire dans un fichier au nom de "file" sur l'ordinateur
+        /// </summary>
+        /// <param name="file">Le nom donné au nouveau fichier</param>
         public void From_Image_To_File(string file)
         {
             int coefLargeur = 0;
@@ -191,8 +194,12 @@ namespace PSI___Louis___Meric
             }
             this.fichierComplet = nouveauFichier;
             File.WriteAllBytes(file, nouveauFichier);
-        }
-
+        } //permet d'écrire le tableau de byte d'un MyImage dans un fichier sur l'ordinateur au nom de "file"
+        /// <summary>
+        /// Convertit un tableau d'octet sous format endian en une valeur entière
+        /// </summary>
+        /// <param name="tab">Le tableau d'octet au format endian</param>
+        /// <returns>La valeur de tab sous forme de valeur entière</returns>
         public int Convert_Endian_To_Int(byte[] tab)        //Convertir du base 256 little endian en base 10
         {
             int res = 0;
@@ -205,7 +212,11 @@ namespace PSI___Louis___Meric
             }
             return res;
         }
-
+        /// <summary>
+        /// Convertit une valeur entière en un tableau d'octets décrivant un format endian
+        /// </summary>
+        /// <param name="val">La valeur entière à convertir</param>
+        /// <returns>Le tableau d'octets correspondant à la valeur entrée au format endian</returns>
         public byte[] Convert_Int_To_Endian(int val)        //Convertir du base 10 en base 256 en little endian
         {
             byte[] tab = new byte[4];
@@ -228,9 +239,9 @@ namespace PSI___Louis___Meric
             return tab;
         }
         /// <summary>
-        /// Renvoie l'image avec des couleurs inversées par rapport au spectre
+        /// Inverse les couleurs d'une image par rapport au spectre de couleurs (255 - valeur de chaque pixel rouge, vert, et bleu)
         /// </summary>
-        /// <returns>l'image avec couleurs inversées</returns>
+        /// <returns>L'image avec couleurs inversées</returns>
         public MyImage Inverse()                        //return l'image avec les coleurs inversés en fct du spectre
         {
             MyImage nouvelleImage = new MyImage(this.Myfile);
@@ -245,7 +256,10 @@ namespace PSI___Louis___Meric
             }
             return nouvelleImage;
         }
-
+        /// <summary>
+        /// Genere 3 nombres aléatoires qui décideront de la couleur du filtre appliqué (pixel rouge / randomR -- pixel vert / randomV -- pixel bleu / randomB)
+        /// </summary>
+        /// <returns>L'image avec un filtre de couleur aléatoire</returns>
         public MyImage FiltreCouleurAleatoire()
         {
             MyImage nouvelleImage = new MyImage(this.myfile);
@@ -264,7 +278,10 @@ namespace PSI___Louis___Meric
             }
             return nouvelleImage;
         }
-
+        /// <summary>
+        /// Genere un nombre aléatoire qui décidera d'un changement de couleur en échangeant les valeurs des pixels rouges, verts, et bleus entre eux
+        /// </summary>
+        /// <returns>L'image avec un nouveau jeu de couleurs aléatoire</returns>
         public MyImage CouleurAléatoire()
         {
             MyImage nouvelleImage = new MyImage(this.Myfile);
@@ -516,7 +533,10 @@ namespace PSI___Louis___Meric
             }
             return nouvelleImage;
         }               //return l'image avec un différent jeu de couleur obtenu de manière aléatoire
-
+        /// <summary>
+        /// Change pour chaque pixel rouge, vert puis bleu leur valeur en les échangeant entre eux aléatoirement et ce à chaque boucle
+        /// </summary>
+        /// <returns>L'image avec un effet de saturation semblable à celui visible sur les anciennes télés cathodiques</returns>
         public MyImage Saturage()
         {
             MyImage nouvelleImage = new MyImage(this.Myfile);
@@ -569,7 +589,10 @@ namespace PSI___Louis___Meric
             }
             return nouvelleImage;
         }                   //return l'image avec un effet saturé
-
+        /// <summary>
+        /// Genere 3 nombres aléatoires pour chaque pixel rouge, vert, puis bleu, qui décideront de la couleur du filtre appliqué (pixel rouge / randomR -- pixel vert / randomV -- pixel bleu / randomB)
+        /// </summary>
+        /// <returns>L'image avec un effet de saturation semblable à celui visible sur les anciennes télés cathodiques mais avec des couleurs</returns>
         public MyImage SaturageCouleurs()
         {
             MyImage nouvelleImage = new MyImage(this.myfile);
@@ -591,7 +614,10 @@ namespace PSI___Louis___Meric
             }
             return nouvelleImage;
         }
-
+        /// <summary>
+        /// Fais la moyenne des valeurs de rouge, vert et bleu pour chaque pixel et donne à chaque pixel cette valeur
+        /// </summary>
+        /// <returns>L'image en nuance de gris</returns>
         public MyImage NuanceDeGris()            //return l'image en nuance de gris
         {
             MyImage nouvelleImage = new MyImage(this.Myfile);
@@ -606,7 +632,10 @@ namespace PSI___Louis___Meric
             }
             return nouvelleImage;
         }
-
+        /// <summary>
+        /// Calcule si la moyenne des valeurs de rouge, vert et bleu est inférieure à 128 (256/2). Si elle l'est, le pixel devient noir, sinon il devient blanc
+        /// </summary>
+        /// <returns>L'image uniquement en noir et blanc</returns>
         public MyImage NoirEtBlanc()            //return l'image en noir et blanc
         {
             MyImage nouvelleImage = new MyImage(this.Myfile);
@@ -3423,14 +3452,25 @@ namespace PSI___Louis___Meric
                     if (this.image[i, j].R >= this.image[i, j].G && this.image[i, j].G <= this.image[i, j].B * 2 && this.image[i, j].B < this.image[i, j].R) Console.ForegroundColor = ConsoleColor.Red;
                     if (this.image[i, j].G >= this.image[i, j].B && this.image[i, j].B <= this.image[i, j].R * 2 && this.image[i, j].R < this.image[i, j].G) Console.ForegroundColor = ConsoleColor.Green;
                     if (this.image[i, j].B >= this.image[i, j].R && this.image[i, j].R <= this.image[i, j].G * 2 && this.image[i, j].G < this.image[i, j].B) Console.ForegroundColor = ConsoleColor.Blue;
-                    if (this.image[i, j].R >= this.image[i, j].G && this.image[i, j].G >= this.image[i, j].B * 2) Console.ForegroundColor = ConsoleColor.Yellow;
-                    if (this.image[i, j].R >= this.image[i, j].B && this.image[i, j].B >= this.image[i, j].G * 2) Console.ForegroundColor = ConsoleColor.Magenta;
-                    if (this.image[i, j].G >= this.image[i, j].R && this.image[i, j].R >= this.image[i, j].B * 2) Console.ForegroundColor = ConsoleColor.Yellow;
-                    if (this.image[i, j].G >= this.image[i, j].B && this.image[i, j].B >= this.image[i, j].R * 2) Console.ForegroundColor = ConsoleColor.Cyan;
-                    if (this.image[i, j].B >= this.image[i, j].G && this.image[i, j].G >= this.image[i, j].R * 2) Console.ForegroundColor = ConsoleColor.Cyan;
-                    if (this.image[i, j].B >= this.image[i, j].R && this.image[i, j].R >= this.image[i, j].G * 2) Console.ForegroundColor = ConsoleColor.Magenta;
+                    if (this.image[i, j].R >= this.image[i, j].G && this.image[i, j].G <= this.image[i, j].B * 2 && this.image[i, j].B < this.image[i, j].R && this.image[i, j].R < 100) Console.ForegroundColor = ConsoleColor.DarkRed;
+                    if (this.image[i, j].G >= this.image[i, j].B && this.image[i, j].B <= this.image[i, j].R * 2 && this.image[i, j].R < this.image[i, j].G && this.image[i, j].G < 100) Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    if (this.image[i, j].B >= this.image[i, j].R && this.image[i, j].R <= this.image[i, j].G * 2 && this.image[i, j].G < this.image[i, j].B && this.image[i, j].B < 100) Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    if (this.image[i, j].R >= this.image[i, j].G && this.image[i, j].G > this.image[i, j].B * 2) Console.ForegroundColor = ConsoleColor.Yellow;
+                    if (this.image[i, j].G >= this.image[i, j].R && this.image[i, j].R > this.image[i, j].B * 2) Console.ForegroundColor = ConsoleColor.Yellow;
+                    if (this.image[i, j].R >= this.image[i, j].G && this.image[i, j].G > this.image[i, j].B * 2 && this.image[i, j].R < 100) Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    if (this.image[i, j].G >= this.image[i, j].R && this.image[i, j].R > this.image[i, j].B * 2 && this.image[i, j].G < 100) Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    if (this.image[i, j].G >= this.image[i, j].B && this.image[i, j].B > this.image[i, j].R * 2) Console.ForegroundColor = ConsoleColor.Cyan;
+                    if (this.image[i, j].B >= this.image[i, j].G && this.image[i, j].G > this.image[i, j].R * 2) Console.ForegroundColor = ConsoleColor.Cyan;
+                    if (this.image[i, j].G >= this.image[i, j].B && this.image[i, j].B > this.image[i, j].R * 2 && this.image[i, j].G < 100) Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    if (this.image[i, j].B >= this.image[i, j].G && this.image[i, j].G > this.image[i, j].R * 2 && this.image[i, j].B < 100) Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    if (this.image[i, j].B >= this.image[i, j].R && this.image[i, j].R > this.image[i, j].G * 2) Console.ForegroundColor = ConsoleColor.Magenta;
+                    if (this.image[i, j].R >= this.image[i, j].B && this.image[i, j].B > this.image[i, j].G * 2) Console.ForegroundColor = ConsoleColor.Magenta;
+                    if (this.image[i, j].B >= this.image[i, j].R && this.image[i, j].R > this.image[i, j].G * 2 && this.image[i, j].B < 100) Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                    if (this.image[i, j].R >= this.image[i, j].B && this.image[i, j].B > this.image[i, j].G * 2 && this.image[i, j].R < 100) Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     if (this.image[i, j].R >= 190 && this.image[i, j].G >= 190 && this.image[i, j].B >= 190) Console.ForegroundColor = ConsoleColor.White;
                     if (this.image[i, j].R <= 50 && this.image[i, j].G <= 50 && this.image[i, j].B <= 50) Console.ForegroundColor = ConsoleColor.DarkGray;
+                    else if (Math.Abs(this.image[i, j].R - this.image[i, j].G) < 10 && Math.Abs(this.image[i, j].R - this.image[i, j].B) < 10) Console.ForegroundColor = ConsoleColor.Gray;
+
                     moyenne = (this.image[i, j].R + this.image[i, j].G + this.image[i, j].B) / 3;
                     switch (moyenne / 10)
                     {
@@ -3970,28 +4010,6 @@ namespace PSI___Louis___Meric
             }
 
             MyImage nouvelleImage = new MyImage("BitMap", 21 * 21 * 3 + 54, 21 * 21 * 3, 21, 21, 24, imageQR);
-            return nouvelleImage;
-        }
-
-        public MyImage Testing()
-        {
-            MyImage nouvelleImage = new MyImage(this.Myfile);
-            Random aleatoire = new Random();
-            int rouge = aleatoire.Next(1, 6);
-            int vert = aleatoire.Next(1, 6);
-            int bleu = aleatoire.Next(1, 6);
-            for (int i=0; i<this.hauteurImage; i++)
-            {
-                for (int j=0; j<this.largeurImage; j++)
-                {
-                    rouge = aleatoire.Next(1, 6);
-                    vert = aleatoire.Next(1, 6);
-                    bleu = aleatoire.Next(1, 6);
-                    nouvelleImage.image[i, j].R = (byte)(this.image[i, j].R / rouge);
-                    nouvelleImage.image[i, j].G = (byte)(this.image[i, j].G / vert);
-                    nouvelleImage.image[i, j].B = (byte)(this.image[i, j].B / bleu);
-                }
-            }
             return nouvelleImage;
         }
     }
