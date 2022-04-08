@@ -3236,7 +3236,7 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                       //return l'image avec une symétrie sur un axe vertical et horizontal
 
-        public int[] Convert_Byte_To_Hexadecimal(byte valeur)
+        public static int[] Convert_Byte_To_Hexadecimal(byte valeur)
         {
             int[] tabHexadecimal = new int[8];
             for (int i = 0; i < 8; i++)
@@ -3245,9 +3245,9 @@ namespace PSI___Louis___Meric
                 valeur = (byte)(valeur % Math.Pow(2, 7 - i));
             }
             return tabHexadecimal;
-        }           //return le byte entré en un tableau de int correspond aux valeurs binaires de la valeur en hexadécimal
+        }           //return le byte entré en un tableau de int correspond aux valeurs binaires de la valeur en octet (je me suis trompé de nom de fonction)
 
-        public byte Convert_Hexadecimal_To_Byte(int[] tabHexadecimal)
+        public static byte Convert_Hexadecimal_To_Byte(int[] tabHexadecimal)
         {
             byte valeur = 0;
             for (int i = 0; i < 8; i++)
@@ -3469,7 +3469,7 @@ namespace PSI___Louis___Meric
                     if (this.image[i, j].R >= this.image[i, j].B && this.image[i, j].B > this.image[i, j].G * 2 && this.image[i, j].R < 100) Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     if (this.image[i, j].R >= 190 && this.image[i, j].G >= 190 && this.image[i, j].B >= 190) Console.ForegroundColor = ConsoleColor.White;
                     if (this.image[i, j].R <= 50 && this.image[i, j].G <= 50 && this.image[i, j].B <= 50) Console.ForegroundColor = ConsoleColor.DarkGray;
-                    else if (Math.Abs(this.image[i, j].R - this.image[i, j].G) < 10 && Math.Abs(this.image[i, j].R - this.image[i, j].B) < 10) Console.ForegroundColor = ConsoleColor.Gray;
+                    else if (Math.Abs(this.image[i, j].R - this.image[i, j].G) < 10 && Math.Abs(this.image[i, j].R - this.image[i, j].B) < 10 && Math.Abs(this.image[i, j].B - this.image[i, j].G) < 10) Console.ForegroundColor = ConsoleColor.Gray;
 
                     moyenne = (this.image[i, j].R + this.image[i, j].G + this.image[i, j].B) / 3;
                     switch (moyenne / 10)
@@ -3783,6 +3783,17 @@ namespace PSI___Louis___Meric
             return tab11bits;
         }     //return une chaine de 2 caractères en binaire de 11 bits
 
+        public static int[] ConvertIntTo9Bits(int val)
+        {
+            int[] tabBinaire = new int[9];
+            for (int i = 0; i < 9; i++)
+            {
+                tabBinaire[i] = (byte)(val / Math.Pow(2, 8 - i));
+                val = (byte)(val % Math.Pow(2, 8 - i));
+            }
+            return tabBinaire;
+        }
+
         public static MyImage QRcodeNiveau1(string chaine)
         {
             Pixel[,] imageQR = new Pixel[21, 21];
@@ -3791,7 +3802,7 @@ namespace PSI___Louis___Meric
             for (int i = 0; i < 21; i++) for (int j = 0; j < 21; j++) imageQR[i, j] = new Pixel(255, 255, 255);
             for (int i = 0; i < 7; i++)
             {
-                for (int j = 0; j < 7; j++)
+                for (int j = 0; j < 7; j++)             //construction motif de recherche bas gauche
                 {
                     if (i == 0 || i == 6) imageQR[i, j] = new Pixel(0, 0, 0);
                     else if ((j % 2 == 0 || j == 3) && i != 1 && i != 5) imageQR[i, j] = new Pixel(0, 0, 0);
@@ -3799,7 +3810,7 @@ namespace PSI___Louis___Meric
                     casesOccupees[i, j] = true;
                 }
             }
-            for (int i = 20; i >= 14; i--)
+            for (int i = 20; i >= 14; i--)              //construction motif de recherche haut gauche
             {
                 for (int j = 0; j < 7; j++)
                 {
@@ -3809,7 +3820,7 @@ namespace PSI___Louis___Meric
                     casesOccupees[i, j] = true;
                 }
             }
-            for (int i = 20; i >= 14; i--)
+            for (int i = 20; i >= 14; i--)              //construction motif de recherche haut droite
             {
                 for (int j = 20; j >= 14; j--)
                 {
@@ -3819,7 +3830,7 @@ namespace PSI___Louis___Meric
                     casesOccupees[i, j] = true;
                 }
             }
-            for (int x = 8; x < 14; x += 2)
+            for (int x = 8; x < 14; x += 2)                     //construction séparateurs
             {
                 imageQR[14, x] = new Pixel(0, 0, 0);
                 imageQR[x, 6] = new Pixel(0, 0, 0);
@@ -3839,7 +3850,7 @@ namespace PSI___Louis___Meric
             char[] lettres1 = new char[1];
             char[] lettres2 = new char[2];
             int k = 0;
-            for (int i = 0; i < mot.Length; i += 2)
+            for (int i = 0; i < mot.Length; i += 2)                 //transformation chaine de caractère en suite de valeurs binaires
             {
                 if (i != mot.Length - 1)
                 {
@@ -3855,10 +3866,10 @@ namespace PSI___Louis___Meric
                     k++;
                 }
             }
-            int tailleComplet = 17;
+            int tailleComplet = 17;                                                 
             for (int i = 0; i < taille; i++) for (int j = 0; j < tabBinaire[i].Length; j++) tailleComplet++;
             int bourrage = tailleComplet % 8;
-            switch (bourrage)
+            switch (bourrage)                                   //ajout du bon nombre de 0 en fin de conversion en binaire de la chaine de caractère pour avoir un multiple de 8
             {
                 case 1:
                     tailleComplet += 7;
@@ -3884,32 +3895,25 @@ namespace PSI___Louis___Meric
                 default:
                     break;
             }
-            int[] tabComplet = new int[tailleComplet];
+            int[] tabComplet = new int[tailleComplet];                  //début de la suite de binaire par l'indicateur de mode et du nombre de caractères
             tabComplet[0] = 0;
             tabComplet[1] = 0;
             tabComplet[2] = 1;
             tabComplet[3] = 0;
-            tabComplet[4] = 0;
-            tabComplet[5] = 0;
-            tabComplet[6] = 0;
-            tabComplet[7] = 0;
-            tabComplet[8] = 0;
-            tabComplet[9] = 0;
-            tabComplet[10] = 1;
-            tabComplet[11] = 0;
-            tabComplet[12] = 1;
-            tabComplet[13] = 1;
-            int n = 14;
-            for (int i = 14; i < tabBinaire.LongLength + 14; i++)
+            int[] tabNombreCaracteres = ConvertIntTo9Bits((byte)chaine.Length);
+            for (int i = 4; i < 13; i++) tabComplet[i] = tabNombreCaracteres[i - 4];
+
+            int n = 13;
+            for (int i = 13; i < tabBinaire.LongLength + 13; i++)
             {
-                for (int j = 0; j < tabBinaire[i - 14].Length; j++)
+                for (int j = 0; j < tabBinaire[i - 13].Length; j++)  //on rentre la suite binaire de la chaine de caractère dans le tableau de bute complet
                 {
-                    tabComplet[n] = tabBinaire[i - 14][j];
+                    tabComplet[n] = tabBinaire[i - 13][j];
                     n++;
                 }
             }
             if (bourrage == 0) bourrage = 8;
-            tabComplet[tailleComplet - 4 - (8 - bourrage)] = 1;
+            tabComplet[tailleComplet - 4 - (8 - bourrage)] = 1;             //ajout de la terminaison
             tabComplet[tailleComplet - 3 - (8 - bourrage)] = 0;
             tabComplet[tailleComplet - 2 - (8 - bourrage)] = 1;
             tabComplet[tailleComplet - 1 - (8 - bourrage)] = 1;
@@ -3921,7 +3925,7 @@ namespace PSI___Louis___Meric
             {
                 if (j <= 8 || j >= 13)
                 {
-                    if (j <= 8 && j != 6)
+                    if (j <= 8 && j != 6)                   //remplissage des bits composant le niveau de correcteur et le type de masque
                     {
                         if (tabNiveauCorrection[m1] == 1) imageQR[12, j] = new Pixel(0, 0, 0);
                         m1++;
@@ -3958,14 +3962,45 @@ namespace PSI___Louis___Meric
                 if (i >= 13) casesOccupees[i, 13] = true;
             }
 
+            Encoding u8 = Encoding.UTF8;                                                                    //préparation correction
+            byte[] bytesChaine = u8.GetBytes(chaine);
+            byte[] correctionBinaire = ReedSolomonAlgorithm.Encode(bytesChaine, 7, ErrorCorrectionCodeType.QRCode);
+            int[][] tabCorrection = new int[7][];
+            int[] tabCorrectionComplet = new int[7 * 8];
+            int cmptr = 0;
+            int compteurCorrection = 0;
+            for (int i=0; i<7; i++)
+            {
+                tabCorrection[i] = Convert_Byte_To_Hexadecimal(correctionBinaire[i]);
+                for (int m = 0; m < 8; m++)
+                {
+                    tabCorrectionComplet[cmptr] = tabCorrection[i][m];
+                    cmptr++;
+                }
+            }
+            bool[,] casesCorrection = new bool[21, 21];
+            for (int j = 0; j < 21 && compteurCorrection < 7 * 8; j++)
+            {
+                for (int i = 20; i >= 0 && compteurCorrection < 7 * 8; i--)
+                {
+                    if (casesOccupees[i,j]==false)
+                    {
+                        //casesOccupees[i, j] = true;
+                        casesCorrection[i, j] = true;
+                        compteurCorrection++;
+                    }
+                }
+            }
+
             int[] tabBourrage = { 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 };
             int compteur = 0;
             int compteurBourrage = 0;
+            compteurCorrection = 0;
             for (int j = 20; j >= 4; j -= 4)
             {
-                for (int i = 0; i < 21; i++)
+                for (int i = 0; i < 21; i++)     //complétion de la traduction de la chaine en binaire en pixels puis répétition de tabBourrage jusqu'à ce que le QR code soit rempli
                 {
-                    if (casesOccupees[i, j] == false)
+                    if (casesOccupees[i, j] == false && casesCorrection[i,j] == false)
                     {
                         if (compteur < tailleComplet)
                         {
@@ -3984,10 +4019,17 @@ namespace PSI___Louis___Meric
                             else compteurBourrage = 0;
                         }
                     }
+                    else if (casesOccupees[i,j] == false && casesCorrection[i,j] == true)
+                    {
+                        if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
+                        compteurCorrection++;
+                        if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j - 1] = new Pixel(0, 0, 0);
+                        compteurCorrection++;
+                    }
                 }
                 for (int i = 20; i >= 0; i--)
                 {
-                    if (casesOccupees[i, j] == false)
+                    if (casesOccupees[i, j] == false && casesCorrection[i, j] == false)
                     {
                         if (compteur < tailleComplet)
                         {
@@ -4005,6 +4047,24 @@ namespace PSI___Louis___Meric
                             if (compteurBourrage < 15) compteurBourrage++;
                             else compteurBourrage = 0;
                         }
+                    }
+                    else if (casesOccupees[i, j] == false && casesCorrection[i, j] == true)
+                    {
+                        if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j - 2] = new Pixel(0, 0, 0);
+                        compteurCorrection++;
+                        if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j - 3] = new Pixel(0, 0, 0);
+                        compteurCorrection++;
+                    }
+                }
+            }
+            for (int i=0; i<21; i++)
+            {
+                for (int j=0; j<21; j++)
+                {
+                    if (casesOccupees[i,j] == false && (i+j)%2==0)
+                    {
+                        if (imageQR[i, j].R == 0) imageQR[i, j] = new Pixel(255, 255, 255);
+                        else imageQR[i, j] = new Pixel(0, 0, 0);
                     }
                 }
             }
