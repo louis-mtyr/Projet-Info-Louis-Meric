@@ -3900,13 +3900,13 @@ namespace PSI___Louis___Meric
             tabComplet[1] = 0;
             tabComplet[2] = 1;
             tabComplet[3] = 0;
-            int[] tabNombreCaracteres = ConvertIntTo9Bits((byte)chaine.Length);
+            int[] tabNombreCaracteres = ConvertIntTo9Bits((byte)mot.Length);
             for (int i = 4; i < 13; i++) tabComplet[i] = tabNombreCaracteres[i - 4];
 
             int n = 13;
             for (int i = 13; i < tabBinaire.LongLength + 13; i++)
             {
-                for (int j = 0; j < tabBinaire[i - 13].Length; j++)  //on rentre la suite binaire de la chaine de caractère dans le tableau de bute complet
+                for (int j = 0; j < tabBinaire[i - 13].Length; j++)  //on rentre la suite binaire de la chaine de caractère dans le tableau de byte complet
                 {
                     tabComplet[n] = tabBinaire[i - 13][j];
                     n++;
@@ -3940,6 +3940,7 @@ namespace PSI___Louis___Meric
                 if (j <= 7 || j >= 13) casesOccupees[13, j] = true;
                 if (j <= 7) casesOccupees[7, j] = true;
             }
+            for (int i = 0; i < 21; i++) casesOccupees[i, 6] = true;
             m1 = 0;
             m2 = 8;
             for (int i = 0; i < 21; i++)
@@ -3962,11 +3963,12 @@ namespace PSI___Louis___Meric
                 if (i >= 13) casesOccupees[i, 13] = true;
             }
 
-            Encoding u8 = Encoding.UTF8;                                                                    //préparation correction
-            byte[] bytesChaine = u8.GetBytes(chaine);
+            Encoding u8 = Encoding.UTF8;                                                            //préparation de la correction
+            byte[] bytesChaine = u8.GetBytes(mot);
             byte[] correctionBinaire = ReedSolomonAlgorithm.Encode(bytesChaine, 7, ErrorCorrectionCodeType.QRCode);
             int[][] tabCorrection = new int[7][];
-            int[] tabCorrectionComplet = new int[7 * 8];
+            //int[] tabCorrectionComplet = new int[7 * 8];
+            int[] tabCorrectionComplet = { 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
             int cmptr = 0;
             int compteurCorrection = 0;
             for (int i=0; i<7; i++)
@@ -3979,24 +3981,28 @@ namespace PSI___Louis___Meric
                 }
             }
             bool[,] casesCorrection = new bool[21, 21];
-            for (int j = 0; j < 21 && compteurCorrection < 7 * 8; j++)
+            for (int j = 0; j < 21; j+=2)
             {
                 for (int i = 20; i >= 0 && compteurCorrection < 7 * 8; i--)
                 {
                     if (casesOccupees[i,j]==false)
                     {
-                        //casesOccupees[i, j] = true;
                         casesCorrection[i, j] = true;
+                        compteurCorrection++;
+                    }
+                    if (casesOccupees[i, j+1] == false)
+                    {
+                        casesCorrection[i, j+1] = true;
                         compteurCorrection++;
                     }
                 }
             }
-
+            
             int[] tabBourrage = { 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 };
             int compteur = 0;
             int compteurBourrage = 0;
             compteurCorrection = 0;
-            for (int j = 20; j >= 4; j -= 4)
+            for (int j = 20; j >= 3; j -= 4)
             {
                 for (int i = 0; i < 21; i++)     //complétion de la traduction de la chaine en binaire en pixels puis répétition de tabBourrage jusqu'à ce que le QR code soit rempli
                 {
@@ -4027,6 +4033,7 @@ namespace PSI___Louis___Meric
                         compteurCorrection++;
                     }
                 }
+                if (j == 8) j--;
                 for (int i = 20; i >= 0; i--)
                 {
                     if (casesOccupees[i, j] == false && casesCorrection[i, j] == false)
@@ -4057,6 +4064,39 @@ namespace PSI___Louis___Meric
                     }
                 }
             }
+            
+            /*int compteurTest = 0;
+            int[] tabTest = { 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
+            for (int j = 20; j >= 3; j -= 4)
+            {
+                for (int i = 0; i < 21; i++)
+                {
+                    if (casesOccupees[i, j] == false)
+                    {
+                        if (tabTest[compteurTest] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
+                        compteurTest++;
+                    }
+                    if (casesOccupees[i, j-1] == false)
+                    {
+                        if (tabTest[compteurTest] == 1) imageQR[i, j-1] = new Pixel(0, 0, 0);
+                        compteurTest++;
+                    }
+                }
+                for (int i = 20; i >= 0; i--)
+                {
+                    if (casesOccupees[i, j - 2] == false)
+                    {
+                        if (tabTest[compteurTest] == 1) imageQR[i, j-2] = new Pixel(0, 0, 0);
+                        compteurTest++;
+                    }
+                    if (casesOccupees[i, j - 3] == false)
+                    {
+                        if (tabTest[compteurTest] == 1) imageQR[i, j - 3] = new Pixel(0, 0, 0);
+                        compteurTest++;
+                    }
+                }
+            }*/
+
             for (int i=0; i<21; i++)
             {
                 for (int j=0; j<21; j++)
@@ -4068,8 +4108,8 @@ namespace PSI___Louis___Meric
                     }
                 }
             }
-
-            MyImage nouvelleImage = new MyImage("BitMap", 21 * 21 * 3 + 54, 21 * 21 * 3, 21, 21, 24, imageQR);
+            
+                    MyImage nouvelleImage = new MyImage("BitMap", 21 * 21 * 3 + 54, 21 * 21 * 3, 21, 21, 24, imageQR);
             return nouvelleImage;
         }
     }
