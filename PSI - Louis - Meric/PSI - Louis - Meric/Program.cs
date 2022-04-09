@@ -19,24 +19,45 @@ namespace PSI___Louis___Meric
             Console.WindowWidth = Console.LargestWindowWidth;
             Console.WriteLine("Que souhaitez-vous faire ?\n"
                             + "1 : Traiter une image\n"
-                            + "2 : Dessiner une fractale\n");
+                            + "2 : Dessiner une fractale\n"
+                            + "3 : Générer un QR code\n");
             Console.WriteLine("Tapez le numéro d'une fonction pour la lancer, ou n'importe quoi d'autre pour fermer le programme");
             string reponse = Console.ReadLine();
+            if (reponse == "3")
+            {
+                while (reponse != "q" && reponse != "Q" && reponse != "Quitter" && reponse != "QUITTER" && reponse != "quitter")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Quelle chaine de caractère souhaitez-vous générer dans votre QR code ?");
+                    string motQR = Console.ReadLine();
+                    MyImage testQR = MyImage.QRcodeNiveau1(motQR).Agrandir(4, 4);
+                    testQR.From_Image_To_File("testQRniveau1.bmp");
+                    Process.Start("testQRniveau1.bmp");
+                    Console.WriteLine("Appuyez sur entrée pour continuer ou tapez 'quitter' pour fermer le programme");
+                    reponse = Console.ReadLine();
+                }
+            }
             if (reponse == "2")
             {
-                Console.WriteLine("Veuillez choisir la hauteur de votre fractale :");
-                int hauteurFractaleMandelbrot = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Veuillez choisir la largeur de votre fractale :");
-                int largeurFractaleMandelbrot = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Veuillez choisir un coefficient de couleur rouge :");
-                double coefFractaleMandelBrotR = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Veuillez choisir un coefficient de couleur verte :");
-                double coefFractaleMandelBrotG = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Veuillez choisir un coefficient de couleur bleue :");
-                double coefFractaleMandelBrotB = Convert.ToDouble(Console.ReadLine());
-                MyImage testFractaleMandelbrot = MyImage.FractaleMandelbrot(hauteurFractaleMandelbrot, largeurFractaleMandelbrot, coefFractaleMandelBrotR, coefFractaleMandelBrotG, coefFractaleMandelBrotB);
-                testFractaleMandelbrot.From_Image_To_File("testFractaleMandelbrot.bmp");
-                Process.Start("testFractaleMandelbrot.bmp");
+                while (reponse != "q" && reponse != "Q" && reponse != "Quitter" && reponse != "QUITTER" && reponse != "quitter")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Veuillez choisir la hauteur de votre fractale :");
+                    int hauteurFractaleMandelbrot = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Veuillez choisir la largeur de votre fractale :");
+                    int largeurFractaleMandelbrot = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Veuillez choisir un coefficient de couleur rouge :");
+                    double coefFractaleMandelBrotR = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Veuillez choisir un coefficient de couleur verte :");
+                    double coefFractaleMandelBrotG = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Veuillez choisir un coefficient de couleur bleue :");
+                    double coefFractaleMandelBrotB = Convert.ToDouble(Console.ReadLine());
+                    MyImage testFractaleMandelbrot = MyImage.FractaleMandelbrot(hauteurFractaleMandelbrot, largeurFractaleMandelbrot, coefFractaleMandelBrotR, coefFractaleMandelBrotG, coefFractaleMandelBrotB);
+                    testFractaleMandelbrot.From_Image_To_File("testFractaleMandelbrot.bmp");
+                    Process.Start("testFractaleMandelbrot.bmp");
+                    Console.WriteLine("Appuyez sur entrée pour continuer ou tapez 'quitter' pour fermer le programme");
+                    reponse = Console.ReadLine();
+                }
             }
             if (reponse == "1")
             {
@@ -460,35 +481,26 @@ namespace PSI___Louis___Meric
                                 Process.Start("testSaturageCouleurs.bmp");
                                 break;
                             case "33":
-                                string testing = ("Hello world").ToUpper();
-                                //if (testing.Length % 2 == 1) testing = testing + " ";
-                                int[] tabtest = new int[11];
-                                char[] lettres2 = new char[2];
-                                char[] lettres1 = new char[1];
-                                for (int i = 0; i < testing.Length; i += 2)
+                                Encoding u8 = Encoding.UTF8;                                                            //préparation de la correction
+                                byte[] bytesChaine = u8.GetBytes("Hello world");
+                                byte[] correctionBinaire = ReedSolomonAlgorithm.Encode(bytesChaine, 7, ErrorCorrectionCodeType.QRCode);
+                                int[][] tabCorrection = new int[7][];
+                                int[] tabCorrectionComplet = new int[7 * 8];
+                                int cmptr = 0;
+                                for (int i = 0; i < 7; i++)
                                 {
-                                    if (i != testing.Length - 1)
+                                    tabCorrection[i] = MyImage.Convert_Byte_To_Hexadecimal(correctionBinaire[i]);
+                                    for (int m = 0; m < 8; m++)
                                     {
-                                        lettres2[0] = testing[i];
-                                        lettres2[1] = testing[i + 1];
-                                        tabtest = MyImage.Convert2CharTo11Bits(lettres2);
+                                        tabCorrectionComplet[cmptr] = tabCorrection[i][m];
+                                        cmptr++;
                                     }
-                                    else
-                                    {
-                                        lettres1[0] = testing[i];
-                                        tabtest = MyImage.Convert2CharTo11Bits(lettres1);
-                                    }
-                                    for (int j = 0; j < tabtest.Length; j++)
-                                    {
-                                        Console.Write(tabtest[j] + " ");
-                                    }
-                                    Console.WriteLine();
                                 }
-                                break;
-                            case "34":
-                                MyImage testQR = MyImage.QRcodeNiveau1("Hello world");
-                                testQR.From_Image_To_File("testQRniveau1.bmp");
-                                Process.Start("testQRniveau1.bmp");
+                                for (int i = 0; i < 7 * 8; i++)
+                                {
+                                    if (i % 8 != 0) Console.Write(tabCorrectionComplet[i] + " ; ");
+                                    else Console.Write("\n"+tabCorrectionComplet[i]+" ; ");
+                                }
                                 break;
                             case "quitter":
                             case "Quitter":
