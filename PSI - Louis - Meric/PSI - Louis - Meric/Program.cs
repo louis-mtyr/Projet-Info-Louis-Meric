@@ -19,7 +19,7 @@ namespace PSI___Louis___Meric
             Console.WindowWidth = Console.LargestWindowWidth;
             Console.WriteLine("Que souhaitez-vous faire ?\n"
                             + "1 : Traiter une image\n"
-                            + "2 : Dessiner une fractale\n"
+                            + "2 : Dessiner une fractale de Mandelbrot\n"
                             + "3 : Générer un QR code\n");
             Console.WriteLine("Tapez le numéro d'une fonction pour la lancer, ou n'importe quoi d'autre pour fermer le programme");
             string reponse = Console.ReadLine();
@@ -29,10 +29,28 @@ namespace PSI___Louis___Meric
                 {
                     Console.Clear();
                     Console.WriteLine("Quelle chaine de caractère souhaitez-vous générer dans votre QR code ?");
-                    string motQR = Console.ReadLine();
-                    MyImage testQR = MyImage.QRcodeNiveau1(motQR).Agrandir(4, 4);
-                    testQR.From_Image_To_File("testQRniveau1.bmp");
-                    Process.Start("testQRniveau1.bmp");
+                    string motQR = Console.ReadLine().ToUpper();
+                    bool valide = false;
+                    if (motQR.Length <= 25)
+                    {
+                        MyImage testQR = MyImage.QRcodeNiveau1(motQR).Agrandir(10, 10);
+                        testQR.From_Image_To_File("testQRcode.bmp");
+                        for (int i = 0; i < testQR.HauteurImage; i++) for (int j = 0; j < testQR.LargeurImage; j++) if (testQR.Image[i, j].R != 255) valide = true;
+                        if (valide==true) Process.Start("testQRcode.bmp");
+                        else Console.WriteLine("La chaine contient un caractère qui n'est pas pris en compte");
+                    }
+                    else if (motQR.Length <= 47)
+                    {
+                        MyImage testQR = MyImage.QRcodeNiveau2(motQR).Agrandir(10, 10);
+                        testQR.From_Image_To_File("testQRcode.bmp");
+                        for (int i = 0; i < testQR.HauteurImage; i++) for (int j = 0; j < testQR.LargeurImage; j++) if (testQR.Image[i, j].R != 255) valide = true;
+                        if (valide == true) Process.Start("testQRcode.bmp");
+                        else Console.WriteLine("La chaine contient un caractère qui n'est pas pris en compte");
+                    }
+                    else
+                    {
+                        Console.WriteLine("La chaine contient trop de caractères pour un QR code de niveau 2 maximum");
+                    }
                     Console.WriteLine("Appuyez sur entrée pour continuer ou tapez 'quitter' pour fermer le programme");
                     reponse = Console.ReadLine();
                 }
@@ -460,13 +478,11 @@ namespace PSI___Louis___Meric
                                 break;
                             case "29":
                                 Console.Clear();
-                                Console.ForegroundColor = ConsoleColor.White;
                                 test.Ascii();
                                 Console.ForegroundColor = ConsoleColor.Gray;
                                 break;
                             case "30":
                                 Console.Clear();
-                                Console.ForegroundColor = ConsoleColor.White;
                                 test.AsciiCouleurs();
                                 Console.ForegroundColor = ConsoleColor.Gray;
                                 break;
@@ -481,15 +497,17 @@ namespace PSI___Louis___Meric
                                 Process.Start("testSaturageCouleurs.bmp");
                                 break;
                             case "33":
-                                Encoding u8 = Encoding.UTF8;                                                            //préparation de la correction
-                                byte[] bytesChaine = u8.GetBytes("Hello world");
+                                Encoding u8 = Encoding.UTF8;
+                                byte[] bytesChaine = u8.GetBytes("HELLO WORLD");
                                 byte[] correctionBinaire = ReedSolomonAlgorithm.Encode(bytesChaine, 7, ErrorCorrectionCodeType.QRCode);
+                                for (int i = 0; i < correctionBinaire.Length; i++) Console.Write(correctionBinaire[i] + " ; ");
+                                Console.WriteLine();
                                 int[][] tabCorrection = new int[7][];
                                 int[] tabCorrectionComplet = new int[7 * 8];
                                 int cmptr = 0;
                                 for (int i = 0; i < 7; i++)
                                 {
-                                    tabCorrection[i] = MyImage.Convert_Byte_To_Hexadecimal(correctionBinaire[i]);
+                                    tabCorrection[i] = MyImage.Convert_Byte_To_Binary(correctionBinaire[i]);
                                     for (int m = 0; m < 8; m++)
                                     {
                                         tabCorrectionComplet[cmptr] = tabCorrection[i][m];

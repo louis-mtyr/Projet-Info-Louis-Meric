@@ -128,6 +128,7 @@ namespace PSI___Louis___Meric
                 this.fichierComplet = tab;
             }
         } //permet de créer un MyImage à partir d'une image au format .bmp 24 bits déjà existante
+
         /// <summary>
         /// Recupère le this.FichierComplet du MyImage utilisé pour l'écrire dans un fichier au nom de "file" sur l'ordinateur
         /// </summary>
@@ -195,6 +196,7 @@ namespace PSI___Louis___Meric
             this.fichierComplet = nouveauFichier;
             File.WriteAllBytes(file, nouveauFichier);
         } //permet d'écrire le tableau de byte d'un MyImage dans un fichier sur l'ordinateur au nom de "file"
+
         /// <summary>
         /// Convertit un tableau d'octet sous format endian en une valeur entière
         /// </summary>
@@ -212,6 +214,7 @@ namespace PSI___Louis___Meric
             }
             return res;
         }
+
         /// <summary>
         /// Convertit une valeur entière en un tableau d'octets décrivant un format endian
         /// </summary>
@@ -238,6 +241,7 @@ namespace PSI___Louis___Meric
             if (val >= 0) tab[0] = Convert.ToByte(val);
             return tab;
         }
+
         /// <summary>
         /// Inverse les couleurs d'une image par rapport au spectre de couleurs (255 - valeur de chaque pixel rouge, vert, et bleu)
         /// </summary>
@@ -256,6 +260,7 @@ namespace PSI___Louis___Meric
             }
             return nouvelleImage;
         }
+
         /// <summary>
         /// Genere 3 nombres aléatoires qui décideront de la couleur du filtre appliqué (pixel rouge / randomR -- pixel vert / randomV -- pixel bleu / randomB)
         /// </summary>
@@ -277,7 +282,8 @@ namespace PSI___Louis___Meric
                 }
             }
             return nouvelleImage;
-        }
+        }       //return l'image avec un filtre d'une couleur générée aléatoirement
+
         /// <summary>
         /// Genere un nombre aléatoire qui décidera d'un changement de couleur en échangeant les valeurs des pixels rouges, verts, et bleus entre eux
         /// </summary>
@@ -533,6 +539,7 @@ namespace PSI___Louis___Meric
             }
             return nouvelleImage;
         }               //return l'image avec un différent jeu de couleur obtenu de manière aléatoire
+
         /// <summary>
         /// Change pour chaque pixel rouge, vert puis bleu leur valeur en les échangeant entre eux aléatoirement et ce à chaque boucle
         /// </summary>
@@ -589,6 +596,7 @@ namespace PSI___Louis___Meric
             }
             return nouvelleImage;
         }                   //return l'image avec un effet saturé
+
         /// <summary>
         /// Genere 3 nombres aléatoires pour chaque pixel rouge, vert, puis bleu, qui décideront de la couleur du filtre appliqué (pixel rouge / randomR -- pixel vert / randomV -- pixel bleu / randomB)
         /// </summary>
@@ -613,7 +621,8 @@ namespace PSI___Louis___Meric
                 }
             }
             return nouvelleImage;
-        }
+        }           //return l'image avec un effet saturé coloré
+
         /// <summary>
         /// Fais la moyenne des valeurs de rouge, vert et bleu pour chaque pixel et donne à chaque pixel cette valeur
         /// </summary>
@@ -632,6 +641,7 @@ namespace PSI___Louis___Meric
             }
             return nouvelleImage;
         }
+
         /// <summary>
         /// Calcule si la moyenne des valeurs de rouge, vert et bleu est inférieure à 128 (256/2). Si elle l'est, le pixel devient noir, sinon il devient blanc
         /// </summary>
@@ -660,6 +670,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }
 
+        /// <summary>
+        /// Construit l'image de droite à gauche pour lui donner un effet miroir horizontal
+        /// </summary>
+        /// <returns>L'image avec un effet miroir horizontal</returns>
         public MyImage MiroirHorizontal()                 //return l'image avec un effet miroir horizontal
         {
             MyImage nouvelleImage = new MyImage(this.myfile);
@@ -675,6 +689,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }
 
+        /// <summary>
+        /// Construit l'image de haut en bas pour lui donner un effet miroir vertical
+        /// </summary>
+        /// <returns>L'image avec un effet miroir vertical</returns>
         public MyImage MiroirVertical()                 //return l'image avec un effet miroir vertical
         {
             MyImage nouvelleImage = new MyImage(this.myfile);
@@ -690,6 +708,11 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }
 
+        /// <summary>
+        /// Fait tourner l'image d'un angle donné en paramètre en utilisant les coordonnées polaires
+        /// </summary>
+        /// <param name="angleDonne">L'angle duquel l'image va être tournée dans le sens horaire</param>
+        /// <returns>L'image tournée de l'angle donné dans le sens horaire</returns>
         public MyImage Rotation(int angleDonne)                     //return une image tournée de -angleDonne- vers la droite
         {
             int angleDegre = angleDonne % 360;
@@ -759,6 +782,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }
 
+        /// <summary>
+        /// Tourne précisémment l'image de 90 degrés vers la droite
+        /// </summary>
+        /// <returns>L'image tournée de 90 degrés dans le sens horaire</returns>
         public MyImage Rotation90Droite()
         {
             int newHauteur = this.largeurImage;
@@ -778,6 +805,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                   //return l'image tournée de 90° vers la droite
 
+        /// <summary>
+        /// Tourne précisément l'image de 90 degrés vers la gauche
+        /// </summary>
+        /// <returns>L'image tournée de 90 degrés dans le sens anti-horaire</returns>
         public MyImage Rotation90Gauche()
         {
             int newHauteur = this.largeurImage;
@@ -797,6 +828,12 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                       //return l'image tournée de 90° vers la gauche
 
+        /// <summary>
+        /// Réduit l'image de coefficients choisis en paramètre en ne prenant qu'un pixel sur -coefHauteur- et -coefLargeur-
+        /// </summary>
+        /// <param name="coefHauteur">Coefficient de réduction sur la hauteur</param>
+        /// <param name="coefLargeur">Coefficient de réduction sur la largeur</param>
+        /// <returns>L'image réduite de -coefHauteur- sur la hauteur, et de -coefLargeur- sur la largeur</returns>
         public MyImage Reduire(int coefHauteur, int coefLargeur)                    //return l'image réduite -coefHauteur * coefLargeur- fois
         {
             int newTaille = (this.hauteurImage / coefHauteur) * (this.LargeurImage / coefLargeur) * 3 + 54;
@@ -825,6 +862,12 @@ namespace PSI___Louis___Meric
             return imageReduite;
         }
 
+        /// <summary>
+        /// Réduit l'image de coefficients choisis en paramètre en répétant le même pixel -coefHauteur- fois sur la hauteur et -coefLargeur- fois sur la largeur
+        /// </summary>
+        /// <param name="coefHauteur">Coefficient d'agrandissement sur la hauteur</param>
+        /// <param name="coefLargeur">Coefficient d'agrandissement sur la largeur</param>
+        /// <returns>L'image agrandie de -coefHauteur- sur la hauteur, et de -coefLargeur- sur la largeur</returns>
         public MyImage Agrandir(int coefHauteur, int coefLargeur)                       //return l'image aggrandie -coefHauteur * coefLargeur- fois
         {
             int newTaille = this.hauteurImage * coefHauteur * this.LargeurImage * coefLargeur * 3 + 54;
@@ -860,6 +903,10 @@ namespace PSI___Louis___Meric
             return imageAgrandie;
         }
 
+        /// <summary>
+        /// Donne un léger aspect flou à l'image (peu visible sur les grandes images)
+        /// </summary>
+        /// <returns>L'image avec un effet flou</returns>
         public MyImage Flou()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -1092,6 +1139,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                                      //return l'image avec un effet flou
 
+        /// <summary>
+        /// Applique des couleurs très flashy de tout le spectre tout en conservant les formes de l'image (rend moins bien sur les grandes images)
+        /// </summary>
+        /// <returns>L'image avec un effet psychédélique</returns>
         public MyImage Psychedelique()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -1324,6 +1375,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                                     //return l'image avec un effet psychédélique
 
+        /// <summary>
+        /// Détecte les contours de l'image et ne laisse plus qu'eux apparents sur l'image
+        /// </summary>
+        /// <returns>L'image en noir et blanc avec uniquement les contours visibles</returns>
         public MyImage DetectionContours()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.LargeurImage];
@@ -1373,6 +1428,10 @@ namespace PSI___Louis___Meric
             return areturn;
         }                               //return la détection des contours de l'image
 
+        /// <summary>
+        /// Augmente les contrastes de l'image et la rend plus lumineuse, avec des couleurs plus puissantes
+        /// </summary>
+        /// <returns>L'image avec les contrastes augmentés</returns>
         public MyImage AugmentationContraste()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -1468,7 +1527,7 @@ namespace PSI___Louis___Meric
                 calculG = 0;
                 calculB = 0;
             }
-            //bord bas
+                                                                                    //bord bas
             for (int j = 1; j < this.largeurImage - 1; j++)
             {
                 for (int x = -1; x <= 1; x++)
@@ -1493,7 +1552,7 @@ namespace PSI___Louis___Meric
                 calculG = 0;
                 calculB = 0;
             }
-            //bord haut
+                                                                                    //bord haut
             for (int j = 1; j < this.largeurImage - 1; j++)
             {
                 for (int x = -1; x <= 1; x++)
@@ -1656,6 +1715,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                                    //return l'image avec une augmentation de ses contrastes
 
+        /// <summary>
+        /// Renforce les bords en balayant l'image par la verticale
+        /// </summary>
+        /// <returns>L'image avec un renforcement des bords sur la verticale</returns>
         public MyImage RenforcementBordsVertical()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -1939,6 +2002,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                       //return l'image avec un renforcement des bords sur la verticale
 
+        /// <summary>
+        /// Renforce les bords en balayant l'image par l'horizontale
+        /// </summary>
+        /// <returns>L'image avec un renforcement des bords sur l'horizontale</returns>
         public MyImage RenforcementBordsHorizontal()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -2222,6 +2289,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                           //return l'image avec un renforcement des bords sur l'horizontale
 
+        /// <summary>
+        /// Donne un semblant de 3D à l'image en repoussant ses éléments vers l'extérieur de l'écran
+        /// </summary>
+        /// <returns>L'image avec un effet de repoussage</returns>
         public MyImage Repoussage()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -2505,6 +2576,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                               //return l'image avec un effet de repoussage
 
+        /// <summary>
+        /// Applique à l'image le filtre de Sobel, qui correspond à une détéction de contours avec couleurs
+        /// </summary>
+        /// <returns>L'image avec un filtre de Sobel appliqué</returns>
         public MyImage FiltreSobel()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -2788,6 +2863,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                                           //return l'image avec un filtre de Sobel appliqué
 
+        /// <summary>
+        /// Applique à l'image une matrice de convolution que nous avons inventé en essayant des valeurs aléatoirement, et donne un semblant de flou en colorant les contours en blanc
+        /// </summary>
+        /// <returns>L'image une fois que l'on a appliqué une matrice de convolution personnalisée</returns>
         public MyImage ConvolutionAleatoire()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -3071,6 +3150,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                           //return l'image avec un genre d'effet flou obtenu en jouant avec des matrices de convolution
 
+        /// <summary>
+        /// Renvoie l'histogramme de notre image, divisé en 3 courbes pour les valeurs des pixels rouges, verts, et bleus
+        /// </summary>
+        /// <returns>L'histogramme de l'image</returns>
         public MyImage Histogramme()
         {
             Pixel[,] newImage = new Pixel[300, 768];
@@ -3124,6 +3207,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                       //return l'histogramme de l'image
 
+        /// <summary>
+        /// Applique un filtre sur l'image qui impose un dégradé multicolore en diagonale, tout en gardant les formes de l'image originelle
+        /// </summary>
+        /// <returns>L'image avec un filtre de dégradé multicolore</returns>
         public MyImage DegradeMulticolore()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -3141,6 +3228,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                       //return l'image avec un filtre de dégradé multicolore
 
+        /// <summary>
+        /// Crée un axe de symétrie horizontal au milieu de l'image
+        /// </summary>
+        /// <returns>L'image avec une symétrie suivant l'axe horizontal du milieu de l'image</returns>
         public MyImage SymetrieHorizontale()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -3165,6 +3256,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                   //return l'image avec une symétrie sur un axe horizontal
 
+        /// <summary>
+        /// Crée un axe de symétrie vertical au milieu de l'image
+        /// </summary>
+        /// <returns>L'image avec une symétrie suivant l'axe vertical du milieu de l'image</returns>
         public MyImage SymetrieVerticale()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -3190,6 +3285,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                   //return l'image avec une symétrie sur un axe vertical
 
+        /// <summary>
+        /// Crée deux axes de symétries, un horizontal et un vertical passant par le milieu de l'image
+        /// </summary>
+        /// <returns>L'image avec une symétrie suivant ces deux axes</returns>
         public MyImage SymetrieCentrale()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -3236,7 +3335,12 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                       //return l'image avec une symétrie sur un axe vertical et horizontal
 
-        public static int[] Convert_Byte_To_Hexadecimal(byte valeur)
+        /// <summary>
+        /// Convertit un byte en sa valeur binaire sur 8 bits sous la forme d'un tableau de int
+        /// </summary>
+        /// <param name="valeur">La valeur en byte à convertir en binaire sur 8 bits</param>
+        /// <returns>La valeur en byte convertie en binaire sur 8 bits</returns>
+        public static int[] Convert_Byte_To_Binary(byte valeur)
         {
             int[] tabHexadecimal = new int[8];
             for (int i = 0; i < 8; i++)
@@ -3245,9 +3349,14 @@ namespace PSI___Louis___Meric
                 valeur = (byte)(valeur % Math.Pow(2, 7 - i));
             }
             return tabHexadecimal;
-        }           //return le byte entré en un tableau de int correspond aux valeurs binaires de la valeur en octet (je me suis trompé de nom de fonction)
+        }           //return le byte entré en un tableau de int correspondant aux valeurs binaires de la valeur sur 8 bits
 
-        public static byte Convert_Hexadecimal_To_Byte(int[] tabHexadecimal)
+        /// <summary>
+        /// Convertit une valeur binaire sur 8 bits en un byte
+        /// </summary>
+        /// <param name="tabHexadecimal">Valeur binaire à convertir en byte</param>
+        /// <returns>La valeur binaire convertie en byte</returns>
+        public static byte Convert_Binary_To_Byte(int[] tabHexadecimal)
         {
             byte valeur = 0;
             for (int i = 0; i < 8; i++)
@@ -3255,8 +3364,13 @@ namespace PSI___Louis___Meric
                 valeur += (byte)(tabHexadecimal[i] * Math.Pow(2, 7 - i));
             }
             return valeur;
-        }           //return le tableau binaire d'un nombre en hexadécimal transformé en byte
+        }           //return la valeur entière d'un nombre en binaire sur 8 bits
 
+        /// <summary>
+        /// Cache une image dans l'image étudiée en partant de son coin bas gauche
+        /// </summary>
+        /// <param name="nomImage2">Le nom du fichier de l'image à cacher dans l'image étudiée</param>
+        /// <returns>L'image étudiée avec l'image "nomImage2" cachée dedans</returns>
         public MyImage CacherImage(string nomImage2)
         {
             MyImage image2 = new MyImage(nomImage2);
@@ -3272,41 +3386,45 @@ namespace PSI___Louis___Meric
             {
                 for (int j = 0; j < minLargeur; j++)
                 {
-                    int[] hexaImage1R = Convert_Byte_To_Hexadecimal(this.image[i, j].R);
-                    int[] hexaImage2R = Convert_Byte_To_Hexadecimal(image2.image[i, j].R);
+                    int[] hexaImage1R = Convert_Byte_To_Binary(this.image[i, j].R);
+                    int[] hexaImage2R = Convert_Byte_To_Binary(image2.image[i, j].R);
                     int[] newHexaR = new int[8];
                     for (int k = 0; k < 8; k++)
                     {
                         if (k < 4) newHexaR[k] = hexaImage1R[k];
                         else newHexaR[k] = hexaImage2R[k - 4];
                     }
-                    newImage[i, j].R = Convert_Hexadecimal_To_Byte(newHexaR);
+                    newImage[i, j].R = Convert_Binary_To_Byte(newHexaR);
 
-                    int[] hexaImage1G = Convert_Byte_To_Hexadecimal(this.image[i, j].G);
-                    int[] hexaImage2G = Convert_Byte_To_Hexadecimal(image2.image[i, j].G);
+                    int[] hexaImage1G = Convert_Byte_To_Binary(this.image[i, j].G);
+                    int[] hexaImage2G = Convert_Byte_To_Binary(image2.image[i, j].G);
                     int[] newHexaG = new int[8];
                     for (int k = 0; k < 8; k++)
                     {
                         if (k < 4) newHexaG[k] = hexaImage1G[k];
                         else newHexaG[k] = hexaImage2G[k - 4];
                     }
-                    newImage[i, j].G = Convert_Hexadecimal_To_Byte(newHexaG);
+                    newImage[i, j].G = Convert_Binary_To_Byte(newHexaG);
 
-                    int[] hexaImage1B = Convert_Byte_To_Hexadecimal(this.image[i, j].B);
-                    int[] hexaImage2B = Convert_Byte_To_Hexadecimal(image2.image[i, j].B);
+                    int[] hexaImage1B = Convert_Byte_To_Binary(this.image[i, j].B);
+                    int[] hexaImage2B = Convert_Byte_To_Binary(image2.image[i, j].B);
                     int[] newHexaB = new int[8];
                     for (int k = 0; k < 8; k++)
                     {
                         if (k < 4) newHexaB[k] = hexaImage1B[k];
                         else newHexaB[k] = hexaImage2B[k - 4];
                     }
-                    newImage[i, j].B = Convert_Hexadecimal_To_Byte(newHexaB);
+                    newImage[i, j].B = Convert_Binary_To_Byte(newHexaB);
                 }
             }
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
         }                   //return une image avec une autre cachée dedans
 
+        /// <summary>
+        /// Retrouve une image qui a été cachée dans une autre
+        /// </summary>
+        /// <returns>L'image cachée en passant les bits de poids faible de chaque pixels en bits de poids forts</returns>
         public MyImage RetrouverImage()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -3315,38 +3433,41 @@ namespace PSI___Louis___Meric
             {
                 for (int j = 0; j < this.largeurImage; j++)
                 {
-                    int[] hexaImageR = Convert_Byte_To_Hexadecimal(this.image[i, j].R);
+                    int[] hexaImageR = Convert_Byte_To_Binary(this.image[i, j].R);
                     int[] newHexaR = new int[8];
                     for (int k = 0; k < 8; k++)
                     {
                         if (k < 4) newHexaR[k] = hexaImageR[k + 4];
                         else newHexaR[k] = 0;
                     }
-                    newImage[i, j].R = Convert_Hexadecimal_To_Byte(newHexaR);
+                    newImage[i, j].R = Convert_Binary_To_Byte(newHexaR);
 
-                    int[] hexaImageG = Convert_Byte_To_Hexadecimal(this.image[i, j].G);
+                    int[] hexaImageG = Convert_Byte_To_Binary(this.image[i, j].G);
                     int[] newHexaG = new int[8];
                     for (int k = 0; k < 8; k++)
                     {
                         if (k < 4) newHexaG[k] = hexaImageG[k + 4];
                         else newHexaG[k] = 0;
                     }
-                    newImage[i, j].G = Convert_Hexadecimal_To_Byte(newHexaG);
+                    newImage[i, j].G = Convert_Binary_To_Byte(newHexaG);
 
-                    int[] hexaImageB = Convert_Byte_To_Hexadecimal(this.image[i, j].B);
+                    int[] hexaImageB = Convert_Byte_To_Binary(this.image[i, j].B);
                     int[] newHexaB = new int[8];
                     for (int k = 0; k < 8; k++)
                     {
                         if (k < 4) newHexaB[k] = hexaImageB[k + 4];
                         else newHexaB[k] = 0;
                     }
-                    newImage[i, j].B = Convert_Hexadecimal_To_Byte(newHexaB);
+                    newImage[i, j].B = Convert_Binary_To_Byte(newHexaB);
                 }
             }
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
         }                                   //return l'image cachée derrière celle fabriquée
 
+        /// <summary>
+        /// Dessine l'image dans la console sous forme d'Ascii Art, c'est-à-dire avec des caractères
+        /// </summary>
         public void Ascii()                                         //return dans la console l'image en ascii art
         {
             int moyenne;
@@ -3440,6 +3561,9 @@ namespace PSI___Louis___Meric
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Dessine l'image dans la console sous forme d'Ascii Art, c'est-à-dire avec des caractères, mais avec des couleurs
+        /// </summary>
         public void AsciiCouleurs()                                    //return dans la console l'image en ascii art avec des couleurs
         {
             int moyenne;
@@ -3555,6 +3679,15 @@ namespace PSI___Louis___Meric
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Dessine la fractale de Mandelbrot de taille [hauteur x largeur], et de couleur dépendant des valeurs de coefR, coefG, et coefB
+        /// </summary>
+        /// <param name="hauteur">Hauteur de la fractale</param>
+        /// <param name="largeur">Largeur de la fractale</param>
+        /// <param name="coefR">Intensité de la couleur rouge</param>
+        /// <param name="coefG">Intensité de la couleur verte</param>
+        /// <param name="coefB">Intensité de la couleur bleue</param>
+        /// <returns>La fractale de Mandelbrot selon les dimensions et couleurs précisées en paramètres</returns>
         public static MyImage FractaleMandelbrot(int hauteur, int largeur, double coefR, double coefG, double coefB)
         {
             Pixel[,] newImage = new Pixel[hauteur, largeur];
@@ -3603,6 +3736,11 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }   //return la fractale de mandelbrot de taille [hauteur,largeur] et d'intensité de couleurs (coefR, coefG, coefB)
 
+        /// <summary>
+        /// Convertit certains char en leur valeur alphanumérique
+        /// </summary>
+        /// <param name="lettre">Le char à convertir</param>
+        /// <returns>La valeur alphanumérique du char à convertir</returns>
         public static int ConvertCharToAlphanum(char lettre)
         {
             int val = -1;
@@ -3749,6 +3887,11 @@ namespace PSI___Louis___Meric
             return val;
         }  //return la valeur d'un charactère en alphanumérique
 
+        /// <summary>
+        /// Transforme une chaine de 2 char en leur somme de leur valeur alphanumérique en base 45, puis convertit cette somme en sa valeur binaire sur 11 bits (ou 6 bits si -lettres- ne contient qu'un seul char)
+        /// </summary>
+        /// <param name="lettres">La chaine de 2 char à convertir</param>
+        /// <returns>La valeur binaire sur 11 bits de 2 char après conversions en alphanumérique</returns>
         public static int[] Convert2CharTo11Bits(char[] lettres)
         {
             int[] tab11bits = null;
@@ -3783,6 +3926,11 @@ namespace PSI___Louis___Meric
             return tab11bits;
         }     //return une chaine de 2 caractères en binaire de 11 bits
 
+        /// <summary>
+        /// Convertit une valeur entière en sa valeur binaire sur 9 bits
+        /// </summary>
+        /// <param name="val">La valeur entière à convertir en binaire</param>
+        /// <returns>La valeur entière convertie en binaire sur 9 bits</returns>
         public static int[] ConvertIntTo9Bits(int val)
         {
             int[] tabBinaire = new int[9];
@@ -3792,14 +3940,17 @@ namespace PSI___Louis___Meric
                 val = (byte)(val % Math.Pow(2, 8 - i));
             }
             return tabBinaire;
-        }
+        }           //Convertit une valeur entière en un tableau de 9 bits
 
-        public static MyImage QRcodeNiveau1(string chaine)
+        /// <summary>
+        /// Construit toutes les parties constantes d'un QR code de niveau 1
+        /// </summary>
+        /// <param name="imageQR">L'image du QRcode initialisé à la bonne taille permettant de noircir les pixels concernés</param>
+        /// <returns>Une matrice de booléens indiquant quelles cases de l'image sont constantes et ne seront donc pas modifiées lors de l'écriture du QR code</returns>
+        public static bool[,] ConstructionQRcodeNiveau1(Pixel[,] imageQR)
         {
-            Pixel[,] imageQR = new Pixel[21, 21];
             bool[,] casesOccupees = new bool[21, 21];
             for (int i = 0; i < 21; i++) for (int j = 0; j < 21; j++) casesOccupees[i, j] = false;
-            for (int i = 0; i < 21; i++) for (int j = 0; j < 21; j++) imageQR[i, j] = new Pixel(255, 255, 255);
             for (int i = 0; i < 7; i++)
             {
                 for (int j = 0; j < 7; j++)             //construction motif de recherche bas gauche
@@ -3842,83 +3993,7 @@ namespace PSI___Louis___Meric
             imageQR[7, 8] = new Pixel(0, 0, 0);
             casesOccupees[7, 8] = true;
 
-            string mot = chaine.ToUpper();
-            int taille;
-            if (mot.Length % 2 == 0) taille = mot.Length / 2;
-            else taille = mot.Length / 2 + 1;
-            int[][] tabBinaire = new int[taille][];
-            char[] lettres1 = new char[1];
-            char[] lettres2 = new char[2];
-            int k = 0;
-            for (int i = 0; i < mot.Length; i += 2)                 //transformation chaine de caractère en suite de valeurs binaires
-            {
-                if (i != mot.Length - 1)
-                {
-                    lettres2[0] = mot[i];
-                    lettres2[1] = mot[i + 1];
-                    tabBinaire[k] = Convert2CharTo11Bits(lettres2);
-                    k++;
-                }
-                else
-                {
-                    lettres1[0] = mot[i];
-                    tabBinaire[k] = Convert2CharTo11Bits(lettres1);
-                    k++;
-                }
-            }
-            int tailleComplet = 17;                                                 
-            for (int i = 0; i < taille; i++) for (int j = 0; j < tabBinaire[i].Length; j++) tailleComplet++;
-            int bourrage = tailleComplet % 8;
-            switch (bourrage)                                   //ajout du bon nombre de 0 en fin de conversion en binaire de la chaine de caractère pour avoir un multiple de 8
-            {
-                case 1:
-                    tailleComplet += 7;
-                    break;
-                case 2:
-                    tailleComplet += 6;
-                    break;
-                case 3:
-                    tailleComplet += 5;
-                    break;
-                case 4:
-                    tailleComplet += 4;
-                    break;
-                case 5:
-                    tailleComplet += 3;
-                    break;
-                case 6:
-                    tailleComplet += 2;
-                    break;
-                case 7:
-                    tailleComplet += 1;
-                    break;
-                default:
-                    break;
-            }
-            int[] tabComplet = new int[tailleComplet];                  //début de la suite de binaire par l'indicateur de mode et du nombre de caractères
-            tabComplet[0] = 0;
-            tabComplet[1] = 0;
-            tabComplet[2] = 1;
-            tabComplet[3] = 0;
-            int[] tabNombreCaracteres = ConvertIntTo9Bits((byte)mot.Length);
-            for (int i = 4; i < 13; i++) tabComplet[i] = tabNombreCaracteres[i - 4];
-
-            int n = 13;
-            for (int i = 13; i < tabBinaire.LongLength + 13; i++)
-            {
-                for (int j = 0; j < tabBinaire[i - 13].Length; j++)  //on rentre la suite binaire de la chaine de caractère dans le tableau de byte complet
-                {
-                    tabComplet[n] = tabBinaire[i - 13][j];
-                    n++;
-                }
-            }
-            if (bourrage == 0) bourrage = 8;
-            tabComplet[tailleComplet - 4 - (8 - bourrage)] = 1;             //ajout de la terminaison
-            tabComplet[tailleComplet - 3 - (8 - bourrage)] = 0;
-            tabComplet[tailleComplet - 2 - (8 - bourrage)] = 1;
-            tabComplet[tailleComplet - 1 - (8 - bourrage)] = 1;
             int[] tabNiveauCorrection = { 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0 };
-            for (int i = tailleComplet - (8 - bourrage); i < tailleComplet; i++) tabComplet[i] = 0;
             int m1 = 0;
             int m2 = 7;
             for (int j = 0; j < 21; j++)
@@ -3962,155 +4037,585 @@ namespace PSI___Louis___Meric
                 if (i <= 7 || i >= 13) casesOccupees[i, 7] = true;
                 if (i >= 13) casesOccupees[i, 13] = true;
             }
+            return casesOccupees;
+        }      //Construit les parties constantes d'un QR code de niveau 1 
 
-            Encoding u8 = Encoding.UTF8;                                                            //préparation de la correction
-            byte[] bytesChaine = u8.GetBytes(mot);
-            byte[] correctionBinaire = ReedSolomonAlgorithm.Encode(bytesChaine, 7, ErrorCorrectionCodeType.QRCode);
-            int[][] tabCorrection = new int[7][];
-            //int[] tabCorrectionComplet = new int[7 * 8];
-            int[] tabCorrectionComplet = { 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
-            int cmptr = 0;
-            int compteurCorrection = 0;
-            for (int i=0; i<7; i++)
+        /// <summary>
+        /// Construit toutes les parties constantes d'un QR code de niveau 2
+        /// </summary>
+        /// <param name="imageQR">L'image du QRcode initialisé à la bonne taille permettant de noircir les pixels concernés</param>
+        /// <returns>Une matrice de booléens indiquant quelles cases de l'image sont constantes et ne seront donc pas modifiées lors de l'écriture du QR code</returns>
+        public static bool[,] ConstructionQRcodeNiveau2(Pixel[,] imageQR)
+        {
+            bool[,] casesOccupees = new bool[25, 25];
+            for (int i = 0; i < 25; i++) for (int j = 0; j < 25; j++) casesOccupees[i, j] = false;
+            for (int i = 0; i < 7; i++)
             {
-                tabCorrection[i] = Convert_Byte_To_Hexadecimal(correctionBinaire[i]);
-                for (int m = 0; m < 8; m++)
+                for (int j = 0; j < 7; j++)             //construction motif de recherche bas gauche
                 {
-                    tabCorrectionComplet[cmptr] = tabCorrection[i][m];
-                    cmptr++;
+                    if (i == 0 || i == 6) imageQR[i, j] = new Pixel(0, 0, 0);
+                    else if ((j % 2 == 0 || j == 3) && i != 1 && i != 5) imageQR[i, j] = new Pixel(0, 0, 0);
+                    if (j == 0 || j == 6) imageQR[i, j] = new Pixel(0, 0, 0);
+                    casesOccupees[i, j] = true;
                 }
             }
-            bool[,] casesCorrection = new bool[21, 21];
-            for (int j = 0; j < 21; j+=2)
+            for (int i = 24; i >= 18; i--)              //construction motif de recherche haut gauche
             {
-                for (int i = 20; i >= 0 && compteurCorrection < 7 * 8; i--)
+                for (int j = 0; j < 7; j++)
                 {
-                    if (casesOccupees[i,j]==false)
-                    {
-                        casesCorrection[i, j] = true;
-                        compteurCorrection++;
-                    }
-                    if (casesOccupees[i, j+1] == false)
-                    {
-                        casesCorrection[i, j+1] = true;
-                        compteurCorrection++;
-                    }
+                    if (i == 24 || i == 18) imageQR[i, j] = new Pixel(0, 0, 0);
+                    else if ((j % 2 == 0 || j == 3) && i != 23 && i != 19) imageQR[i, j] = new Pixel(0, 0, 0);
+                    if (j == 0 || j == 6) imageQR[i, j] = new Pixel(0, 0, 0);
+                    casesOccupees[i, j] = true;
                 }
             }
-            
-            int[] tabBourrage = { 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 };
-            int compteur = 0;
-            int compteurBourrage = 0;
-            compteurCorrection = 0;
-            for (int j = 20; j >= 3; j -= 4)
+            for (int i = 24; i >= 18; i--)              //construction motif de recherche haut droite
             {
-                for (int i = 0; i < 21; i++)     //complétion de la traduction de la chaine en binaire en pixels puis répétition de tabBourrage jusqu'à ce que le QR code soit rempli
+                for (int j = 24; j >= 18; j--)
                 {
-                    if (casesOccupees[i, j] == false && casesCorrection[i,j] == false)
-                    {
-                        if (compteur < tailleComplet)
-                        {
-                            if (tabComplet[compteur] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
-                            compteur++;
-                            if (compteur < tailleComplet && tabComplet[compteur] == 1) imageQR[i, j - 1] = new Pixel(0, 0, 0);
-                            compteur++;
-                        }
-                        else
-                        {
-                            if (tabBourrage[compteurBourrage] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
-                            if (compteurBourrage < 15) compteurBourrage++;
-                            else compteurBourrage = 0;
-                            if (tabBourrage[compteurBourrage] == 1) imageQR[i, j - 1] = new Pixel(0, 0, 0);
-                            if (compteurBourrage < 15) compteurBourrage++;
-                            else compteurBourrage = 0;
-                        }
-                    }
-                    else if (casesOccupees[i,j] == false && casesCorrection[i,j] == true)
-                    {
-                        if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
-                        compteurCorrection++;
-                        if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j - 1] = new Pixel(0, 0, 0);
-                        compteurCorrection++;
-                    }
-                }
-                if (j == 8) j--;
-                for (int i = 20; i >= 0; i--)
-                {
-                    if (casesOccupees[i, j] == false && casesCorrection[i, j] == false)
-                    {
-                        if (compteur < tailleComplet)
-                        {
-                            if (tabComplet[compteur] == 1) imageQR[i, j - 2] = new Pixel(0, 0, 0);
-                            compteur++;
-                            if (compteur < tailleComplet && tabComplet[compteur] == 1) imageQR[i, j - 3] = new Pixel(0, 0, 0);
-                            compteur++;
-                        }
-                        else
-                        {
-                            if (tabBourrage[compteurBourrage] == 1) imageQR[i, j - 2] = new Pixel(0, 0, 0);
-                            if (compteurBourrage < 15) compteurBourrage++;
-                            else compteurBourrage = 0;
-                            if (tabBourrage[compteurBourrage] == 1) imageQR[i, j - 3] = new Pixel(0, 0, 0);
-                            if (compteurBourrage < 15) compteurBourrage++;
-                            else compteurBourrage = 0;
-                        }
-                    }
-                    else if (casesOccupees[i, j] == false && casesCorrection[i, j] == true)
-                    {
-                        if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j - 2] = new Pixel(0, 0, 0);
-                        compteurCorrection++;
-                        if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j - 3] = new Pixel(0, 0, 0);
-                        compteurCorrection++;
-                    }
+                    if (i == 24 || i == 18) imageQR[i, j] = new Pixel(0, 0, 0);
+                    else if ((j % 2 == 0 || j == 21) && i != 23 && i != 19) imageQR[i, j] = new Pixel(0, 0, 0);
+                    if (j == 24 || j == 18) imageQR[i, j] = new Pixel(0, 0, 0);
+                    casesOccupees[i, j] = true;
                 }
             }
-            
-            /*int compteurTest = 0;
-            int[] tabTest = { 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
-            for (int j = 20; j >= 3; j -= 4)
+            for (int x = 8; x < 18; x += 2)                     //construction séparateurs
             {
+                imageQR[18, x] = new Pixel(0, 0, 0);
+                imageQR[x, 6] = new Pixel(0, 0, 0);
+                casesOccupees[18, x] = true;
+                casesOccupees[18, x + 1] = true;
+                casesOccupees[x, 6] = true;
+                casesOccupees[x + 1, 6] = true;
+            }
+            imageQR[7, 8] = new Pixel(0, 0, 0);
+            casesOccupees[7, 8] = true;
+
+            int[] tabNiveauCorrection = { 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0 };
+            int m1 = 0;
+            int m2 = 7;
+            for (int j = 0; j < 25; j++)
+            {
+                if (j <= 8 || j >= 17)
+                {
+                    if (j <= 8 && j != 6)                   //remplissage des bits composant le niveau de correcteur et le type de masque
+                    {
+                        if (tabNiveauCorrection[m1] == 1) imageQR[16, j] = new Pixel(0, 0, 0);
+                        m1++;
+                    }
+                    if (j >= 17)
+                    {
+                        if (tabNiveauCorrection[m2] == 1) imageQR[16, j] = new Pixel(0, 0, 0);
+                        m2++;
+                    }
+                    casesOccupees[16, j] = true;
+                }
+                if (j <= 7 || j >= 17) casesOccupees[17, j] = true;
+                if (j <= 7) casesOccupees[7, j] = true;
+            }
+            for (int i = 0; i < 25; i++) casesOccupees[i, 6] = true;
+            m1 = 0;
+            m2 = 8;
+            for (int i = 0; i < 25; i++)
+            {
+                if (i <= 7 || i >= 16)
+                {
+                    if (i <= 6)
+                    {
+                        if (tabNiveauCorrection[m1] == 1) imageQR[i, 8] = new Pixel(0, 0, 0);
+                        m1++;
+                    }
+                    if (i >= 17 && i != 18)
+                    {
+                        if (tabNiveauCorrection[m2] == 1) imageQR[i, 8] = new Pixel(0, 0, 0);
+                        m2++;
+                    }
+                    casesOccupees[i, 8] = true;
+                }
+                if (i <= 7 || i >= 17) casesOccupees[i, 7] = true;
+                if (i >= 17) casesOccupees[i, 17] = true;
+            }
+
+            for (int i=4; i<9; i++)
+            {
+                for (int j=16; j<21; j++)
+                {
+                    imageQR[i, j] = new Pixel(0, 0, 0);
+                    casesOccupees[i, j] = true;
+                }
+            }
+            for (int i = 5; i < 8; i++)
+            {
+                for (int j = 17; j < 20; j++)
+                {
+                    if (i!=6 || j!=18) imageQR[i, j] = new Pixel(255, 255, 255);
+                }
+            }
+
+            return casesOccupees;
+        }       //Construit les parties constantes d'un QR code de niveau 2 
+
+        /// <summary>
+        /// Transforme une chaine de caractères en un tableau de valeurs binaires de 2 char par 2 char sur 11 bits chacune
+        /// </summary>
+        /// <param name="chaine">La chaine de caractères à convertir</param>
+        /// <returns>Un tableau de tableaux comportants les valeurs binaires sur 11 bits de la chaine de caractère en paramètre en prenant 2 caractères par 2 caractères</returns>
+        public static int[][] ConvertStringToTabBinaire(string chaine)
+        {
+            int taille;
+            if (chaine.Length % 2 == 0) taille = chaine.Length / 2;
+            else taille = chaine.Length / 2 + 1;
+            int[][] tabBinaire = new int[taille][];
+            char[] lettres1 = new char[1];
+            char[] lettres2 = new char[2];
+            int k = 0;
+            for (int i = 0; i < chaine.Length; i += 2)                 //transformation chaine de caractère en suite de valeurs binaires
+            {
+                if (i != chaine.Length - 1)
+                {
+                    lettres2[0] = chaine[i];
+                    lettres2[1] = chaine[i + 1];
+                    tabBinaire[k] = Convert2CharTo11Bits(lettres2);
+                    k++;
+                }
+                else
+                {
+                    lettres1[0] = chaine[i];
+                    tabBinaire[k] = Convert2CharTo11Bits(lettres1);
+                    k++;
+                }
+            }
+            return tabBinaire;
+        }           //Transforme une chaine de caractères en valeurs binaires sous forme de tableau de tableau
+
+        /// <summary>
+        /// Construit un QR code de niveau 1 générant une chaine de caractère précisée en paramètre
+        /// </summary>
+        /// <param name="chaine">La chaine de caractère générée par le QR code</param>
+        /// <returns>L'image du QR code générant la chaine de caractère -chaine-</returns>
+        public static MyImage QRcodeNiveau1(string chaine)
+        {
+            Pixel[,] imageQR = new Pixel[21, 21];
+            MyImage nouvelleImage = null;
+            for (int i = 0; i < 21; i++) for (int j = 0; j < 21; j++) imageQR[i, j] = new Pixel(255, 255, 255);
+            bool[,] casesOccupees = ConstructionQRcodeNiveau1(imageQR);
+
+            int taille;
+            if (chaine.Length % 2 == 0) taille = chaine.Length / 2;
+            else taille = chaine.Length / 2 + 1;
+            int[][] tabBinaire = ConvertStringToTabBinaire(chaine);
+            bool legit = true;
+            for (int i = 0; i < taille; i++) if (tabBinaire[i] == null) legit = false;
+
+            if (legit == true)
+            {
+                int tailleComplet = 17;
+                for (int i = 0; i < taille; i++) for (int j = 0; j < tabBinaire[i].Length; j++) tailleComplet++;
+                int bourrage = tailleComplet % 8;
+                switch (bourrage)                                   //ajout du bon nombre de 0 en fin de conversion en binaire de la chaine de caractère pour avoir un multiple de 8
+                {
+                    case 1:
+                        tailleComplet += 7;
+                        break;
+                    case 2:
+                        tailleComplet += 6;
+                        break;
+                    case 3:
+                        tailleComplet += 5;
+                        break;
+                    case 4:
+                        tailleComplet += 4;
+                        break;
+                    case 5:
+                        tailleComplet += 3;
+                        break;
+                    case 6:
+                        tailleComplet += 2;
+                        break;
+                    case 7:
+                        tailleComplet += 1;
+                        break;
+                    default:
+                        break;
+                }
+
+                int[] tabComplet = new int[tailleComplet];                  //début de la suite de binaire par l'indicateur de mode et du nombre de caractères
+                tabComplet[0] = 0;
+                tabComplet[1] = 0;
+                tabComplet[2] = 1;
+                tabComplet[3] = 0;
+                int[] tabNombreCaracteres = ConvertIntTo9Bits(chaine.Length);
+                for (int i = 4; i < 13; i++) tabComplet[i] = tabNombreCaracteres[i - 4];
+
+                int n = 13;
+                for (int i = 13; i < tabBinaire.LongLength + 13; i++)
+                {
+                    for (int j = 0; j < tabBinaire[i - 13].Length; j++)  //on rentre la suite binaire de la chaine de caractère dans le tableau de byte complet
+                    {
+                        tabComplet[n] = tabBinaire[i - 13][j];
+                        n++;
+                    }
+                }
+                if (bourrage == 0) bourrage = 8;
+                tabComplet[tailleComplet - 4 - (8 - bourrage)] = 0;             //ajout de la terminaison
+                tabComplet[tailleComplet - 3 - (8 - bourrage)] = 0;
+                tabComplet[tailleComplet - 2 - (8 - bourrage)] = 0;
+                tabComplet[tailleComplet - 1 - (8 - bourrage)] = 0;
+                for (int i = tailleComplet - (8 - bourrage); i < tailleComplet; i++) tabComplet[i] = 0;
+
+                Encoding u8 = Encoding.UTF8;                                                            //préparation de la correction
+                byte[] bytesChaine = u8.GetBytes(chaine);
+                byte[] correctionBinaire = ReedSolomonAlgorithm.Encode(bytesChaine, 7, ErrorCorrectionCodeType.QRCode);
+                int[][] tabCorrection = new int[7][];
+                int[] tabCorrectionComplet = new int[7 * 8];
+                //int[] tabCorrectionComplet = { 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
+                int cmptr = 0;
+                int compteurCorrection = 0;
+                for (int i = 0; i < 7; i++)
+                {
+                    tabCorrection[i] = Convert_Byte_To_Binary(correctionBinaire[i]);
+                    for (int m = 0; m < 8; m++)
+                    {
+                        tabCorrectionComplet[cmptr] = tabCorrection[i][m];
+                        cmptr++;
+                    }
+                }
+
+                bool[,] casesCorrection = new bool[21, 21];
+                for (int j = 0; j < 21; j += 2)
+                {
+                    for (int i = 20; i >= 0 && compteurCorrection < 7 * 8; i--)
+                    {
+                        if (casesOccupees[i, j] == false)
+                        {
+                            casesCorrection[i, j] = true;
+                            compteurCorrection++;
+                        }
+                        if (casesOccupees[i, j + 1] == false)
+                        {
+                            casesCorrection[i, j + 1] = true;
+                            compteurCorrection++;
+                        }
+                    }
+                }
+
+                int[] tabBourrage = { 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 };
+                int compteur = 0;
+                int compteurBourrage = 0;
+                compteurCorrection = 0;
+                for (int j = 20; j >= 3; j -= 4)
+                {
+                    for (int i = 0; i < 21; i++)     //complétion de la traduction de la chaine en binaire en pixels puis répétition de tabBourrage jusqu'à ce que le QR code soit rempli
+                    {
+                        if (casesOccupees[i, j] == false && casesCorrection[i, j] == false)
+                        {
+                            if (compteur < tailleComplet)
+                            {
+                                if (tabComplet[compteur] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
+                                compteur++;
+                                if (compteur < tailleComplet && tabComplet[compteur] == 1) imageQR[i, j - 1] = new Pixel(0, 0, 0);
+                                compteur++;
+                            }
+                            else
+                            {
+                                if (tabBourrage[compteurBourrage] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
+                                if (compteurBourrage < 15) compteurBourrage++;
+                                else compteurBourrage = 0;
+                                if (tabBourrage[compteurBourrage] == 1) imageQR[i, j - 1] = new Pixel(0, 0, 0);
+                                if (compteurBourrage < 15) compteurBourrage++;
+                                else compteurBourrage = 0;
+                            }
+                        }
+                        else if (casesOccupees[i, j] == false && casesCorrection[i, j] == true)
+                        {
+                            if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
+                            compteurCorrection++;
+                            if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j - 1] = new Pixel(0, 0, 0);
+                            compteurCorrection++;
+                        }
+                    }
+                    if (j == 8) j--;
+                    for (int i = 20; i >= 0; i--)
+                    {
+                        if (casesOccupees[i, j] == false && casesCorrection[i, j] == false)
+                        {
+                            if (compteur < tailleComplet)
+                            {
+                                if (tabComplet[compteur] == 1) imageQR[i, j - 2] = new Pixel(0, 0, 0);
+                                compteur++;
+                                if (compteur < tailleComplet && tabComplet[compteur] == 1) imageQR[i, j - 3] = new Pixel(0, 0, 0);
+                                compteur++;
+                            }
+                            else
+                            {
+                                if (tabBourrage[compteurBourrage] == 1) imageQR[i, j - 2] = new Pixel(0, 0, 0);
+                                if (compteurBourrage < 15) compteurBourrage++;
+                                else compteurBourrage = 0;
+                                if (tabBourrage[compteurBourrage] == 1) imageQR[i, j - 3] = new Pixel(0, 0, 0);
+                                if (compteurBourrage < 15) compteurBourrage++;
+                                else compteurBourrage = 0;
+                            }
+                        }
+                        else if (casesOccupees[i, j] == false && casesCorrection[i, j] == true)
+                        {
+                            if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j - 2] = new Pixel(0, 0, 0);
+                            compteurCorrection++;
+                            if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j - 3] = new Pixel(0, 0, 0);
+                            compteurCorrection++;
+                        }
+                    }
+                }
+
+                /*int compteurTest = 0;
+                int[] tabTest = { 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
+                for (int j = 20; j >= 3; j -= 4)
+                {
+                    for (int i = 0; i < 21; i++)
+                    {
+                        if (casesOccupees[i, j] == false)
+                        {
+                            if (tabTest[compteurTest] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
+                            compteurTest++;
+                        }
+                        if (casesOccupees[i, j-1] == false)
+                        {
+                            if (tabTest[compteurTest] == 1) imageQR[i, j-1] = new Pixel(0, 0, 0);
+                            compteurTest++;
+                        }
+                    }
+                    for (int i = 20; i >= 0; i--)
+                    {
+                        if (casesOccupees[i, j - 2] == false)
+                        {
+                            if (tabTest[compteurTest] == 1) imageQR[i, j-2] = new Pixel(0, 0, 0);
+                            compteurTest++;
+                        }
+                        if (casesOccupees[i, j - 3] == false)
+                        {
+                            if (tabTest[compteurTest] == 1) imageQR[i, j - 3] = new Pixel(0, 0, 0);
+                            compteurTest++;
+                        }
+                    }
+                }*/
+
                 for (int i = 0; i < 21; i++)
                 {
-                    if (casesOccupees[i, j] == false)
+                    for (int j = 0; j < 21; j++)
                     {
-                        if (tabTest[compteurTest] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
-                        compteurTest++;
-                    }
-                    if (casesOccupees[i, j-1] == false)
-                    {
-                        if (tabTest[compteurTest] == 1) imageQR[i, j-1] = new Pixel(0, 0, 0);
-                        compteurTest++;
+                        if (casesOccupees[i, j] == false && (i + j) % 2 == 0)
+                        {
+                            if (imageQR[i, j].R == 0) imageQR[i, j] = new Pixel(255, 255, 255);
+                            else imageQR[i, j] = new Pixel(0, 0, 0);
+                        }
                     }
                 }
-                for (int i = 20; i >= 0; i--)
-                {
-                    if (casesOccupees[i, j - 2] == false)
-                    {
-                        if (tabTest[compteurTest] == 1) imageQR[i, j-2] = new Pixel(0, 0, 0);
-                        compteurTest++;
-                    }
-                    if (casesOccupees[i, j - 3] == false)
-                    {
-                        if (tabTest[compteurTest] == 1) imageQR[i, j - 3] = new Pixel(0, 0, 0);
-                        compteurTest++;
-                    }
-                }
-            }*/
 
-            for (int i=0; i<21; i++)
+                nouvelleImage = new MyImage("BitMap", 21 * 21 * 3 + 54, 21 * 21 * 3, 21, 21, 24, imageQR);
+            }
+            else
             {
-                for (int j=0; j<21; j++)
+                for (int i = 0; i < 21; i++) for (int j = 0; j < 21; j++) imageQR[i, j] = new Pixel(255, 255, 255);
+                nouvelleImage = new MyImage("BitMap", 21 * 21 * 3 + 54, 21 * 21 * 3, 21, 21, 24, imageQR);
+            }
+            return nouvelleImage;
+        }       //Construit un QR code de niveau 1 générant la chaine de caractère -chaine-
+
+        /// <summary>
+        /// Construit un QR code de niveau 2 générant une chaine de caractère précisée en paramètre
+        /// </summary>
+        /// <param name="chaine">La chaine de caractère générée par le QR code</param>
+        /// <returns>L'image du QR code générant la chaine de caractère -chaine-</returns>
+        public static MyImage QRcodeNiveau2(string chaine)
+        {
+            Pixel[,] imageQR = new Pixel[25, 25];
+            MyImage nouvelleImage = null;
+            for (int i = 0; i < 25; i++) for (int j = 0; j < 25; j++) imageQR[i, j] = new Pixel(255, 255, 255);
+            bool[,] casesOccupees = ConstructionQRcodeNiveau2(imageQR);
+
+            int taille;
+            if (chaine.Length % 2 == 0) taille = chaine.Length / 2;
+            else taille = chaine.Length / 2 + 1;
+            int[][] tabBinaire = ConvertStringToTabBinaire(chaine);
+            bool legit = true;
+            for (int i = 0; i < taille; i++) if (tabBinaire[i] == null) legit = false;
+            if (legit==true)
+            {
+                int tailleComplet = 17;
+                for (int i = 0; i < taille; i++) for (int j = 0; j < tabBinaire[i].Length; j++) tailleComplet++;
+                int bourrage = tailleComplet % 8;
+                switch (bourrage)                                   //ajout du bon nombre de 0 en fin de conversion en binaire de la chaine de caractère pour avoir un multiple de 8
                 {
-                    if (casesOccupees[i,j] == false && (i+j)%2==0)
+                    case 1:
+                        tailleComplet += 7;
+                        break;
+                    case 2:
+                        tailleComplet += 6;
+                        break;
+                    case 3:
+                        tailleComplet += 5;
+                        break;
+                    case 4:
+                        tailleComplet += 4;
+                        break;
+                    case 5:
+                        tailleComplet += 3;
+                        break;
+                    case 6:
+                        tailleComplet += 2;
+                        break;
+                    case 7:
+                        tailleComplet += 1;
+                        break;
+                    default:
+                        break;
+                }
+
+                int[] tabComplet = new int[tailleComplet];                  //début de la suite de binaire par l'indicateur de mode et du nombre de caractères
+                tabComplet[0] = 0;
+                tabComplet[1] = 0;
+                tabComplet[2] = 1;
+                tabComplet[3] = 0;
+                int[] tabNombreCaracteres = ConvertIntTo9Bits(chaine.Length);
+                for (int i = 4; i < 13; i++) tabComplet[i] = tabNombreCaracteres[i - 4];
+
+                int n = 13;
+                for (int i = 13; i < tabBinaire.LongLength + 13; i++)
+                {
+                    for (int j = 0; j < tabBinaire[i - 13].Length; j++)  //on rentre la suite binaire de la chaine de caractère dans le tableau de byte complet
                     {
-                        if (imageQR[i, j].R == 0) imageQR[i, j] = new Pixel(255, 255, 255);
-                        else imageQR[i, j] = new Pixel(0, 0, 0);
+                        tabComplet[n] = tabBinaire[i - 13][j];
+                        n++;
                     }
                 }
+                if (bourrage == 0) bourrage = 8;
+                tabComplet[tailleComplet - 4 - (8 - bourrage)] = 0;             //ajout de la terminaison
+                tabComplet[tailleComplet - 3 - (8 - bourrage)] = 0;
+                tabComplet[tailleComplet - 2 - (8 - bourrage)] = 0;
+                tabComplet[tailleComplet - 1 - (8 - bourrage)] = 0;
+                for (int i = tailleComplet - (8 - bourrage); i < tailleComplet; i++) tabComplet[i] = 0;
+
+                Encoding u8 = Encoding.UTF8;                                                            //préparation de la correction
+                byte[] bytesChaine = u8.GetBytes(chaine);
+                byte[] correctionBinaire = ReedSolomonAlgorithm.Encode(bytesChaine, 7, ErrorCorrectionCodeType.QRCode);
+                int[][] tabCorrection = new int[7][];
+                int[] tabCorrectionComplet = new int[7 * 8];
+                //int[] tabCorrectionComplet = { 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
+                int cmptr = 0;
+                int compteurCorrection = 0;
+                for (int i = 0; i < 7; i++)
+                {
+                    tabCorrection[i] = Convert_Byte_To_Binary(correctionBinaire[i]);
+                    for (int m = 0; m < 8; m++)
+                    {
+                        tabCorrectionComplet[cmptr] = tabCorrection[i][m];
+                        cmptr++;
+                    }
+                }
+
+                bool[,] casesCorrection = new bool[25, 25];
+                for (int j = 0; j < 25; j += 2)
+                {
+                    for (int i = 24; i >= 0 && compteurCorrection < 7 * 8; i--)
+                    {
+                        if (casesOccupees[i, j] == false)
+                        {
+                            casesCorrection[i, j] = true;
+                            compteurCorrection++;
+                        }
+                        if (casesOccupees[i, j + 1] == false)
+                        {
+                            casesCorrection[i, j + 1] = true;
+                            compteurCorrection++;
+                        }
+                    }
+                }
+
+                int[] tabBourrage = { 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 };
+                int compteur = 0;
+                int compteurBourrage = 0;
+                compteurCorrection = 0;
+                for (int j = 24; j >= 3; j -= 4)
+                {
+                    for (int i = 0; i < 25; i++)     //complétion de la traduction de la chaine en binaire en pixels puis répétition de tabBourrage jusqu'à ce que le QR code soit rempli
+                    {
+                        if (casesOccupees[i, j] == false && casesCorrection[i, j] == false)
+                        {
+                            if (compteur < tailleComplet)
+                            {
+                                if (tabComplet[compteur] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
+                                compteur++;
+                                if (compteur < tailleComplet && tabComplet[compteur] == 1) imageQR[i, j - 1] = new Pixel(0, 0, 0);
+                                compteur++;
+                            }
+                            else
+                            {
+                                if (tabBourrage[compteurBourrage] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
+                                if (compteurBourrage < 15) compteurBourrage++;
+                                else compteurBourrage = 0;
+                                if (tabBourrage[compteurBourrage] == 1) imageQR[i, j - 1] = new Pixel(0, 0, 0);
+                                if (compteurBourrage < 15) compteurBourrage++;
+                                else compteurBourrage = 0;
+                            }
+                        }
+                        else if (casesOccupees[i, j] == false && casesCorrection[i, j] == true)
+                        {
+                            if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
+                            compteurCorrection++;
+                            if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j - 1] = new Pixel(0, 0, 0);
+                            compteurCorrection++;
+                        }
+                    }
+                    if (j == 8) j--;
+                    for (int i = 24; i >= 0; i--)
+                    {
+                        if (casesOccupees[i, j] == false && casesCorrection[i, j] == false)
+                        {
+                            if (compteur < tailleComplet)
+                            {
+                                if (tabComplet[compteur] == 1) imageQR[i, j - 2] = new Pixel(0, 0, 0);
+                                compteur++;
+                                if (compteur < tailleComplet && tabComplet[compteur] == 1) imageQR[i, j - 3] = new Pixel(0, 0, 0);
+                                compteur++;
+                            }
+                            else
+                            {
+                                if (tabBourrage[compteurBourrage] == 1) imageQR[i, j - 2] = new Pixel(0, 0, 0);
+                                if (compteurBourrage < 15) compteurBourrage++;
+                                else compteurBourrage = 0;
+                                if (tabBourrage[compteurBourrage] == 1) imageQR[i, j - 3] = new Pixel(0, 0, 0);
+                                if (compteurBourrage < 15) compteurBourrage++;
+                                else compteurBourrage = 0;
+                            }
+                        }
+                        else if (casesOccupees[i, j] == false && casesCorrection[i, j] == true)
+                        {
+                            if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j - 2] = new Pixel(0, 0, 0);
+                            compteurCorrection++;
+                            if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j - 3] = new Pixel(0, 0, 0);
+                            compteurCorrection++;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < 25; i++)
+                {
+                    for (int j = 0; j < 25; j++)
+                    {
+                        if (casesOccupees[i, j] == false && (i + j) % 2 == 0)
+                        {
+                            if (imageQR[i, j].R == 0) imageQR[i, j] = new Pixel(255, 255, 255);
+                            else imageQR[i, j] = new Pixel(0, 0, 0);
+                        }
+                    }
+                }
+                nouvelleImage = new MyImage("BitMap", 25 * 25 * 3 + 54, 25 * 25 * 3, 25, 25, 24, imageQR);
             }
-            
-                    MyImage nouvelleImage = new MyImage("BitMap", 21 * 21 * 3 + 54, 21 * 21 * 3, 21, 21, 24, imageQR);
+            else
+            {
+                for (int i = 0; i < 21; i++) for (int j = 0; j < 21; j++) imageQR[i, j] = new Pixel(255, 255, 255);
+                nouvelleImage = new MyImage("BitMap", 21 * 21 * 3 + 54, 21 * 21 * 3, 21, 21, 24, imageQR);
+            }
             return nouvelleImage;
-        }
+        }       //Construit un QR code de niveau 2 générant la chaine de caractère -chaine-
     }
 }
