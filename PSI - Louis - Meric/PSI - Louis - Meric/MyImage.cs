@@ -253,9 +253,9 @@ namespace PSI___Louis___Meric
             {
                 for (int j = 0; j < this.Image.GetLength(1); j++)
                 {
-                    nouvelleImage.Image[i, j].R = (byte)(255 - this.Image[i, j].R);
-                    nouvelleImage.Image[i, j].G = (byte)(255 - this.Image[i, j].G);
-                    nouvelleImage.Image[i, j].B = (byte)(255 - this.Image[i, j].B);
+                    nouvelleImage.Image[i, j].R = (byte)(255 - this.image[i, j].R);
+                    nouvelleImage.Image[i, j].G = (byte)(255 - this.image[i, j].G);
+                    nouvelleImage.Image[i, j].B = (byte)(255 - this.image[i, j].B);
                 }
             }
             return nouvelleImage;
@@ -4263,10 +4263,42 @@ namespace PSI___Louis___Meric
                 tabComplet[tailleComplet - 1 - (8 - bourrage)] = 0;
                 for (int i = tailleComplet - (8 - bourrage); i < tailleComplet; i++) tabComplet[i] = 0;
 
-                Encoding u8 = Encoding.UTF8;                                                            //préparation de la correction
-                byte[] bytesChaine = u8.GetBytes(chaine);
-                byte[] correctionBinaire = ReedSolomonAlgorithm.Encode(bytesChaine, 7, ErrorCorrectionCodeType.QRCode);
-                int[][] tabCorrection = new int[7][];
+                int compteurCasesOccuppees = 0;
+                for (int i = 0; i < 21; i++) for (int j = 0; j < 21; j++) if (casesOccupees[i,j]==true) compteurCasesOccuppees++;           //compte le nombre de cases intouchables
+                int nombrePixelsBourrage = 21 * 21 - compteurCasesOccuppees - tailleComplet - 7 * 8;                //compte le nombre de pixels total que l'on doit remplir par la complétion de données
+
+                byte[] nombreByteFromBinaire = new byte[tailleComplet/8 + nombrePixelsBourrage/8];
+                int[][] donneesCompleteBinaire = new int[tailleComplet / 8 + nombrePixelsBourrage/8][];    //prépare le tableau de binaire pour le transformer en tableau d'octets pour la correction
+                int[] tabBourrage = { 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 };
+                int a = 0;
+                int b = 0;
+                for (int i=0; i<tailleComplet/8 + nombrePixelsBourrage/8; i++)
+                {
+                    donneesCompleteBinaire[i] = new int[8];
+                    if (i < tailleComplet / 8)
+                    {
+                        for (int j = 0; j < 8; j++)
+                        {
+                            donneesCompleteBinaire[i][j] = tabComplet[a];
+                            a++;
+                        }
+                    }
+                    else
+                    {
+                        for (int j=0; j<8; j++)
+                        {
+                            donneesCompleteBinaire[i][j] = tabBourrage[b];
+                            if (b < tabBourrage.Length - 1) b++;
+                            else b = 0;
+                        }
+                    }
+                }
+                for (int i = 0; i < tailleComplet / 8 + nombrePixelsBourrage/8; i++) nombreByteFromBinaire[i] = Convert_Binary_To_Byte(donneesCompleteBinaire[i]);
+
+                //Encoding u8 = Encoding.UTF8;                                                            //préparation de la correction
+                //byte[] bytesChaine = u8.GetBytes(chaine);
+                byte[] correctionBinaire = ReedSolomonAlgorithm.Encode(nombreByteFromBinaire, 7, ErrorCorrectionCodeType.QRCode);
+                int[][] tabCorrection = new int[8][];
                 int[] tabCorrectionComplet = new int[7 * 8];
                 //int[] tabCorrectionComplet = { 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
                 int cmptr = 0;
@@ -4299,7 +4331,7 @@ namespace PSI___Louis___Meric
                     }
                 }
 
-                int[] tabBourrage = { 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 };
+                //int[] tabBourrage = { 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 };
                 int compteur = 0;
                 int compteurBourrage = 0;
                 compteurCorrection = 0;
