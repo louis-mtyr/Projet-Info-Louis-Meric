@@ -5,7 +5,7 @@ using System.IO;
 
 namespace PSI___Louis___Meric
 {
-    class MyImage       //hggjjg
+    class MyImage       
     {
         private string myfile;
         private string typeImage;
@@ -708,8 +708,8 @@ namespace PSI___Louis___Meric
             for (int x = 0; x < coef; x++)
             {
                 imageATourner = imageATourner.Rotation90Droite();
-            }
 
+            }
             angleRadian = (double)((angleDegre - coef * 90) * Math.PI / 180);
             newHauteur = (int)Math.Abs((imageATourner.hauteurImage * Math.Cos(angleRadian)) + Math.Abs(imageATourner.largeurImage * Math.Sin(angleRadian))) + 1;
             newLargeur = (int)(Math.Abs(imageATourner.largeurImage * Math.Cos(angleRadian)) + Math.Abs(imageATourner.hauteurImage * Math.Cos((Math.PI / 2) - angleRadian))) + 1;
@@ -797,6 +797,12 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                       //return l'image tournée de 90° vers la gauche
 
+        /// <summary>
+        /// return l'image réduite avec coefs choisis par l'utilisateur
+        /// </summary>
+        /// <param name="coefHauteur"></param> on prendra un pixel vertical tous les coefhauteurs
+        /// <param name="coefLargeur"></param> on prendra un pixel horizontal tous les coeflargeurs
+        /// <returns></returns>
         public MyImage Reduire(int coefHauteur, int coefLargeur)                    //return l'image réduite -coefHauteur * coefLargeur- fois
         {
             int newTaille = (this.hauteurImage / coefHauteur) * (this.LargeurImage / coefLargeur) * 3 + 54;
@@ -859,7 +865,10 @@ namespace PSI___Louis___Meric
             MyImage imageAgrandie = new MyImage("BitMap", newTaille, newTailleOffset, newHauteur, newLargeur, this.NbBitsCouleur, newImage);
             return imageAgrandie;
         }
-
+        /// <summary>
+        /// retourne une image flou à l'aide d'une matrice de convolution
+        /// </summary>
+        /// <returns></returns>
         public MyImage Flou()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -1091,7 +1100,10 @@ namespace PSI___Louis___Meric
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
         }                                      //return l'image avec un effet flou
-
+        /// <summary>
+        /// return une image avec un effet psychédélique à l'aide d'une matrice de convolution
+        /// </summary>
+        /// <returns></returns>
         public MyImage Psychedelique()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -1324,6 +1336,10 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }                                     //return l'image avec un effet psychédélique
 
+        /// <summary>
+        /// return une image en nuance de gris avec une détection de contours à l'aide d'une matrice de convolution
+        /// </summary>
+        /// <returns></returns>
         public MyImage DetectionContours()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.LargeurImage];
@@ -1331,7 +1347,7 @@ namespace PSI___Louis___Meric
 
             for (int i = 0; i < newImage.GetLength(0); i++)
                 for (int j = 0; j < newImage.GetLength(1); j++)
-                    newImage[i, j] = new Pixel(0, 0, 0);                        //à optimiser qd fct finie
+                    newImage[i, j] = new Pixel(0, 0, 0);                       
 
             for (int i = 1; i < newImage.GetLength(0) - 1; i++)
             {
@@ -1372,7 +1388,10 @@ namespace PSI___Louis___Meric
             MyImage areturn = new MyImage("BitMap", this.TailleFichier, this.TailleOffset, this.HauteurImage, this.LargeurImage, this.NbBitsCouleur, newImage);
             return areturn;
         }                               //return la détection des contours de l'image
-
+        /// <summary>
+        /// return une image avec augmentation du contraste à l'aide d'une matrice de convolution
+        /// </summary>
+        /// <returns></returns>
         public MyImage AugmentationContraste()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
@@ -1655,7 +1674,10 @@ namespace PSI___Louis___Meric
             MyImage nouvelleImage = new MyImage("BitMap", this.tailleFichier, this.tailleOffset, this.hauteurImage, this.largeurImage, this.nbBitsCouleur, newImage);
             return nouvelleImage;
         }                                    //return l'image avec une augmentation de ses contrastes
-
+        /// <summary>
+        /// return une image avec les bords verticaux renforcés mais pas les horizontaux
+        /// </summary>
+        /// <returns></returns>
         public MyImage RenforcementBordsVertical()
         {
             Pixel[,] newImage = new Pixel[this.hauteurImage, this.largeurImage];
