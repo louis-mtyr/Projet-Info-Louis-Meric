@@ -42,9 +42,9 @@ namespace PSI___Louis___Meric
                 while (reponse != "q" && reponse != "Q" && reponse != "Quitter" && reponse != "QUITTER" && reponse != "quitter")
                 {
                     Console.Clear();
-                    Console.WriteLine("Veuillez choisir la hauteur de votre fractale :");
+                    Console.WriteLine("Veuillez choisir la hauteur de votre fractale en nombre de pixels :");
                     int hauteurFractaleMandelbrot = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Veuillez choisir la largeur de votre fractale :");
+                    Console.WriteLine("Veuillez choisir la largeur de votre fractale en nombre de pixels :");
                     int largeurFractaleMandelbrot = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Veuillez choisir un coefficient de couleur rouge :");
                     double coefFractaleMandelBrotR = Convert.ToDouble(Console.ReadLine());
