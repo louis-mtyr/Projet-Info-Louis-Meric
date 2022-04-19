@@ -70,7 +70,7 @@ namespace PSI___Louis___Meric
                     double coefFractaleMandelBrotG = Convert.ToDouble(Console.ReadLine());
                     Console.WriteLine("Veuillez choisir un coefficient de couleur bleue :");
                     double coefFractaleMandelBrotB = Convert.ToDouble(Console.ReadLine());
-                    MyImage testFractaleMandelbrot = MyImage.FractaleMandelbrot(hauteurFractaleMandelbrot, largeurFractaleMandelbrot, coefFractaleMandelBrotR, coefFractaleMandelBrotG, coefFractaleMandelBrotB);
+                    MyImage testFractaleMandelbrot = MyImage.FractaleJulia3(hauteurFractaleMandelbrot, largeurFractaleMandelbrot, coefFractaleMandelBrotR, coefFractaleMandelBrotG, coefFractaleMandelBrotB);
                     testFractaleMandelbrot.From_Image_To_File("testFractaleMandelbrot.bmp");
                     Process.Start("testFractaleMandelbrot.bmp");
                     Console.WriteLine("Appuyez sur entrée pour continuer ou tapez 'quitter' pour fermer le programme");

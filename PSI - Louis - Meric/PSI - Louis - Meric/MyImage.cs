@@ -3736,6 +3736,153 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }   //return la fractale de mandelbrot de taille [hauteur,largeur] et d'intensité de couleurs (coefR, coefG, coefB)
 
+
+        public static MyImage FractaleJulia1(int hauteur, int largeur, double coefR, double coefG, double coefB)
+        {
+            Pixel[,] newImage = new Pixel[hauteur, largeur];
+            for (int n = 0; n < hauteur; n++) for (int m = 0; m < largeur; m++) newImage[n, m] = new Pixel(0, 0, 0);
+            double borneGauche = -1.3;
+            double borneDroite = 1.3;
+            double borneHaut = 1;
+            double borneBas = -1;
+
+            //int zoom = 100;
+            int iteration_max = 100;
+
+            double cooReel;         //coo du point associé
+            double cooImaginaire;
+            double xn;              //termes de la suite
+            double yn;
+            int i = 0;
+            double tmp_x = 0;           // xn - 1
+            double tmp_y = 0;           //yn -1
+            for (int x = 0; x < hauteur; x++)
+            {
+                for (int y = 0; y < largeur; y++)
+                {
+                    cooReel = ((y * (borneDroite - borneGauche) / largeur) + borneGauche);    //remise à l'échelle pour que les pixels de l'image soient associés à un point du plan
+                    cooImaginaire = ((x * (borneHaut - borneBas) / hauteur) + borneBas);
+                    xn = cooReel;
+                    yn = cooImaginaire;
+                    i = 0;
+
+                    while ((xn * xn + yn * yn) < 20 && i < iteration_max)        //il est admis que si xn² + yn² >4, la suite DV vers l'infini
+                    {
+                        tmp_x = xn; //stockage xn -1 et yn - 1
+                        tmp_y = yn;
+                        //application de la suite terme(n+1) = terme(n)² + point
+                        xn = tmp_x * tmp_x - tmp_y * tmp_y - 0.39;
+                        yn = 2 * tmp_x * tmp_y - 0.59;
+                        i++;
+                    }
+                    //si xn² + yn² >4 avant l'iteration max, la suite DV et on colorie
+                    if (i != iteration_max) newImage[x, y] = new Pixel((byte)((coefR * i) % 256), (byte)((coefG * i) % 256), (byte)((coefB * i) % 256));
+                }
+            }
+            int tailleFichier = hauteur * largeur * 3 + 54;
+            int tailleOffset = tailleFichier - 54;
+            MyImage nouvelleImage = new MyImage("BitMap", tailleFichier, tailleOffset, hauteur, largeur, 24, newImage);
+            return nouvelleImage;
+        }   //return la fractale de mandelbrot de taille [hauteur,largeur] et d'intensité de couleurs (coefR, coefG, coefB)
+
+        public static MyImage FractaleJulia2(int hauteur, int largeur, double coefR, double coefG, double coefB)
+        {
+            Pixel[,] newImage = new Pixel[hauteur, largeur];
+            for (int n = 0; n < hauteur; n++) for (int m = 0; m < largeur; m++) newImage[n, m] = new Pixel(0, 0, 0);
+            double borneGauche = -1.3;
+            double borneDroite = 1.3;
+            double borneHaut = 1;
+            double borneBas = -1;
+
+            //int zoom = 100;
+            int iteration_max = 100;
+
+            double cooReel;         //coo du point associé
+            double cooImaginaire;
+            double xn;              //termes de la suite
+            double yn;
+            int i = 0;
+            double tmp_x = 0;           // xn - 1
+            double tmp_y = 0;           //yn -1
+            for (int x = 0; x < hauteur; x++)
+            {
+                for (int y = 0; y < largeur; y++)
+                {
+                    cooReel = ((y * (borneDroite - borneGauche) / largeur) + borneGauche);    //remise à l'échelle pour que les pixels de l'image soient associés à un point du plan
+                    cooImaginaire = ((x * (borneHaut - borneBas) / hauteur) + borneBas);
+                    xn = cooReel;
+                    yn = cooImaginaire;
+                    i = 0;
+
+                    while ((xn * xn + yn * yn) < 20 && i < iteration_max)        //il est admis que si xn² + yn² >4, la suite DV vers l'infini
+                    {
+                        tmp_x = xn; //stockage xn -1 et yn - 1
+                        tmp_y = yn;
+                        //application de la suite terme(n+1) = terme(n)² + point
+                        xn = tmp_x * tmp_x - tmp_y * tmp_y - 0.79;
+                        yn = 2 * tmp_x * tmp_y + 0.15;
+                        i++;
+                    }
+                    //si xn² + yn² >4 avant l'iteration max, la suite DV et on colorie
+                    if (i != iteration_max) newImage[x, y] = new Pixel((byte)((coefR * i) % 256), (byte)((coefG * i) % 256), (byte)((coefB * i) % 256));
+                }
+            }
+            int tailleFichier = hauteur * largeur * 3 + 54;
+            int tailleOffset = tailleFichier - 54;
+            MyImage nouvelleImage = new MyImage("BitMap", tailleFichier, tailleOffset, hauteur, largeur, 24, newImage);
+            return nouvelleImage;
+        }   //return la fractale de mandelbrot de taille [hauteur,largeur] et d'intensité de couleurs (coefR, coefG, coefB)
+
+
+        public static MyImage FractaleJulia3(int hauteur, int largeur, double coefR, double coefG, double coefB)
+        {
+            Pixel[,] newImage = new Pixel[hauteur, largeur];
+            for (int n = 0; n < hauteur; n++) for (int m = 0; m < largeur; m++) newImage[n, m] = new Pixel(0, 0, 0);
+            double borneGauche = -1.3;
+            double borneDroite = 1.3;
+            double borneHaut = 1;
+            double borneBas = -1;
+
+            //int zoom = 100;
+            int iteration_max = 100;
+
+            double cooReel;         //coo du point associé
+            double cooImaginaire;
+            double xn;              //termes de la suite
+            double yn;
+            int i = 0;
+            double tmp_x = 0;           // xn - 1
+            double tmp_y = 0;           //yn -1
+            for (int x = 0; x < hauteur; x++)
+            {
+                for (int y = 0; y < largeur; y++)
+                {
+                    cooReel = ((y * (borneDroite - borneGauche) / largeur) + borneGauche);    //remise à l'échelle pour que les pixels de l'image soient associés à un point du plan
+                    cooImaginaire = ((x * (borneHaut - borneBas) / hauteur) + borneBas);
+                    xn = cooReel;
+                    yn = cooImaginaire;
+                    i = 0;
+
+                    while ((xn * xn + yn * yn) < 20 && i < iteration_max)        //il est admis que si xn² + yn² >4, la suite DV vers l'infini
+                    {
+                        tmp_x = xn; //stockage xn -1 et yn - 1
+                        tmp_y = yn;
+                        //application de la suite terme(n+1) = terme(n)² + point
+                        xn = tmp_x * tmp_x - tmp_y * tmp_y - 0.7;
+                        yn = 2 * tmp_x * tmp_y + 0.27015;
+                        i++;
+                    }
+                    //si xn² + yn² >4 avant l'iteration max, la suite DV et on colorie
+                    if (i != iteration_max) newImage[x, y] = new Pixel((byte)((coefR * i) % 256), (byte)((coefG * i) % 256), (byte)((coefB * i) % 256));
+                }
+            }
+            int tailleFichier = hauteur * largeur * 3 + 54;
+            int tailleOffset = tailleFichier - 54;
+            MyImage nouvelleImage = new MyImage("BitMap", tailleFichier, tailleOffset, hauteur, largeur, 24, newImage);
+            return nouvelleImage;
+        }   //return la fractale de mandelbrot de taille [hauteur,largeur] et d'intensité de couleurs (coefR, coefG, coefB)
+
+
         /// <summary>
         /// Convertit certains char en leur valeur alphanumérique
         /// </summary>
@@ -4199,7 +4346,7 @@ namespace PSI___Louis___Meric
             MyImage nouvelleImage = null;
             for (int i = 0; i < 21; i++) for (int j = 0; j < 21; j++) imageQR[i, j] = new Pixel(255, 255, 255);
             bool[,] casesOccupees = ConstructionQRcodeNiveau1(imageQR);
-
+            
             int taille;
             if (chaine.Length % 2 == 0) taille = chaine.Length / 2;
             else taille = chaine.Length / 2 + 1;
@@ -4294,12 +4441,14 @@ namespace PSI___Louis___Meric
                     }
                 }
                 for (int i = 0; i < tailleComplet / 8 + nombrePixelsBourrage/8; i++) nombreByteFromBinaire[i] = Convert_Binary_To_Byte(donneesCompleteBinaire[i]);
-
+                
                 //Encoding u8 = Encoding.UTF8;                                                            //préparation de la correction
                 //byte[] bytesChaine = u8.GetBytes(chaine);
                 byte[] correctionBinaire = ReedSolomonAlgorithm.Encode(nombreByteFromBinaire, 7, ErrorCorrectionCodeType.QRCode);
                 int[][] tabCorrection = new int[7][];
                 int[] tabCorrectionComplet = new int[7 * 8];
+                
+
                 //int[] tabCorrectionComplet = { 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
                 int cmptr = 0;
                 int compteurCorrection = 0;
@@ -4330,7 +4479,7 @@ namespace PSI___Louis___Meric
                         }
                     }
                 }
-
+               
                 //int[] tabBourrage = { 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 };
                 int compteur = 0;
                 int compteurBourrage = 0;
@@ -4339,6 +4488,7 @@ namespace PSI___Louis___Meric
                 {
                     for (int i = 0; i < 21; i++)     //complétion de la traduction de la chaine en binaire en pixels puis répétition de tabBourrage jusqu'à ce que le QR code soit rempli
                     {
+                        
                         if (casesOccupees[i, j] == false && casesCorrection[i, j] == false)
                         {
                             if (compteur < tailleComplet)
@@ -4369,6 +4519,7 @@ namespace PSI___Louis___Meric
                     if (j == 8) j--;
                     for (int i = 20; i >= 0; i--)
                     {
+                        
                         if (casesOccupees[i, j] == false && casesCorrection[i, j] == false)
                         {
                             if (compteur < tailleComplet)
@@ -4398,6 +4549,7 @@ namespace PSI___Louis___Meric
                     }
                 }
 
+               
                 /*int compteurTest = 0;
                 int[] tabTest = { 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
                 for (int j = 20; j >= 3; j -= 4)
@@ -4441,7 +4593,7 @@ namespace PSI___Louis___Meric
                         }
                     }
                 }
-
+                
                 nouvelleImage = new MyImage("BitMap", 21 * 21 * 3 + 54, 21 * 21 * 3, 21, 21, 24, imageQR);
             }
             else
@@ -4557,10 +4709,11 @@ namespace PSI___Louis___Meric
                     }
                 }
                 for (int i = 0; i < tailleComplet / 8 + nombrePixelsBourrage / 8; i++) nombreByteFromBinaire[i] = Convert_Binary_To_Byte(donneesCompleteBinaire[i]);
-
+                
                 //Encoding u8 = Encoding.UTF8;                                                            //préparation de la correction
                 //byte[] bytesChaine = u8.GetBytes(chaine);
                 byte[] correctionBinaire = ReedSolomonAlgorithm.Encode(nombreByteFromBinaire, 10, ErrorCorrectionCodeType.QRCode);
+                
                 int[][] tabCorrection = new int[10][];
                 int[] tabCorrectionComplet = new int[10 * 8];
                 //int[] tabCorrectionComplet = { 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
