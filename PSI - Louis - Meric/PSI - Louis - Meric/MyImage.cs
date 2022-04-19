@@ -3356,12 +3356,12 @@ namespace PSI___Louis___Meric
         /// </summary>
         /// <param name="tabHexadecimal">Valeur binaire à convertir en byte</param>
         /// <returns>La valeur binaire convertie en byte</returns>
-        public static byte Convert_Binary_To_Byte(int[] tabHexadecimal)
+        public static byte Convert_Binary_To_Byte(int[] tabBinaire)
         {
             byte valeur = 0;
             for (int i = 0; i < 8; i++)
             {
-                valeur += (byte)(tabHexadecimal[i] * Math.Pow(2, 7 - i));
+                valeur += (byte)(tabBinaire[i] * Math.Pow(2, 7 - i));
             }
             return valeur;
         }           //return la valeur entière d'un nombre en binaire sur 8 bits
@@ -4204,13 +4204,14 @@ namespace PSI___Louis___Meric
             if (chaine.Length % 2 == 0) taille = chaine.Length / 2;
             else taille = chaine.Length / 2 + 1;
             int[][] tabBinaire = ConvertStringToTabBinaire(chaine);
-            bool legit = true;
+            bool legit = true;                                                          //vérifie que les caractères sont compris en alphanumérique
             for (int i = 0; i < taille; i++) if (tabBinaire[i] == null) legit = false;
 
             if (legit == true)
             {
                 int tailleComplet = 17;
                 for (int i = 0; i < taille; i++) for (int j = 0; j < tabBinaire[i].Length; j++) tailleComplet++;
+                if (tailleComplet > 152) tailleComplet = 152;
                 int bourrage = tailleComplet % 8;
                 switch (bourrage)                                   //ajout du bon nombre de 0 en fin de conversion en binaire de la chaine de caractère pour avoir un multiple de 8
                 {
@@ -4248,7 +4249,7 @@ namespace PSI___Louis___Meric
                 for (int i = 4; i < 13; i++) tabComplet[i] = tabNombreCaracteres[i - 4];
 
                 int n = 13;
-                for (int i = 13; i < tabBinaire.LongLength + 13; i++)
+                for (int i = 13; i < tabBinaire.Length + 13; i++)
                 {
                     for (int j = 0; j < tabBinaire[i - 13].Length; j++)  //on rentre la suite binaire de la chaine de caractère dans le tableau de byte complet
                     {
@@ -4256,18 +4257,18 @@ namespace PSI___Louis___Meric
                         n++;
                     }
                 }
-                if (bourrage == 0) bourrage = 8;
+                /*if (bourrage == 0) bourrage = 8;
                 tabComplet[tailleComplet - 4 - (8 - bourrage)] = 0;             //ajout de la terminaison
                 tabComplet[tailleComplet - 3 - (8 - bourrage)] = 0;
                 tabComplet[tailleComplet - 2 - (8 - bourrage)] = 0;
                 tabComplet[tailleComplet - 1 - (8 - bourrage)] = 0;
-                for (int i = tailleComplet - (8 - bourrage); i < tailleComplet; i++) tabComplet[i] = 0;
+                for (int i = tailleComplet - (8 - bourrage); i < tailleComplet; i++) tabComplet[i] = 0;*/
 
                 int compteurCasesOccuppees = 0;
                 for (int i = 0; i < 21; i++) for (int j = 0; j < 21; j++) if (casesOccupees[i,j]==true) compteurCasesOccuppees++;           //compte le nombre de cases intouchables
                 int nombrePixelsBourrage = 21 * 21 - compteurCasesOccuppees - tailleComplet - 7 * 8;                //compte le nombre de pixels total que l'on doit remplir par la complétion de données
 
-                byte[] nombreByteFromBinaire = new byte[tailleComplet/8 + nombrePixelsBourrage/8];
+                byte[] nombreByteFromBinaire = new byte[tailleComplet / 8 + nombrePixelsBourrage/8];
                 int[][] donneesCompleteBinaire = new int[tailleComplet / 8 + nombrePixelsBourrage/8][];    //prépare le tableau de binaire pour le transformer en tableau d'octets pour la correction
                 int[] tabBourrage = { 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 };
                 int a = 0;
@@ -4293,7 +4294,7 @@ namespace PSI___Louis___Meric
                         }
                     }
                 }
-                for (int i = 0; i < tailleComplet / 8 + nombrePixelsBourrage/8; i++) nombreByteFromBinaire[i] = Convert_Binary_To_Byte(donneesCompleteBinaire[i]);
+                for (int i = 0; i < tailleComplet / 8 + nombrePixelsBourrage / 8; i++) nombreByteFromBinaire[i] = Convert_Binary_To_Byte(donneesCompleteBinaire[i]);
 
                 //Encoding u8 = Encoding.UTF8;                                                            //préparation de la correction
                 //byte[] bytesChaine = u8.GetBytes(chaine);
@@ -4434,21 +4435,19 @@ namespace PSI___Louis___Meric
                 {
                     for (int j = 0; j < 21; j++)
                     {
-                        if (casesOccupees[i, j] == false && (i + j) % 2 == 0)
+                        if (casesOccupees[i, j] == false && (i + j) % 2 == 0)                   //application du masquage 0
                         {
                             if (imageQR[i, j].R == 0) imageQR[i, j] = new Pixel(255, 255, 255);
                             else imageQR[i, j] = new Pixel(0, 0, 0);
                         }
                     }
                 }
-
-                nouvelleImage = new MyImage("BitMap", 21 * 21 * 3 + 54, 21 * 21 * 3, 21, 21, 24, imageQR);
             }
             else
             {
-                for (int i = 0; i < 21; i++) for (int j = 0; j < 21; j++) imageQR[i, j] = new Pixel(255, 255, 255);
-                nouvelleImage = new MyImage("BitMap", 21 * 21 * 3 + 54, 21 * 21 * 3, 21, 21, 24, imageQR);
+                for (int i = 0; i < 21; i++) for (int j = 0; j < 21; j++) imageQR[i, j] = new Pixel(255, 255, 255);       //renvoie un carré blanc s'il y a un caractère non lu dans la chaine à convertir
             }
+            nouvelleImage = new MyImage("BitMap", 21 * 21 * 3 + 54, 21 * 21 * 3, 21, 21, 24, imageQR);
             return nouvelleImage;
         }       //Construit un QR code de niveau 1 générant la chaine de caractère -chaine-
 
