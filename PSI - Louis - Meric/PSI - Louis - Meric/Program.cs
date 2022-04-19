@@ -60,9 +60,9 @@ namespace PSI___Louis___Meric
                 while (reponse != "q" && reponse != "Q" && reponse != "Quitter" && reponse != "QUITTER" && reponse != "quitter")
                 {
                     Console.Clear();
-                    Console.WriteLine("Veuillez choisir la hauteur de votre fractale :");
+                    Console.WriteLine("Veuillez choisir la hauteur de votre fractale en nombre de pixels :");
                     int hauteurFractaleMandelbrot = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Veuillez choisir la largeur de votre fractale :");
+                    Console.WriteLine("Veuillez choisir la largeur de votre fractale en nombre de pixels :");
                     int largeurFractaleMandelbrot = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Veuillez choisir un coefficient de couleur rouge :");
                     double coefFractaleMandelBrotR = Convert.ToDouble(Console.ReadLine());
@@ -70,7 +70,7 @@ namespace PSI___Louis___Meric
                     double coefFractaleMandelBrotG = Convert.ToDouble(Console.ReadLine());
                     Console.WriteLine("Veuillez choisir un coefficient de couleur bleue :");
                     double coefFractaleMandelBrotB = Convert.ToDouble(Console.ReadLine());
-                    MyImage testFractaleMandelbrot = MyImage.FractaleMandelbrot(hauteurFractaleMandelbrot, largeurFractaleMandelbrot, coefFractaleMandelBrotR, coefFractaleMandelBrotG, coefFractaleMandelBrotB);
+                    MyImage testFractaleMandelbrot = MyImage.FractaleJulia3(hauteurFractaleMandelbrot, largeurFractaleMandelbrot, coefFractaleMandelBrotR, coefFractaleMandelBrotG, coefFractaleMandelBrotB);
                     testFractaleMandelbrot.From_Image_To_File("testFractaleMandelbrot.bmp");
                     Process.Start("testFractaleMandelbrot.bmp");
                     Console.WriteLine("Appuyez sur entrée pour continuer ou tapez 'quitter' pour fermer le programme");
