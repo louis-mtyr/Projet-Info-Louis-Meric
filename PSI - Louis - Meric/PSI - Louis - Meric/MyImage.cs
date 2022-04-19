@@ -4315,18 +4315,14 @@ namespace PSI___Louis___Meric
                 }
 
                 bool[,] casesCorrection = new bool[21, 21];
-                for (int j = 0; j < 21; j += 2)
+                compteurCorrection = 0;
+                for (int j = 0; j < 21; j ++)
                 {
-                    for (int i = 20; i >= 0 && compteurCorrection < 7 * 8; i--)
+                    for (int i = 0; i < 12 && compteurCorrection < 7 * 8; i++)
                     {
                         if (casesOccupees[i, j] == false)
                         {
                             casesCorrection[i, j] = true;
-                            compteurCorrection++;
-                        }
-                        if (casesOccupees[i, j + 1] == false)
-                        {
-                            casesCorrection[i, j + 1] = true;
                             compteurCorrection++;
                         }
                     }
@@ -4359,7 +4355,7 @@ namespace PSI___Louis___Meric
                                 else compteurBourrage = 0;
                             }
                         }
-                        else if (casesOccupees[i, j] == false && casesCorrection[i, j] == true)
+                        if (casesOccupees[i, j] == false && casesCorrection[i, j] == true)
                         {
                             if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
                             compteurCorrection++;
@@ -4389,7 +4385,7 @@ namespace PSI___Louis___Meric
                                 else compteurBourrage = 0;
                             }
                         }
-                        else if (casesOccupees[i, j] == false && casesCorrection[i, j] == true)
+                        if (casesOccupees[i, j-2] == false && casesCorrection[i, j-2] == true)
                         {
                             if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j - 2] = new Pixel(0, 0, 0);
                             compteurCorrection++;
@@ -4398,38 +4394,6 @@ namespace PSI___Louis___Meric
                         }
                     }
                 }
-
-                /*int compteurTest = 0;
-                int[] tabTest = { 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1 };
-                for (int j = 20; j >= 3; j -= 4)
-                {
-                    for (int i = 0; i < 21; i++)
-                    {
-                        if (casesOccupees[i, j] == false)
-                        {
-                            if (tabTest[compteurTest] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
-                            compteurTest++;
-                        }
-                        if (casesOccupees[i, j-1] == false)
-                        {
-                            if (tabTest[compteurTest] == 1) imageQR[i, j-1] = new Pixel(0, 0, 0);
-                            compteurTest++;
-                        }
-                    }
-                    for (int i = 20; i >= 0; i--)
-                    {
-                        if (casesOccupees[i, j - 2] == false)
-                        {
-                            if (tabTest[compteurTest] == 1) imageQR[i, j-2] = new Pixel(0, 0, 0);
-                            compteurTest++;
-                        }
-                        if (casesOccupees[i, j - 3] == false)
-                        {
-                            if (tabTest[compteurTest] == 1) imageQR[i, j - 3] = new Pixel(0, 0, 0);
-                            compteurTest++;
-                        }
-                    }
-                }*/
 
                 for (int i = 0; i < 21; i++)
                 {
@@ -4620,7 +4584,7 @@ namespace PSI___Louis___Meric
                                 else compteurBourrage = 0;
                             }
                         }
-                        else if (casesOccupees[i, j] == false && casesCorrection[i, j] == true)
+                        if (casesOccupees[i, j] == false && casesCorrection[i, j] == true)
                         {
                             if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j] = new Pixel(0, 0, 0);
                             compteurCorrection++;
@@ -4650,8 +4614,8 @@ namespace PSI___Louis___Meric
                                 else compteurBourrage = 0;
                             }
                         }
-                        else if (casesOccupees[i, j] == false && casesCorrection[i, j] == true)
                         {
+                        if (casesOccupees[i, j-2] == false && casesCorrection[i, j-2] == true)
                             if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j - 2] = new Pixel(0, 0, 0);
                             compteurCorrection++;
                             if (tabCorrectionComplet[compteurCorrection] == 1) imageQR[i, j - 3] = new Pixel(0, 0, 0);
