@@ -4208,8 +4208,24 @@ namespace PSI___Louis___Meric
                     newImage[i + 2, j + 2] = image[i, j];
                 }
             }
+            return newImage;
+        }
 
-
+        /// <summary>
+        /// Méthode d'enlèvement de bord blancs pour faciliter la méthode de lecture d'un QR code
+        /// </summary>
+        /// <param name="image">Image dont on veut retirer les bords blancs</param>
+        /// <returns>L'image en paramètre avec des bords blancs retirés</returns>
+        public static Pixel[,] RetirerBordsBlancs(Pixel[,] image)
+        {
+            Pixel[,] newImage = new Pixel[image.GetLength(0) - 4, image.GetLength(1) - 4];
+            for (int i=0; i<newImage.GetLength(0); i++)
+            {
+                for (int j=0; j<newImage.GetLength(1); j++)
+                {
+                    newImage[i, j] = image[i + 2, j + 2];
+                }
+            }
             return newImage;
         }
 
@@ -4954,11 +4970,15 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }       //Construit un QR code de niveau 2 générant la chaine de caractère -chaine-
 
-
+        /// <summary>
+        /// Lit un QR code donné et renvoie son contenu
+        /// </summary>
+        /// <returns>La chaîne de caractère contenue dans un QR code</returns>
         public MyImage LectureQRcode()
         {
+            Pixel[,] imageQR = RetirerBordsBlancs(this.image);
             short niveau = 1;
-            if (this.largeurImage == 27) niveau = 2;
+            if (this.largeurImage == 25) niveau = 2;
             switch (niveau)
             {
                 case 1:
@@ -4971,13 +4991,25 @@ namespace PSI___Louis___Meric
 
                     int a = 0;
                     int b = 0;
+                    int compteurHeader = 0;
                     for (int j=20; j>=3; j-=4)
                     {
                         for (int i=0; i<21; i++)
                         {
-                            if (casesOccupees[i, j] == false)
+                            if (casesOccupees[i, j] == false && compteurHeader>13)
                             {
-                                if (this.image[i, j].R == 0) tabBinaireTotal[a][b] = 1;
+                                if (imageQR[i, j].R == 0) tabBinaireTotal[a][b] = 1;
+                                if (b < 7) b++;
+                                else
+                                {
+                                    b = 0;
+                                    a++;
+                                }
+                            }
+                            compteurHeader++;
+                            if (casesOccupees[i, j-1] == false)
+                            {
+                                if (imageQR[i, j-1].R == 0) tabBinaireTotal[a][b] = 1;
                                 if (b < 7) b++;
                                 else
                                 {
@@ -4988,9 +5020,19 @@ namespace PSI___Louis___Meric
                         }
                         for (int i=20; i>=0; i--)
                         {
-                            if (casesOccupees[i, j] == false)
+                            if (casesOccupees[i, j-2] == false)
                             {
-                                if (this.image[i, j].R == 0) tabBinaireTotal[a][b] = 1;
+                                if (imageQR[i, j-2].R == 0) tabBinaireTotal[a][b] = 1;
+                                if (b < 7) b++;
+                                else
+                                {
+                                    b = 0;
+                                    a++;
+                                }
+                            }
+                            if (casesOccupees[i, j - 3] == false)
+                            {
+                                if (imageQR[i, j - 3].R == 0) tabBinaireTotal[a][b] = 1;
                                 if (b < 7) b++;
                                 else
                                 {
