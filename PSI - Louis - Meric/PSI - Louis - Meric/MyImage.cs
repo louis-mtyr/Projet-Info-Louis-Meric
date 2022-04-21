@@ -4906,5 +4906,59 @@ namespace PSI___Louis___Meric
             nouvelleImage = new MyImage("BitMap", 25 * 25 * 3 + 54, 25 * 25 * 3, 25, 25, 24, imageQR);
             return nouvelleImage;
         }       //Construit un QR code de niveau 2 générant la chaine de caractère -chaine-
+
+
+        public MyImage LectureQRcode()
+        {
+            short niveau = 1;
+            if (this.largeurImage == 27) niveau = 2;
+            switch (niveau)
+            {
+                case 1:
+                    Pixel[,] inutile = new Pixel[21, 21];
+                    bool[,] casesOccupees = ConstructionQRcodeNiveau1(inutile);
+                    int compteurCasesOccupees = 0;
+                    for (int i = 0; i < 21; i++) for (int j = 0; j < 21; j++) if (casesOccupees[i, j] == true) compteurCasesOccupees++;
+                    int[][] tabBinaireTotal = new int[(21*21 - compteurCasesOccupees - 7*8) / 8][];
+                    for (int i = 0; i < tabBinaireTotal.Length; i++) tabBinaireTotal[i] = new int[8];
+
+                    int a = 0;
+                    int b = 0;
+                    for (int j=20; j>=3; j-=4)
+                    {
+                        for (int i=0; i<21; i++)
+                        {
+                            if (casesOccupees[i, j] == false)
+                            {
+                                if (this.image[i, j].R == 0) tabBinaireTotal[a][b] = 1;
+                                if (b < 7) b++;
+                                else
+                                {
+                                    b = 0;
+                                    a++;
+                                }
+                            }
+                        }
+                        for (int i=20; i>=0; i--)
+                        {
+                            if (casesOccupees[i, j] == false)
+                            {
+                                if (this.image[i, j].R == 0) tabBinaireTotal[a][b] = 1;
+                                if (b < 7) b++;
+                                else
+                                {
+                                    b = 0;
+                                    a++;
+                                }
+                            }
+                        }
+                    }
+
+                    byte[] tabByteTotal = new byte[tabBinaireTotal.Length];
+                    for (int i = 0; i < tabByteTotal.Length; i++) tabByteTotal[i] = Convert_Binary_To_Byte(tabBinaireTotal[i]);
+                    break;
+            }
+            return null;
+        }
     }
 }
