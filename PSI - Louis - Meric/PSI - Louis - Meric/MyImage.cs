@@ -3785,6 +3785,7 @@ namespace PSI___Louis___Meric
             return nouvelleImage;
         }   //return la fractale de mandelbrot de taille [hauteur,largeur] et d'intensité de couleurs (coefR, coefG, coefB)
 
+        
         public static MyImage FractaleJulia2(int hauteur, int largeur, double coefR, double coefG, double coefB)
         {
             Pixel[,] newImage = new Pixel[hauteur, largeur];
@@ -4090,10 +4091,56 @@ namespace PSI___Louis___Meric
         }           //Convertit une valeur entière en un tableau de 9 bits
 
         /// <summary>
+        /// test de méthode d'ajout de bord blancs pour améliorer la lisibilité du qr code par la caméra, elle marche pas jsp pourquoi y a des modules qui disparaissent sur les contours
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
+        public static Pixel[,] AjoutBordsBlancs(Pixel[,] image)
+        {
+            Pixel[,] newImage = new Pixel[image.GetLength(0) + 4, image.GetLength(1) + 4];
+            for (int i = 0; i < newImage.GetLength(0); i++)
+                for (int j = 0; j < newImage.GetLength(1); j++)
+                    newImage[i, j] = new Pixel(0, 0, 0);
+
+            for (int i = 0; i < newImage.GetLength(0); i++)
+            {
+                for (int j = 0; j < 2; j++)
+                    newImage[i, j] = new Pixel(255, 255, 255);
+                for (int j = newImage.GetLength(1) - 2; j < newImage.GetLength(1); j++)
+                    newImage[i, j] = new Pixel(255, 255, 255);
+            }
+            for (int j = 2; j < newImage.GetLength(1) - 2; j++)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    newImage[i, j] = new Pixel(255, 255, 255);
+                }
+                for (int i = newImage.GetLength(0) - 2; i < newImage.GetLength(0); i++)
+                {
+                    newImage[i, j] = new Pixel(255, 255, 255);
+                }
+            }
+            
+            for (int i = 0; i < image.GetLength(0); i++)
+            {
+                for (int j = 0; j < image.GetLength(1); j++)
+                {
+                    newImage[i + 2, j + 2] = image[i, j];
+                }
+            }
+
+
+            return newImage;
+        }
+
+
+
+        /// <summary>
         /// Construit toutes les parties constantes d'un QR code de niveau 1
         /// </summary>
         /// <param name="imageQR">L'image du QRcode initialisé à la bonne taille permettant de noircir les pixels concernés</param>
         /// <returns>Une matrice de booléens indiquant quelles cases de l'image sont constantes et ne seront donc pas modifiées lors de l'écriture du QR code</returns>
+
         public static bool[,] ConstructionQRcodeNiveau1(Pixel[,] imageQR)
         {
             bool[,] casesOccupees = new bool[21, 21];
@@ -4556,8 +4603,8 @@ namespace PSI___Louis___Meric
                         }
                     }
                 }
-                
-                nouvelleImage = new MyImage("BitMap", 21 * 21 * 3 + 54, 21 * 21 * 3, 21, 21, 24, imageQR);
+                Pixel[,] imageQR2 = AjoutBordsBlancs(imageQR);
+                nouvelleImage = new MyImage("BitMap", 25 * 25 * 3 + 54, 25 * 25 * 3, 25, 25, 24, imageQR2);
             }
             else
             {
@@ -4788,7 +4835,8 @@ namespace PSI___Louis___Meric
                         }
                     }
                 }
-                nouvelleImage = new MyImage("BitMap", 25 * 25 * 3 + 54, 25 * 25 * 3, 25, 25, 24, imageQR);
+                Pixel[,] imageQR2 = AjoutBordsBlancs(imageQR);
+                nouvelleImage = new MyImage("BitMap", 29 * 29 * 3 + 54, 29 * 29 * 3, 29, 29, 24, imageQR2);
             }
             else
             {
