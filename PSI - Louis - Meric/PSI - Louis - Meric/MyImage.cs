@@ -4171,10 +4171,10 @@ namespace PSI___Louis___Meric
         }           //Convertit une valeur entière en un tableau de 9 bits
 
         /// <summary>
-        /// test de méthode d'ajout de bord blancs pour améliorer la lisibilité du qr code par la caméra, elle marche pas jsp pourquoi y a des modules qui disparaissent sur les contours
+        /// Méthode d'ajout de bord blancs pour améliorer la lisibilité du QR code par la caméra
         /// </summary>
-        /// <param name="image"></param>
-        /// <returns></returns>
+        /// <param name="image">Image dont on veut ajouter les bords blancs</param>
+        /// <returns>L'image en paramètre avec des bords blancs de 2 pixels de largeur</returns>
         public static Pixel[,] AjoutBordsBlancs(Pixel[,] image)
         {
             Pixel[,] newImage = new Pixel[image.GetLength(0) + 4, image.GetLength(1) + 4];
@@ -4213,14 +4213,11 @@ namespace PSI___Louis___Meric
             return newImage;
         }
 
-
-
         /// <summary>
         /// Construit toutes les parties constantes d'un QR code de niveau 1
         /// </summary>
         /// <param name="imageQR">L'image du QRcode initialisé à la bonne taille permettant de noircir les pixels concernés</param>
         /// <returns>Une matrice de booléens indiquant quelles cases de l'image sont constantes et ne seront donc pas modifiées lors de l'écriture du QR code</returns>
-
         public static bool[,] ConstructionQRcodeNiveau1(Pixel[,] imageQR)
         {
             bool[,] casesOccupees = new bool[21, 21];
@@ -4639,7 +4636,6 @@ namespace PSI___Louis___Meric
                     if (j == 8) j--;
                     for (int i = 20; i >= 0; i--)
                     {
-                        
                         if (casesOccupees[i, j] == false && casesCorrection[i, j] == false)
                         {
                             if (compteur < tailleComplet)
@@ -4686,8 +4682,8 @@ namespace PSI___Louis___Meric
             else
             {
                 for (int i = 0; i < 21; i++) for (int j = 0; j < 21; j++) imageQR[i, j] = new Pixel(255, 255, 255);       //renvoie un carré blanc s'il y a un caractère non lu dans la chaine à convertir
+                nouvelleImage = new MyImage("BitMap", 21 * 21 * 3 + 54, 21 * 21 * 3, 21, 21, 24, imageQR);
             }
-            nouvelleImage = new MyImage("BitMap", 21 * 21 * 3 + 54, 21 * 21 * 3, 21, 21, 24, imageQR);
             return nouvelleImage;
         }       //Construit un QR code de niveau 1 générant la chaine de caractère -chaine-
 
@@ -4946,14 +4942,15 @@ namespace PSI___Louis___Meric
                         }
                     }
                 }
+
                 Pixel[,] imageQR2 = AjoutBordsBlancs(imageQR);
                 nouvelleImage = new MyImage("BitMap", 29 * 29 * 3 + 54, 29 * 29 * 3, 29, 29, 24, imageQR2);
             }
             else
             {
                 for (int i = 0; i < 25; i++) for (int j = 0; j < 25; j++) imageQR[i, j] = new Pixel(255, 255, 255);
+                nouvelleImage = new MyImage("BitMap", 25 * 25 * 3 + 54, 25 * 25 * 3, 25, 25, 24, imageQR);
             }
-            nouvelleImage = new MyImage("BitMap", 25 * 25 * 3 + 54, 25 * 25 * 3, 25, 25, 24, imageQR);
             return nouvelleImage;
         }       //Construit un QR code de niveau 2 générant la chaine de caractère -chaine-
 
