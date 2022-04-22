@@ -1,6 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.Drawing;
+using System.Media;
+using System.ComponentModel;
 using System.IO;
 
 namespace PSI___Louis___Meric
@@ -110,7 +116,11 @@ namespace PSI___Louis___Meric
                 Pixel[,] limage = new Pixel[hauteurImage, largeurImage];            //remplissage de l'attribut du tableau de pixel
                 int x = 0;
                 int y = 0;
-                for (int i = 54; i < tab.Length - 2; i += 3)
+                int coefLargeur = 0;
+                if (this.largeurImage * 3 % 4 == 3) coefLargeur = 1;
+                if (this.largeurImage * 3 % 4 == 2) coefLargeur = 2;
+                if (this.largeurImage * 3 % 4 == 1) coefLargeur = 3;
+                for (int i = 54; i < tab.Length - 2 && x<hauteurImage; i += 3)
                 {
                     limage[x, y] = new Pixel(0, 0, 0);
                     limage[x, y].B = tab[i];
@@ -121,6 +131,7 @@ namespace PSI___Louis___Meric
                     {
                         y = 0;
                         x++;
+                        i += coefLargeur;
                     }
                 }
                 this.image = limage;
@@ -3354,14 +3365,14 @@ namespace PSI___Louis___Meric
         /// <summary>
         /// Convertit une valeur binaire sur 8 bits en un byte
         /// </summary>
-        /// <param name="tabHexadecimal">Valeur binaire à convertir en byte</param>
+        /// <param name="tabBinaire">Valeur binaire à convertir en byte</param>
         /// <returns>La valeur binaire convertie en byte</returns>
         public static byte Convert_Binary_To_Byte(int[] tabBinaire)
         {
             byte valeur = 0;
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < tabBinaire.Length; i++)
             {
-                valeur += (byte)(tabBinaire[i] * Math.Pow(2, 7 - i));
+                valeur += (byte)(tabBinaire[i] * Math.Pow(2, tabBinaire.Length - 1 - i));
             }
             return valeur;
         }           //return la valeur entière d'un nombre en binaire sur 8 bits
@@ -4116,6 +4127,157 @@ namespace PSI___Louis___Meric
         }  //return la valeur d'un charactère en alphanumérique
 
         /// <summary>
+        /// Convertit un entier en alphanumérique en son caractère correspondant
+        /// </summary>
+        /// <param name="valeur">La valeur alphanumérique à convertir</param>
+        /// <returns>Le caractère associé à la valeur alphanumérique à convertir</returns>
+        public static string ConvertAlphanumToChar(int valeur)
+        {
+            string lettre = "!";
+            switch (valeur)
+            {
+                case 0:
+                    lettre = "0";
+                    break;
+                case 1:
+                    lettre = "1";
+                    break;
+                case 2:
+                    lettre = "2";
+                    break;
+                case 3:
+                    lettre = "3";
+                    break;
+                case 4:
+                    lettre = "4";
+                    break;
+                case 5:
+                    lettre = "5";
+                    break;
+                case 6:
+                    lettre = "6";
+                    break;
+                case 7:
+                    lettre = "7";
+                    break;
+                case 8:
+                    lettre = "8";
+                    break;
+                case 9:
+                    lettre = "9";
+                    break;
+                case 10:
+                    lettre = "A";
+                    break;
+                case 11:
+                    lettre = "B";
+                    break;
+                case 12:
+                    lettre = "C";
+                    break;
+                case 13:
+                    lettre = "D";
+                    break;
+                case 14:
+                    lettre = "E";
+                    break;
+                case 15:
+                    lettre = "F";
+                    break;
+                case 16:
+                    lettre = "G";
+                    break;
+                case 17:
+                    lettre = "H";
+                    break;
+                case 18:
+                    lettre = "I";
+                    break;
+                case 19:
+                    lettre = "J";
+                    break;
+                case 20:
+                    lettre = "K";
+                    break;
+                case 21:
+                    lettre = "L";
+                    break;
+                case 22:
+                    lettre = "M";
+                    break;
+                case 23:
+                    lettre = "N";
+                    break;
+                case 24:
+                    lettre = "O";
+                    break;
+                case 25:
+                    lettre = "P";
+                    break;
+                case 26:
+                    lettre = "Q";
+                    break;
+                case 27:
+                    lettre = "R";
+                    break;
+                case 28:
+                    lettre = "S";
+                    break;
+                case 29:
+                    lettre = "T";
+                    break;
+                case 30:
+                    lettre = "U";
+                    break;
+                case 31:
+                    lettre = "V";
+                    break;
+                case 32:
+                    lettre = "W";
+                    break;
+                case 33:
+                    lettre = "X";
+                    break;
+                case 34:
+                    lettre = "Y";
+                    break;
+                case 35:
+                    lettre = "Z";
+                    break;
+                case 36:
+                    lettre = " ";
+                    break;
+                case 37:
+                    lettre = "$";
+                    break;
+                case 38:
+                    lettre = "%";
+                    break;
+                case 39:
+                    lettre = "*";
+                    break;
+                case 40:
+                    lettre = "+";
+                    break;
+                case 41:
+                    lettre = "-";
+                    break;
+                case 42:
+                    lettre = ".";
+                    break;
+                case 43:
+                    lettre = "/";
+                    break;
+                case 44:
+                    lettre = ":";
+                    break;
+                default:
+                    break;
+            }
+            return lettre;
+        }  //return la valeur d'un entier en alphanumérique au char correspondant
+
+        /// <summary>
         /// Transforme une chaine de 2 char en leur somme de leur valeur alphanumérique en base 45, puis convertit cette somme en sa valeur binaire sur 11 bits (ou 6 bits si -lettres- ne contient qu'un seul char)
         /// </summary>
         /// <param name="lettres">La chaine de 2 char à convertir</param>
@@ -4155,20 +4317,36 @@ namespace PSI___Louis___Meric
         }     //return une chaine de 2 caractères en binaire de 11 bits
 
         /// <summary>
-        /// Convertit une valeur entière en sa valeur binaire sur 9 bits
+        /// Convertit une valeur entière en sa valeur binaire sur nbrBits bits
         /// </summary>
         /// <param name="val">La valeur entière à convertir en binaire</param>
-        /// <returns>La valeur entière convertie en binaire sur 9 bits</returns>
-        public static int[] ConvertIntTo9Bits(int val)
+        /// <param name="nbrBits">Le nombre de bits sur lequel va être convertie la valeur entière</param>
+        /// <returns>La valeur entière convertie en binaire sur nbrBits bits</returns>
+        public static int[] ConvertIntToBinary(int val, int nbrBits)
         {
-            int[] tabBinaire = new int[9];
-            for (int i = 0; i < 9; i++)
+            int[] tabBinaire = new int[nbrBits];
+            for (int i = 0; i < nbrBits; i++)
             {
-                tabBinaire[i] = (byte)(val / Math.Pow(2, 8 - i));
-                val = (byte)(val % Math.Pow(2, 8 - i));
+                tabBinaire[i] = (byte)(val / Math.Pow(2, nbrBits - 1 - i));
+                val = (byte)(val % Math.Pow(2, nbrBits - 1 - i));
             }
             return tabBinaire;
-        }           //Convertit une valeur entière en un tableau de 9 bits
+        }           //Convertit une valeur entière en un tableau de binaire
+
+        /// <summary>
+        /// Convertit une valeur binaire en un int
+        /// </summary>
+        /// <param name="tabBinaire">Valeur binaire à convertir en int</param>
+        /// <returns>La valeur binaire convertie en int</returns>
+        public static int Convert_Binary_To_Int(int[] tabBinaire)
+        {
+            int valeur = 0;
+            for (int i = 0; i < tabBinaire.Length; i++)
+            {
+                valeur += (int)(tabBinaire[i] * Math.Pow(2, tabBinaire.Length - 1 - i));
+            }
+            return valeur;
+        }           //return la valeur entière d'un nombre en binaire
 
         /// <summary>
         /// Méthode d'ajout de bord blancs pour améliorer la lisibilité du QR code par la caméra
@@ -4216,14 +4394,17 @@ namespace PSI___Louis___Meric
         /// </summary>
         /// <param name="image">Image dont on veut retirer les bords blancs</param>
         /// <returns>L'image en paramètre avec des bords blancs retirés</returns>
-        public static Pixel[,] RetirerBordsBlancs(Pixel[,] image)
+        public static Pixel[,] RetirerBordsBlancs(Pixel[,] image, int coef)
         {
-            Pixel[,] newImage = new Pixel[image.GetLength(0) - 4, image.GetLength(1) - 4];
+            Pixel[,] newImage = new Pixel[image.GetLength(0) - 4 * coef, image.GetLength(1) - 4 * coef];
             for (int i=0; i<newImage.GetLength(0); i++)
             {
                 for (int j=0; j<newImage.GetLength(1); j++)
                 {
-                    newImage[i, j] = image[i + 2, j + 2];
+                    newImage[i, j] = new Pixel(0, 0, 0);
+                    newImage[i, j].R = image[i + 2*coef, j + 2*coef].R;
+                    newImage[i, j].G = image[i + 2*coef, j + 2*coef].G;
+                    newImage[i, j].B = image[i + 2*coef, j + 2*coef].B;
                 }
             }
             return newImage;
@@ -4532,7 +4713,7 @@ namespace PSI___Louis___Meric
                 tabComplet[1] = 0;
                 tabComplet[2] = 1;
                 tabComplet[3] = 0;
-                int[] tabNombreCaracteres = ConvertIntTo9Bits(chaine.Length);
+                int[] tabNombreCaracteres = ConvertIntToBinary(chaine.Length, 9);
                 for (int i = 4; i < 13; i++) tabComplet[i] = tabNombreCaracteres[i - 4];
 
                 int n = 13;
@@ -4759,7 +4940,7 @@ namespace PSI___Louis___Meric
                 tabComplet[1] = 0;
                 tabComplet[2] = 1;
                 tabComplet[3] = 0;
-                int[] tabNombreCaracteres = ConvertIntTo9Bits(chaine.Length);
+                int[] tabNombreCaracteres = ConvertIntToBinary(chaine.Length, 9);
                 for (int i = 4; i < 13; i++) tabComplet[i] = tabNombreCaracteres[i - 4];
 
                 int n = 13;
@@ -4974,80 +5155,279 @@ namespace PSI___Louis___Meric
         /// Lit un QR code donné et renvoie son contenu
         /// </summary>
         /// <returns>La chaîne de caractère contenue dans un QR code</returns>
-        public MyImage LectureQRcode()
+        public string LectureQRcode()
         {
-            Pixel[,] imageQR = RetirerBordsBlancs(this.image);
+            string rep = "";
+            Pixel[,] imageQR = RetirerBordsBlancs(this.image,1);
             short niveau = 1;
-            if (this.largeurImage == 25) niveau = 2;
+            if (imageQR.GetLength(0) == 25) niveau = 2;
             switch (niveau)
             {
                 case 1:
                     Pixel[,] inutile = new Pixel[21, 21];
                     bool[,] casesOccupees = ConstructionQRcodeNiveau1(inutile);
-                    int compteurCasesOccupees = 0;
-                    for (int i = 0; i < 21; i++) for (int j = 0; j < 21; j++) if (casesOccupees[i, j] == true) compteurCasesOccupees++;
-                    int[][] tabBinaireTotal = new int[(21*21 - compteurCasesOccupees - 7*8) / 8][];
-                    for (int i = 0; i < tabBinaireTotal.Length; i++) tabBinaireTotal[i] = new int[8];
 
-                    int a = 0;
-                    int b = 0;
-                    int compteurHeader = 0;
-                    for (int j=20; j>=3; j-=4)
+                    for (int i = 0; i < 21; i++)
                     {
-                        for (int i=0; i<21; i++)
+                        for (int j = 0; j < 21; j++)
                         {
-                            if (casesOccupees[i, j] == false && compteurHeader>13)
+                            if (casesOccupees[i, j] == false && (i + j) % 2 == 0)                   //on retire le masquage 0
                             {
-                                if (imageQR[i, j].R == 0) tabBinaireTotal[a][b] = 1;
-                                if (b < 7) b++;
-                                else
-                                {
-                                    b = 0;
-                                    a++;
-                                }
-                            }
-                            compteurHeader++;
-                            if (casesOccupees[i, j-1] == false)
-                            {
-                                if (imageQR[i, j-1].R == 0) tabBinaireTotal[a][b] = 1;
-                                if (b < 7) b++;
-                                else
-                                {
-                                    b = 0;
-                                    a++;
-                                }
-                            }
-                        }
-                        for (int i=20; i>=0; i--)
-                        {
-                            if (casesOccupees[i, j-2] == false)
-                            {
-                                if (imageQR[i, j-2].R == 0) tabBinaireTotal[a][b] = 1;
-                                if (b < 7) b++;
-                                else
-                                {
-                                    b = 0;
-                                    a++;
-                                }
-                            }
-                            if (casesOccupees[i, j - 3] == false)
-                            {
-                                if (imageQR[i, j - 3].R == 0) tabBinaireTotal[a][b] = 1;
-                                if (b < 7) b++;
-                                else
-                                {
-                                    b = 0;
-                                    a++;
-                                }
+                                if (imageQR[i, j].R == 0) imageQR[i, j] = new Pixel(255, 255, 255);
+                                else imageQR[i, j] = new Pixel(0, 0, 0);
                             }
                         }
                     }
 
-                    byte[] tabByteTotal = new byte[tabBinaireTotal.Length];
-                    for (int i = 0; i < tabByteTotal.Length; i++) tabByteTotal[i] = Convert_Binary_To_Byte(tabBinaireTotal[i]);
+                    int[] tabTailleMessage = new int[9];
+                    int n = 0;
+                    for (int i = 2; i < 21 && n < 9; i++)
+                    {
+                        if (casesOccupees[i, 20] == false && imageQR[i, 20].R == 0) tabTailleMessage[n] = 1;
+                        n++;
+                        if (casesOccupees[i, 19] == false && imageQR[i, 19].R == 0 && n < 9) tabTailleMessage[n] = 1;
+                        n++;
+                    }
+                    int tailleMessage = Convert_Binary_To_Int(tabTailleMessage);
+                    int addition = 0;
+                    int nbrBitsMessage = (tailleMessage / 2) * 11;
+                    if (tailleMessage % 2 == 1)
+                    {
+                        nbrBitsMessage += 6;
+                        addition = 1;
+                    }
+
+                    int compteurHeader = 0;
+                    int compteurBitsMessage = 0;
+                    int[][] tabBinaireAlphanum = new int[nbrBitsMessage / 11 + addition][];
+                    for (int i=0; i<tabBinaireAlphanum.Length; i++)
+                    {
+                        if (i != nbrBitsMessage / 11) tabBinaireAlphanum[i] = new int[11];
+                        else tabBinaireAlphanum[i] = new int[6];
+                    }
+                    int a = 0;
+                    int b = 0;
+                    for (int j = 20; j >= 3 && compteurBitsMessage < nbrBitsMessage; j -= 4)
+                    {
+                        for (int i = 0; i < 21 && compteurBitsMessage < nbrBitsMessage; i++)
+                        {
+                            if (compteurHeader >= 13)
+                            {
+                                if (casesOccupees[i, j] == false)
+                                {
+                                    if (imageQR[i, j].R == 0) tabBinaireAlphanum[a][b] = 1;
+                                    if (a < tabBinaireAlphanum.Length && b < tabBinaireAlphanum[a].Length - 1) b++;
+                                    else
+                                    {
+                                        b = 0;
+                                        a++;
+                                    }
+                                    compteurBitsMessage++;
+                                }
+                            }
+                            compteurHeader++;
+                            if (compteurHeader >= 13)
+                            {
+                                if (casesOccupees[i, j - 1] == false)
+                                {
+                                    if (imageQR[i, j - 1].R == 0 && compteurBitsMessage < nbrBitsMessage) tabBinaireAlphanum[a][b] = 1;
+                                    if (a < tabBinaireAlphanum.Length && b < tabBinaireAlphanum[a].Length - 1) b++;
+                                    else
+                                    {
+                                        b = 0;
+                                        a++;
+                                    }
+                                    compteurBitsMessage++;
+                                }
+                            }
+                            compteurHeader++;
+                        }
+                        for (int i=20; i>=0 && compteurBitsMessage < nbrBitsMessage; i--)
+                        {
+                            if (casesOccupees[i, j - 2] == false)
+                            {
+                                if (imageQR[i, j - 2].R == 0) tabBinaireAlphanum[a][b] = 1;
+                                if (a < tabBinaireAlphanum.Length && b < tabBinaireAlphanum[a].Length - 1) b++;
+                                else
+                                {
+                                    b = 0;
+                                    a++;
+                                }
+                                compteurBitsMessage++;
+                            }
+                            if (casesOccupees[i, j - 3] == false)
+                            {
+                                if (imageQR[i, j - 3].R == 0 && compteurBitsMessage < nbrBitsMessage) tabBinaireAlphanum[a][b] = 1;
+                                if (a < tabBinaireAlphanum.Length && b < tabBinaireAlphanum[a].Length - 1) b++;
+                                else
+                                {
+                                    b = 0;
+                                    a++;
+                                }
+                                compteurBitsMessage++;
+                            }
+                        }
+                    }
+
+                    int[] tabIntAlphanum = new int[tabBinaireAlphanum.Length];
+                    int[] valeursAlphanumCharPair = new int[2];
+                    int valeurAlphanumCharImpair;
+                    for (int i = 0; i < tabBinaireAlphanum.Length; i++)
+                    {
+                        tabIntAlphanum[i] = Convert_Binary_To_Int(tabBinaireAlphanum[i]);
+                        if (i != nbrBitsMessage / 11)
+                        {
+                            for (int x = 0; x < 45; x++)
+                            {
+                                if ((tabIntAlphanum[i] - x) % 45 == 0)
+                                {
+                                    valeursAlphanumCharPair[1] = x;
+                                    valeursAlphanumCharPair[0] = (tabIntAlphanum[i] - x) / 45;
+                                }
+                            }
+                            rep += ConvertAlphanumToChar(valeursAlphanumCharPair[0]);
+                            rep += ConvertAlphanumToChar(valeursAlphanumCharPair[1]);
+                        }
+                        else
+                        {
+                            valeurAlphanumCharImpair = tabIntAlphanum[i];
+                            rep += ConvertAlphanumToChar(valeurAlphanumCharImpair);
+                        }
+                    }
+                    break;
+                case 2:
+                    Pixel[,] inutile2 = new Pixel[25, 25];
+                    bool[,] casesOccupees2 = ConstructionQRcodeNiveau2(inutile2);
+
+                    for (int i = 0; i < 25; i++)
+                    {
+                        for (int j = 0; j < 25; j++)
+                        {
+                            if (casesOccupees2[i, j] == false && (i + j) % 2 == 0)                   //on retire le masquage 0
+                            {
+                                if (imageQR[i, j].R == 0) imageQR[i, j] = new Pixel(255, 255, 255);
+                                else imageQR[i, j] = new Pixel(0, 0, 0);
+                            }
+                        }
+                    }
+                    int[] tabTailleMessage2 = new int[9];
+                    int n2 = 0;
+                    for (int i = 2; i < 25 && n2 < 9; i++)
+                    {
+                        if (casesOccupees2[i, 24] == false && imageQR[i, 24].R == 0) tabTailleMessage2[n2] = 1;
+                        n2++;
+                        if (casesOccupees2[i, 23] == false && imageQR[i, 23].R == 0 && n2 < 9) tabTailleMessage2[n2] = 1;
+                        n2++;
+                    }
+                    int tailleMessage2 = Convert_Binary_To_Int(tabTailleMessage2);
+                    int addition2 = 0;
+                    int nbrBitsMessage2 = (tailleMessage2 / 2) * 11;
+                    if (tailleMessage2 % 2 == 1)
+                    {
+                        nbrBitsMessage2 += 6;
+                        addition2 = 1;
+                    }
+
+                    int compteurHeader2 = 0;
+                    int compteurBitsMessage2 = 0;
+                    int[][] tabBinaireAlphanum2 = new int[nbrBitsMessage2 / 11 + addition2][];
+                    for (int i = 0; i < tabBinaireAlphanum2.Length; i++)
+                    {
+                        if (i != nbrBitsMessage2 / 11) tabBinaireAlphanum2[i] = new int[11];
+                        else tabBinaireAlphanum2[i] = new int[6];
+                    }
+                    int a2 = 0;
+                    int b2 = 0;
+                    for (int j = 24; j >= 3 && compteurBitsMessage2 < nbrBitsMessage2; j -= 4)
+                    {
+                        for (int i = 0; i < 25 && compteurBitsMessage2 < nbrBitsMessage2; i++)
+                        {
+                            if (compteurHeader2 >= 13)
+                            {
+                                if (casesOccupees2[i, j] == false)
+                                {
+                                    if (imageQR[i, j].R == 0) tabBinaireAlphanum2[a2][b2] = 1;
+                                    if (a2 < tabBinaireAlphanum2.Length && b2 < tabBinaireAlphanum2[a2].Length - 1) b2++;
+                                    else
+                                    {
+                                        b2 = 0;
+                                        a2++;
+                                    }
+                                    compteurBitsMessage2++;
+                                }
+                            }
+                            compteurHeader2++;
+                            if (compteurHeader2 >= 13)
+                            {
+                                if (casesOccupees2[i, j - 1] == false)
+                                {
+                                    if (imageQR[i, j - 1].R == 0 && compteurBitsMessage2 < nbrBitsMessage2) tabBinaireAlphanum2[a2][b2] = 1;
+                                    if (a2 < tabBinaireAlphanum2.Length && b2 < tabBinaireAlphanum2[a2].Length - 1) b2++;
+                                    else
+                                    {
+                                        b2 = 0;
+                                        a2++;
+                                    }
+                                    compteurBitsMessage2++;
+                                }
+                            }
+                            compteurHeader2++;
+                        }
+                        for (int i = 24; i >= 0 && compteurBitsMessage2 < nbrBitsMessage2; i--)
+                        {
+                            if (casesOccupees2[i, j - 2] == false)
+                            {
+                                if (imageQR[i, j - 2].R == 0) tabBinaireAlphanum2[a2][b2] = 1;
+                                if (a2 < tabBinaireAlphanum2.Length && b2 < tabBinaireAlphanum2[a2].Length - 1) b2++;
+                                else
+                                {
+                                    b2 = 0;
+                                    a2++;
+                                }
+                                compteurBitsMessage2++;
+                            }
+                            if (casesOccupees2[i, j - 3] == false)
+                            {
+                                if (imageQR[i, j - 3].R == 0 && compteurBitsMessage2 < nbrBitsMessage2) tabBinaireAlphanum2[a2][b2] = 1;
+                                if (a2 < tabBinaireAlphanum2.Length && b2 < tabBinaireAlphanum2[a2].Length - 1) b2++;
+                                else
+                                {
+                                    b2 = 0;
+                                    a2++;
+                                }
+                                compteurBitsMessage2++;
+                            }
+                        }
+                    }
+
+                    int[] tabIntAlphanum2 = new int[tabBinaireAlphanum2.Length];
+                    int[] valeursAlphanumCharPair2 = new int[2];
+                    int valeurAlphanumCharImpair2;
+                    for (int i = 0; i < tabBinaireAlphanum2.Length; i++)
+                    {
+                        tabIntAlphanum2[i] = Convert_Binary_To_Int(tabBinaireAlphanum2[i]);
+                        if (i != nbrBitsMessage2 / 11)
+                        {
+                            for (int x = 0; x < 45; x++)
+                            {
+                                if ((tabIntAlphanum2[i] - x) % 45 == 0)
+                                {
+                                    valeursAlphanumCharPair2[1] = x;
+                                    valeursAlphanumCharPair2[0] = (tabIntAlphanum2[i] - x) / 45;
+                                }
+                            }
+                            rep += ConvertAlphanumToChar(valeursAlphanumCharPair2[0]);
+                            rep += ConvertAlphanumToChar(valeursAlphanumCharPair2[1]);
+                        }
+                        else
+                        {
+                            valeurAlphanumCharImpair2 = tabIntAlphanum2[i];
+                            rep += ConvertAlphanumToChar(valeurAlphanumCharImpair2);
+                        }
+                    }
                     break;
             }
-            return null;
+            return rep;
         }
     }
 }

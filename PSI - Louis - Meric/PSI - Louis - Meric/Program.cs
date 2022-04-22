@@ -20,9 +20,43 @@ namespace PSI___Louis___Meric
             Console.WriteLine("Que souhaitez-vous faire ?\n"
                             + "1 : Traiter une image\n"
                             + "2 : Dessiner une fractale\n"
-                            + "3 : Générer un QR code\n");
+                            + "3 : Générer un QR code\n"
+                            + "4 : Lire un QR code\n");
             Console.WriteLine("Tapez le numéro d'une fonction pour la lancer, ou n'importe quoi d'autre pour fermer le programme");
             string reponse = Console.ReadLine();
+            if (reponse == "4")
+            {
+                while (reponse != "q" && reponse != "Q" && reponse != "Quitter" && reponse != "QUITTER" && reponse != "quitter")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Que souhaitez-vous faire ?\n"
+                        + "1 : Lire un QR code test codant 'HELLO WORLD'\n"
+                        + "2 : Lire le dernier QR code généré\n"
+                        + "Tapez le numéro d'une fonction pour la lancer, ou 'quitter' pour fermer le programme");
+                    reponse = Console.ReadLine();
+                    if (reponse == "1")
+                    {
+                        MyImage QRcodeHelloWorld = MyImage.QRcodeNiveau1("HELLO WORLD").Agrandir(10,10);
+                        QRcodeHelloWorld.From_Image_To_File("QRcodeHelloWorld.bmp");
+                        Console.WriteLine("Voici le QR code que vous souhaitez décoder :\nAppuyez sur une touche pour continuer");
+                        Process.Start("QRcodeHelloWorld.bmp");
+                        Console.ReadKey();
+                        Console.WriteLine("Le message caché derrière ce QR code est : " + QRcodeHelloWorld.Reduire(10,10).LectureQRcode());
+                        Console.WriteLine("Appuyez sur une touche pour revenir au menu");
+                        Console.ReadKey();
+                    }
+                    if (reponse == "2")
+                    {
+                        MyImage testQRcode = new MyImage("testQRcode.bmp");
+                        Console.WriteLine("Voici le QR code que vous souhaitez décoder :\nAppuyez sur une touche pour continuer");
+                        Process.Start("testQRcode.bmp");
+                        Console.ReadKey();
+                        Console.WriteLine("Le message caché derrière ce QR code est : " + testQRcode.Reduire(10,10).LectureQRcode());
+                        Console.WriteLine("Appuyez sur une touche pour revenir au menu");
+                        Console.ReadKey();
+                    }
+                }
+            }
             if (reponse == "3")
             {
                 while (reponse != "q" && reponse != "Q" && reponse != "Quitter" && reponse != "QUITTER" && reponse != "quitter")
