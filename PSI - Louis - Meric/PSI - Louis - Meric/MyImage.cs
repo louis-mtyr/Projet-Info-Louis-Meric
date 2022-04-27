@@ -11,7 +11,7 @@ using System.IO;
 
 namespace PSI___Louis___Meric
 {
-    class MyImage
+    public class MyImage
     {
         private string myfile;
         private string typeImage;
@@ -231,7 +231,7 @@ namespace PSI___Louis___Meric
         /// </summary>
         /// <param name="val">La valeur entière à convertir</param>
         /// <returns>Le tableau d'octets correspondant à la valeur entrée au format endian</returns>
-        public byte[] Convert_Int_To_Endian(int val)        //Convertir du base 10 en base 256 en little endian
+        public static byte[] Convert_Int_To_Endian(int val)        //Convertir du base 10 en base 256 en little endian
         {
             byte[] tab = new byte[4];
             if (val >= (256 * 256 * 256))
@@ -3785,16 +3785,16 @@ namespace PSI___Louis___Meric
                     yn = cooImaginaire;
                     i = 0;
 
-                    while ((xn * xn + yn * yn) < 20 && i < iteration_max)        //il est admis que si xn² + yn² >4, la suite DV vers l'infini
+                    while ((xn * xn + yn * yn) < 20 && i < iteration_max)        //il est admis que si xn² + yn² >20, la suite DV vers l'infini
                     {
                         tmp_x = xn; //stockage xn -1 et yn - 1
                         tmp_y = yn;
                         //application de la suite terme(n+1) = terme(n)² + point
-                        xn = tmp_x * tmp_x - tmp_y * tmp_y - 0.39;
+                        xn = tmp_x * tmp_x - tmp_y * tmp_y - 0.39;  //ici le point associé a la fractale de julia est z = -0.39 - 0.59i
                         yn = 2 * tmp_x * tmp_y - 0.59;
                         i++;
                     }
-                    //si xn² + yn² >4 avant l'iteration max, la suite DV et on colorie
+                    //si xn² + yn² >20 avant l'iteration max, la suite DV et on colorie
                     if (i != iteration_max) newImage[x, y] = new Pixel((byte)((coefR * i) % 256), (byte)((coefG * i) % 256), (byte)((coefB * i) % 256));
                 }
             }
@@ -3842,16 +3842,16 @@ namespace PSI___Louis___Meric
                     yn = cooImaginaire;
                     i = 0;
 
-                    while ((xn * xn + yn * yn) < 20 && i < iteration_max)        //il est admis que si xn² + yn² >4, la suite DV vers l'infini
+                    while ((xn * xn + yn * yn) < 20 && i < iteration_max)        //il est admis que si xn² + yn² >20, la suite DV vers l'infini
                     {
                         tmp_x = xn; //stockage xn -1 et yn - 1
                         tmp_y = yn;
                         //application de la suite terme(n+1) = terme(n)² + point
-                        xn = tmp_x * tmp_x - tmp_y * tmp_y - 0.79;
+                        xn = tmp_x * tmp_x - tmp_y * tmp_y - 0.79; //ici le point associé a la fractale de julia est -0.79 + 0.15i
                         yn = 2 * tmp_x * tmp_y + 0.15;
                         i++;
                     }
-                    //si xn² + yn² >4 avant l'iteration max, la suite DV et on colorie
+                    //si xn² + yn² >20 avant l'iteration max, la suite DV et on colorie
                     if (i != iteration_max) newImage[x, y] = new Pixel((byte)((coefR * i) % 256), (byte)((coefG * i) % 256), (byte)((coefB * i) % 256));
                 }
             }
@@ -3899,16 +3899,16 @@ namespace PSI___Louis___Meric
                     yn = cooImaginaire;
                     i = 0;
 
-                    while ((xn * xn + yn * yn) < 20 && i < iteration_max)        //il est admis que si xn² + yn² >4, la suite DV vers l'infini
+                    while ((xn * xn + yn * yn) < 20 && i < iteration_max)        //il est admis que si xn² + yn² >20, la suite DV vers l'infini
                     {
                         tmp_x = xn; //stockage xn -1 et yn - 1
                         tmp_y = yn;
                         //application de la suite terme(n+1) = terme(n)² + point
-                        xn = tmp_x * tmp_x - tmp_y * tmp_y - 0.7;
+                        xn = tmp_x * tmp_x - tmp_y * tmp_y - 0.7;   //ici le point associé a la fractale de julia est z = -0.7 + 0.27015i
                         yn = 2 * tmp_x * tmp_y + 0.27015;
                         i++;
                     }
-                    //si xn² + yn² >4 avant l'iteration max, la suite DV et on colorie
+                    //si xn² + yn² >20 avant l'iteration max, la suite DV et on colorie
                     if (i != iteration_max) newImage[x, y] = new Pixel((byte)((coefR * i) % 256), (byte)((coefG * i) % 256), (byte)((coefB * i) % 256));
                 }
             }
@@ -4653,6 +4653,7 @@ namespace PSI___Louis___Meric
                     k++;
                 }
             }
+            
             return tabBinaire;
         }           //Transforme une chaine de caractères en valeurs binaires sous forme de tableau de tableau
 
@@ -4672,6 +4673,7 @@ namespace PSI___Louis___Meric
             if (chaine.Length % 2 == 0) taille = chaine.Length / 2;
             else taille = chaine.Length / 2 + 1;
             int[][] tabBinaire = ConvertStringToTabBinaire(chaine);
+           
             bool legit = true;                                                          //vérifie que les caractères sont compris en alphanumérique
             for (int i = 0; i < taille; i++) if (tabBinaire[i] == null) legit = false;
 
