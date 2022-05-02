@@ -14,3 +14,19 @@ C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\P
 C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.pdb
 C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.genruntimeconfig.cache
 C:\Users\martyr\Desktop\Travail\A2 - info\Pb scientifique info\PSI - framework\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation_Forms.Properties.Resources.resources
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\bin\Debug\netcoreapp3.1\Présentation Forms.exe
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\bin\Debug\netcoreapp3.1\Présentation Forms.deps.json
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\bin\Debug\netcoreapp3.1\Présentation Forms.runtimeconfig.json
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\bin\Debug\netcoreapp3.1\Présentation Forms.runtimeconfig.dev.json
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\bin\Debug\netcoreapp3.1\Présentation Forms.dll
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\bin\Debug\netcoreapp3.1\Présentation Forms.pdb
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.csproj.AssemblyReference.cache
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation_Forms.Form1.resources
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation_Forms.Properties.Resources.resources
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.csproj.GenerateResource.cache
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.AssemblyInfoInputs.cache
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.AssemblyInfo.cs
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.csproj.CoreCompileInputs.cache
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.dll
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.pdb
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\Présentation Forms\obj\Debug\netcoreapp3.1\Présentation Forms.genruntimeconfig.cache
