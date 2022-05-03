@@ -4491,8 +4491,8 @@ namespace PSI___Louis___Meric
                 for (int i = tailleComplet - (8 - bourrage); i < tailleComplet; i++) tabComplet[i] = 0;
 
                 int compteurCasesOccuppees = 0;
-                for (int i = 0; i < 21; i++) for (int j = 0; j < 21; j++) if (casesOccupees[i, j] == true) compteurCasesOccuppees++;           //compte le nombre de cases intouchables
-                int nombrePixelsBourrage = 21 * 21 - compteurCasesOccuppees - tailleComplet - 7 * 8;                //compte le nombre de pixels total que l'on doit remplir par la complétion de données
+                for (int i = 0; i < 25; i++) for (int j = 0; j < 25; j++) if (casesOccupees[i, j] == true) compteurCasesOccuppees++;           //compte le nombre de cases intouchables
+                int nombrePixelsBourrage = 25 * 25 - compteurCasesOccuppees - tailleComplet - 10 * 8;                //compte le nombre de pixels total que l'on doit remplir par la complétion de données
 
                 byte[] nombreByteFromBinaire = new byte[tailleComplet / 8 + nombrePixelsBourrage / 8];
                 int[][] donneesCompleteBinaire = new int[tailleComplet / 8 + nombrePixelsBourrage / 8][];    //prépare le tableau de binaire pour le transformer en tableau d'octets pour la correction
@@ -4541,18 +4541,13 @@ namespace PSI___Louis___Meric
                 }
 
                 bool[,] casesCorrection = new bool[25, 25];
-                for (int j = 0; j < 25; j += 2)
+                for (int j = 0; j < 25; j++)
                 {
-                    for (int i = 24; i >= 0 && compteurCorrection < 10 * 8; i--)
+                    for (int i = 0; i < 25 && compteurCorrection < 10 * 8; i++)
                     {
                         if (casesOccupees[i, j] == false)
                         {
                             casesCorrection[i, j] = true;
-                            compteurCorrection++;
-                        }
-                        if (casesOccupees[i, j + 1] == false)
-                        {
-                            casesCorrection[i, j + 1] = true;
                             compteurCorrection++;
                         }
                     }
