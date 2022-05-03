@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Louis\\Desktop\\travail\\A2 - Info\\Problème scientifique informatique\\PSI - Louis - Meric\\PSI - Louis - Meric\\Présentation Forms\\Présentation Forms.csproj": {}
+    "C:\\Users\\meric\\OneDrive\\Bureau\\ESILV A2\\S2\\Pb_Scientifique_Informatique\\Projet\\PSI - Louis - Meric\\Présentation Forms\\Présentation Forms.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Louis\\Desktop\\travail\\A2 - Info\\Problème scientifique informatique\\PSI - Louis - Meric\\PSI - Louis - Meric\\Présentation Forms\\Présentation Forms.csproj": {
+    "C:\\Users\\meric\\OneDrive\\Bureau\\ESILV A2\\S2\\Pb_Scientifique_Informatique\\Projet\\PSI - Louis - Meric\\Présentation Forms\\Présentation Forms.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Louis\\Desktop\\travail\\A2 - Info\\Problème scientifique informatique\\PSI - Louis - Meric\\PSI - Louis - Meric\\Présentation Forms\\Présentation Forms.csproj",
+        "projectUniqueName": "C:\\Users\\meric\\OneDrive\\Bureau\\ESILV A2\\S2\\Pb_Scientifique_Informatique\\Projet\\PSI - Louis - Meric\\Présentation Forms\\Présentation Forms.csproj",
         "projectName": "Présentation Forms",
-        "projectPath": "C:\\Users\\Louis\\Desktop\\travail\\A2 - Info\\Problème scientifique informatique\\PSI - Louis - Meric\\PSI - Louis - Meric\\Présentation Forms\\Présentation Forms.csproj",
-        "packagesPath": "C:\\Users\\Louis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Louis\\Desktop\\travail\\A2 - Info\\Problème scientifique informatique\\PSI - Louis - Meric\\PSI - Louis - Meric\\Présentation Forms\\obj\\",
+        "projectPath": "C:\\Users\\meric\\OneDrive\\Bureau\\ESILV A2\\S2\\Pb_Scientifique_Informatique\\Projet\\PSI - Louis - Meric\\Présentation Forms\\Présentation Forms.csproj",
+        "packagesPath": "C:\\Users\\meric\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\meric\\OneDrive\\Bureau\\ESILV A2\\S2\\Pb_Scientifique_Informatique\\Projet\\PSI - Louis - Meric\\Présentation Forms\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Louis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\meric\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,7 +61,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

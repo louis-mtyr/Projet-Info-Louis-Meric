@@ -12,3 +12,10 @@ C:\Users\Louis\Desktop\travail\A2 - Info\Problème scientifique informatique\PSI
 C:\Users\Louis\Desktop\travail\A2 - Info\Problème scientifique informatique\PSI - Louis - Meric\PSI - Louis - Meric\PSI - Louis - Meric\obj\Debug\PSI - Louis - Meric.csproj.CoreCompileInputs.cache
 C:\Users\Louis\Desktop\travail\A2 - Info\Problème scientifique informatique\PSI - Louis - Meric\PSI - Louis - Meric\PSI - Louis - Meric\obj\Debug\PSI - Louis - Meric.exe
 C:\Users\Louis\Desktop\travail\A2 - Info\Problème scientifique informatique\PSI - Louis - Meric\PSI - Louis - Meric\PSI - Louis - Meric\obj\Debug\PSI - Louis - Meric.pdb
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI - Louis - Meric\bin\Debug\PSI - Louis - Meric.exe.config
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI - Louis - Meric\bin\Debug\PSI - Louis - Meric.exe
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI - Louis - Meric\bin\Debug\PSI - Louis - Meric.pdb
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI - Louis - Meric\obj\Debug\PSI - Louis - Meric.csproj.AssemblyReference.cache
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI - Louis - Meric\obj\Debug\PSI - Louis - Meric.csproj.CoreCompileInputs.cache
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI - Louis - Meric\obj\Debug\PSI - Louis - Meric.exe
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI - Louis - Meric\obj\Debug\PSI - Louis - Meric.pdb

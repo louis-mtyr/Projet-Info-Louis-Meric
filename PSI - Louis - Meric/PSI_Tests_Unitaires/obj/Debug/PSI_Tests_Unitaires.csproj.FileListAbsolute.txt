@@ -1,0 +1,20 @@
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\obj\Debug\PSI_Tests_Unitaires.csproj.AssemblyReference.cache
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\obj\Debug\PSI_Tests_Unitaires.csproj.CoreCompileInputs.cache
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\bin\Debug\fr\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\bin\Debug\fr\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\bin\Debug\fr\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\bin\Debug\PSI_Tests_Unitaires.dll
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\bin\Debug\PSI_Tests_Unitaires.pdb
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\bin\Debug\PSI - Louis - Meric.exe
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\bin\Debug\PSI - Louis - Meric.pdb
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\bin\Debug\PSI - Louis - Meric.exe.config
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\obj\Debug\PSI_Tests_Unitaires.csproj.CopyComplete
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\obj\Debug\PSI_Tests_Unitaires.dll
+C:\Users\meric\OneDrive\Bureau\ESILV A2\S2\Pb_Scientifique_Informatique\Projet\PSI - Louis - Meric\PSI_Tests_Unitaires\obj\Debug\PSI_Tests_Unitaires.pdb

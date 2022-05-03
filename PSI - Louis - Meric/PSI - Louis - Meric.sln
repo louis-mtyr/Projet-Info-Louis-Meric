@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSI - Louis - Meric", "PSI - Louis - Meric\PSI - Louis - Meric.csproj", "{6567C365-9C60-407A-BF21-1911C061B439}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Présentation Forms", "Présentation Forms\Présentation Forms.csproj", "{66D5E3EF-6973-4F4B-8595-3BAFFD8224B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Présentation Forms", "Présentation Forms\Présentation Forms.csproj", "{66D5E3EF-6973-4F4B-8595-3BAFFD8224B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSI_Tests_Unitaires", "PSI_Tests_Unitaires\PSI_Tests_Unitaires.csproj", "{DEA14AA1-A797-4749-9B66-9FBA73E146E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{66D5E3EF-6973-4F4B-8595-3BAFFD8224B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66D5E3EF-6973-4F4B-8595-3BAFFD8224B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66D5E3EF-6973-4F4B-8595-3BAFFD8224B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEA14AA1-A797-4749-9B66-9FBA73E146E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEA14AA1-A797-4749-9B66-9FBA73E146E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEA14AA1-A797-4749-9B66-9FBA73E146E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEA14AA1-A797-4749-9B66-9FBA73E146E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -19,10 +19,44 @@ namespace PSI___Louis___Meric
             Console.WindowWidth = Console.LargestWindowWidth;
             Console.WriteLine("Que souhaitez-vous faire ?\n"
                             + "1 : Traiter une image\n"
-                            + "2 : Dessiner une fractale de Mandelbrot\n"
-                            + "3 : Générer un QR code\n");
+                            + "2 : Dessiner une fractale\n"
+                            + "3 : Générer un QR code\n"
+                            + "4 : Lire un QR code\n");
             Console.WriteLine("Tapez le numéro d'une fonction pour la lancer, ou n'importe quoi d'autre pour fermer le programme");
             string reponse = Console.ReadLine();
+            if (reponse == "4")
+            {
+                while (reponse != "q" && reponse != "Q" && reponse != "Quitter" && reponse != "QUITTER" && reponse != "quitter")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Que souhaitez-vous faire ?\n"
+                        + "1 : Lire un QR code test codant 'HELLO WORLD'\n"
+                        + "2 : Lire le dernier QR code généré\n"
+                        + "Tapez le numéro d'une fonction pour la lancer, ou 'quitter' pour fermer le programme");
+                    reponse = Console.ReadLine();
+                    if (reponse == "1")
+                    {
+                        MyImage QRcodeHelloWorld = MyImage.QRcodeNiveau1("HELLO WORLD").Agrandir(10,10);
+                        QRcodeHelloWorld.From_Image_To_File("QRcodeHelloWorld.bmp");
+                        Console.WriteLine("Voici le QR code que vous souhaitez décoder :\nAppuyez sur une touche pour continuer");
+                        Process.Start("QRcodeHelloWorld.bmp");
+                        Console.ReadKey();
+                        Console.WriteLine("Le message caché derrière ce QR code est : " + QRcodeHelloWorld.Reduire(10,10).LectureQRcode());
+                        Console.WriteLine("Appuyez sur une touche pour revenir au menu");
+                        Console.ReadKey();
+                    }
+                    if (reponse == "2")
+                    {
+                        MyImage testQRcode = new MyImage("testQRcode.bmp");
+                        Console.WriteLine("Voici le QR code que vous souhaitez décoder :\nAppuyez sur une touche pour continuer");
+                        Process.Start("testQRcode.bmp");
+                        Console.ReadKey();
+                        Console.WriteLine("Le message caché derrière ce QR code est : " + testQRcode.Reduire(10,10).LectureQRcode());
+                        Console.WriteLine("Appuyez sur une touche pour revenir au menu");
+                        Console.ReadKey();
+                    }
+                }
+            }
             if (reponse == "3")
             {
                 while (reponse != "q" && reponse != "Q" && reponse != "Quitter" && reponse != "QUITTER" && reponse != "quitter")
@@ -60,19 +94,51 @@ namespace PSI___Louis___Meric
                 while (reponse != "q" && reponse != "Q" && reponse != "Quitter" && reponse != "QUITTER" && reponse != "quitter")
                 {
                     Console.Clear();
-                    Console.WriteLine("Veuillez choisir la hauteur de votre fractale :");
-                    int hauteurFractaleMandelbrot = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Veuillez choisir la largeur de votre fractale :");
-                    int largeurFractaleMandelbrot = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Quelle fractale souhaitez-vous dessiner ?\n" +
+                        "1 : Fractale de Julia (1ere version)\n" +
+                        "2 : Fractale de Julia (2eme version)\n" +
+                        "3 : Fractale de Julia (3eme version)\n" +
+                        "4 : Fractale de Julia (4eme version)\n" +
+                        "5 : Fractale de Mandelbrot\n" +
+                        "Veuillez entrez le numéro de la fractale que vous souhaitez dessiner");
+                    string reponseFractale = Console.ReadLine();
+                    while (reponseFractale!="1" && reponseFractale!="2" && reponseFractale!="3" && reponseFractale!="4" && reponseFractale!="5")
+                    {
+                        Console.WriteLine("Cette fractale n'existe pas");
+                        Console.WriteLine("Veuillez entrez le numéro de la fractale que vous souhaitez dessiner");
+                        reponseFractale = Console.ReadLine();
+                    }
+                    Console.WriteLine("Veuillez choisir la hauteur de votre fractale en nombre de pixels :");
+                    int hauteurFractale = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Veuillez choisir la largeur de votre fractale en nombre de pixels :");
+                    int largeurFractale = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Veuillez choisir un coefficient de couleur rouge :");
-                    double coefFractaleMandelBrotR = Convert.ToDouble(Console.ReadLine());
+                    double coefFractaleR = Convert.ToDouble(Console.ReadLine());
                     Console.WriteLine("Veuillez choisir un coefficient de couleur verte :");
-                    double coefFractaleMandelBrotG = Convert.ToDouble(Console.ReadLine());
+                    double coefFractaleG = Convert.ToDouble(Console.ReadLine());
                     Console.WriteLine("Veuillez choisir un coefficient de couleur bleue :");
-                    double coefFractaleMandelBrotB = Convert.ToDouble(Console.ReadLine());
-                    MyImage testFractaleMandelbrot = MyImage.FractaleMandelbrot(hauteurFractaleMandelbrot, largeurFractaleMandelbrot, coefFractaleMandelBrotR, coefFractaleMandelBrotG, coefFractaleMandelBrotB);
-                    testFractaleMandelbrot.From_Image_To_File("testFractaleMandelbrot.bmp");
-                    Process.Start("testFractaleMandelbrot.bmp");
+                    double coefFractaleB = Convert.ToDouble(Console.ReadLine());
+                    MyImage testFractale = null;
+                    switch (reponseFractale)
+                    {
+                        case "1":
+                            testFractale = MyImage.FractaleJulia1(hauteurFractale, largeurFractale, coefFractaleR, coefFractaleG, coefFractaleB);
+                            break;
+                        case "2":
+                            testFractale = MyImage.FractaleJulia2(hauteurFractale, largeurFractale, coefFractaleR, coefFractaleG, coefFractaleB);
+                            break;
+                        case "3":
+                            testFractale = MyImage.FractaleJulia3(hauteurFractale, largeurFractale, coefFractaleR, coefFractaleG, coefFractaleB);
+                            break;
+                        case "4":
+                            testFractale = MyImage.FractaleJulia4(hauteurFractale, largeurFractale, coefFractaleR, coefFractaleG, coefFractaleB);
+                            break;
+                        case "5":
+                            testFractale = MyImage.FractaleMandelbrot(hauteurFractale, largeurFractale, coefFractaleR, coefFractaleG, coefFractaleB);
+                            break;
+                    }
+                    testFractale.From_Image_To_File("testFractale.bmp");
+                    Process.Start("testFractale.bmp");
                     Console.WriteLine("Appuyez sur entrée pour continuer ou tapez 'quitter' pour fermer le programme");
                     reponse = Console.ReadLine();
                 }
@@ -130,12 +196,13 @@ namespace PSI___Louis___Meric
                                          + "21 : Appliquer une rotation à l'image de 90° vers la gauche\n"
                                          + "22 : Cacher une image dans une autre\n"
                                          + "23 : Appliquer un filtre multicolore sur l'image\n"
+                                         + "INNOVATION : \n" 
                                          + "24 : Appliquer un effet de symétrie sur un axe horizontal\n"
                                          + "25 : Appliquer un effet de symétrie sur un axe vertical\n"
                                          + "26 : Appliquer un effet de symétrie sur un axe vertical et horizontal\n"
                                          + "27 : Donner un changement de couleurs de manière aléatoire à l'image\n"
                                          + "28 : Appliquer un effet de saturation à l'image\n"
-                                         + "29 : Dessiner l'image en ASCII Art (n'oubliez pas de dézoomer sur votre console)\n"
+                                         + "29 : Dessiner l'image en ASCII Art (n'oubliez pas de dézoomer sur votre console) \n"
                                          + "30 : Dessiner l'image en ASCII Art en couleurs (n'oubliez pas de dézoomer sur votre console)\n"
                                          + "31 : Appliquer un filtre d'une couleur aléatoire à l'image\n"
                                          + "32 : Appliquer un effet de saturation coloré à l'image\n"
