@@ -213,17 +213,22 @@ namespace PSI___Louis___Meric
                         switch (reponse)
                         {
                             case "0":
-                                do
+                                Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / beluga / lena / lac / land / nature / galaxie / desert / foret / paysage / sakura / champs / planete / antilope / Test001 / carreTest)");
+                                bool available = false;
+                                while (available == false)
                                 {
-                                    if (nom != "coco.bmp" && nom != "tigre.bmp" && nom != "lena.bmp" && nom != "lac.bmp" && nom != "nature.bmp" && nom != "Test001.bmp" && nom != "carreTest.bmp" && nom != "champs.bmp" && nom != "land.bmp" && nom != "antilope.bmp" && nom != "renard.bmp" && nom != "beluga.bmp" && nom != "galaxie.bmp" && nom != "desert.bmp" && nom != "foret.bmp" && nom != "paysage.bmp" && nom != "sakura.bmp" && nom != "planete.bmp")
-                                    {
-                                        Console.WriteLine("L'image fournie n'est pas un BitMap ou n'existe pas");
-                                    }
-                                    Console.WriteLine("Veuillez choisir l'image que vous souhaitez traiter : (coco / renard / tigre / beluga / lena / lac / land / nature / galaxie / desert / foret / paysage / sakura / champs / planete / antilope / Test001 / carreTest)");
                                     nom = Console.ReadLine() + ".bmp";
+                                    try
+                                    {
+                                        test = new MyImage(nom);
+                                        available = true;
+                                    }
+                                    catch (FileNotFoundException)
+                                    {
+                                        Console.WriteLine("Ce fichier n'existe pas, veuillez recommencer");
+                                        available = false;
+                                    }
                                 }
-                                while (nom != "coco.bmp" && nom != "tigre.bmp" && nom != "lena.bmp" && nom != "lac.bmp" && nom != "nature.bmp" && nom != "Test001.bmp" && nom != "carreTest.bmp" && nom != "champs.bmp" && nom != "land.bmp" && nom != "antilope.bmp" && nom != "renard.bmp" && nom != "beluga.bmp" && nom != "galaxie.bmp" && nom != "desert.bmp" && nom != "foret.bmp" && nom != "paysage.bmp" && nom != "sakura.bmp" && nom != "planete.bmp");
-                                test = new MyImage(nom);
                                 break;
                             case "1":
                                 test.From_Image_To_File("verif_image.bmp");
@@ -537,6 +542,16 @@ namespace PSI___Louis___Meric
                                 MyImage testCouleurAleatoire = test.CouleurAléatoire();
                                 testCouleurAleatoire.From_Image_To_File("testCouleurAleatoire.bmp");
                                 Process.Start("testCouleurAleatoire.bmp");
+                                break;
+                            case "99":
+                                MyImage testCouleurAleatoireV2 = null;
+                                string filename;
+                                for (int tirage = 1; tirage <= 23; tirage++)
+                                {
+                                    testCouleurAleatoireV2 = test.CouleurAléatoireV2(tirage);
+                                    filename = "testCouleurAleatoire" + Convert.ToString(tirage) + ".bmp";
+                                    testCouleurAleatoireV2.From_Image_To_File(filename);
+                                }
                                 break;
                             case "28":
                                 MyImage testSaturage = test.Saturage();

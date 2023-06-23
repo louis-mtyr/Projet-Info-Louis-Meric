@@ -8,24 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\meric\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\martyr\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\meric\\OneDrive\\Bureau\\ESILV A2\\S2\\Pb_Scientifique_Informatique\\Projet\\PSI - Louis - Meric\\Présentation Forms\\Présentation Forms.csproj",
+      "projectUniqueName": "C:\\Users\\martyr\\Desktop\\Travail\\! ANCIENS COURS !\\A2 - info\\Pb scientifique info\\PSI - framework\\PSI - Louis - Meric\\Présentation Forms\\Présentation Forms.csproj",
       "projectName": "Présentation Forms",
-      "projectPath": "C:\\Users\\meric\\OneDrive\\Bureau\\ESILV A2\\S2\\Pb_Scientifique_Informatique\\Projet\\PSI - Louis - Meric\\Présentation Forms\\Présentation Forms.csproj",
-      "packagesPath": "C:\\Users\\meric\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\meric\\OneDrive\\Bureau\\ESILV A2\\S2\\Pb_Scientifique_Informatique\\Projet\\PSI - Louis - Meric\\Présentation Forms\\obj\\",
+      "projectPath": "C:\\Users\\martyr\\Desktop\\Travail\\! ANCIENS COURS !\\A2 - info\\Pb scientifique info\\PSI - framework\\PSI - Louis - Meric\\Présentation Forms\\Présentation Forms.csproj",
+      "packagesPath": "C:\\Users\\martyr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\martyr\\Desktop\\Travail\\! ANCIENS COURS !\\A2 - info\\Pb scientifique info\\PSI - framework\\PSI - Louis - Meric\\Présentation Forms\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\meric\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\martyr\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,6 +55,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[3.1.13, 3.1.13]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -68,7 +69,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
       }
     }
   }
